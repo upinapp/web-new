@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/icons": "^1.0.0-beta.43",
+    "@material-ui/core": "^1.0.0-rc.0",
+    "@material-ui/icons": "^1.0.0-rc.0",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
     "immutable": "^3.8.2",
@@ -21,7 +22,7 @@
     "redux": "^4.0.0",
     "redux-immutable": "^4.0.0",
     "redux-saga": "^0.16.0",
-    "serve": "^6.5.6"
+    "serve": "^6.5.7"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",

@@ -1,10 +1,10 @@
 import React from 'react';
-import DashboardPage from './pages/DashboardPage';
+import DashboardPage from './pages/DashboardPage/DashboardPage';
 import LoginPage from './pages/LoginPage';
 import MyAppsPage from './pages/MyAppsPage';
-import {MuiThemeProvider} from 'material-ui/styles';
-import {Switch, Route} from 'react-router-dom';
-import {CustomTheme} from './configs';
+import { MuiThemeProvider } from 'material-ui/styles';
+import { Switch, Route } from 'react-router-dom';
+import { CustomTheme } from './configs';
 
 class App extends React.PureComponent {
   render() {

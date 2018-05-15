@@ -13,7 +13,7 @@ import { compose } from "redux";
 import { DASHBOARD_MENU_TOGGLE } from "../../redusers";
 
 import { mapToObject } from "../../utils";
-import DashboardMenu from "./components/DashboardMenu";
+import DashboardMenu from "./components/DashboardMenu/DashboardMenu";
 
 const drawerWidth = 260;
 
