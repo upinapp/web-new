@@ -19,6 +19,7 @@ pipeline {
     stage('Deploy') {
       steps {
         sh 'pwd'
+        sh 'ls -la'
       }
     }
   }
