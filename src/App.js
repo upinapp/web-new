@@ -1,9 +1,9 @@
 import React from 'react';
 import DashboardPage from './pages/DashboardPage/DashboardPage';
-import LoginPage from './pages/LoginPage';
+import LoginPage from './pages/LoginPage/LoginPage';
 import MyAppsPage from './pages/MyAppsPage';
 import { MuiThemeProvider } from 'material-ui/styles';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { CustomTheme } from './configs';
 
 class App extends React.PureComponent {
@@ -12,7 +12,7 @@ class App extends React.PureComponent {
       <div>
         <MuiThemeProvider theme={CustomTheme}>
           <Switch>
-            <Route exact path="/" component={LoginPage}/>
+            <Route path="/auth/" component={LoginPage}/>
             <Route path="/dashboard" component={DashboardPage}/>
             <Route path="/apps" component={MyAppsPage}/>
           </Switch>
