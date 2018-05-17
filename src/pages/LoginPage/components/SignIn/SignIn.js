@@ -11,7 +11,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import {Link} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import GoogleIcon from'./google-icon.svg';
 
@@ -167,15 +167,16 @@ class SignIn extends React.PureComponent {
             Вход
           </Button>
           <a href="#!" className={classes.signInWithGoogle}>
-            <img src={GoogleIcon} className={classes.signInWithGoogleImg}/>
+            <img src={GoogleIcon}  className={classes.signInWithGoogleImg} alt="GoogleIcon"/>
             Войти с Google
           </a>
         </div>
 
         <Divider className={classes.divider}/>
 
-        <Link to="/auth/restore-password" className={classes.link}>Восстановить пароль</Link>
+	      <Link to="/auth/restore-password" className={classes.link}>Восстановить пароль</Link>
         <Link to="/auth/sign-up" className={classes.link}>Регистрация</Link>
+
       </div>
     );
   }

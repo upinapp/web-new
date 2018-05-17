@@ -89,6 +89,7 @@ class RestorePassword extends React.PureComponent {
 	render() {
 		const {classes} = this.props;
 
+
 		return (
 			<div className={classes.root}>
 				<h2 className={classes.title}>Восстановление пароля</h2>
@@ -123,6 +124,7 @@ class RestorePassword extends React.PureComponent {
 		);
 	}
 }
+
 
 RestorePassword.propTypes = {
 	classes: PropTypes.object.isRequired,
