@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {withStyles} from "material-ui/styles/index";
 import {compose} from "redux";
-import {Redirect, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
@@ -47,13 +47,15 @@ class LoginPage extends React.PureComponent {
     return (
       <div className={classes.root}>
         <div className={classes.functional}>
-          <Switch>
-            <Route path="/auth/sign-in" component={SignIn}/>
-	          <Route path="/auth/sign-up" component={SignUp}/>
-	          <Route path="/auth/new-password" component={NewPassword}/>
-	          <Route path="/auth/restore-password" component={RestorePassword}/>
-	          {/*<Route exact path="/auth" component={SignIn}/>*/}
-          </Switch>
+          <Router>
+            <Switch>
+              <Route exact path="/auth" component={SignIn}/>
+              <Route path="/auth/sign-in" component={SignIn}/>
+              <Route path="/auth/sign-up" component={SignUp}/>
+              <Route path="/auth/new-password" component={NewPassword}/>
+              <Route path="/auth/restore-password" component={RestorePassword}/>
+            </Switch>
+          </Router>
         </div>
         <div className={classes.decorate}>
         </div>

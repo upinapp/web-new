@@ -136,8 +136,9 @@ class NewPassword extends React.PureComponent {
             onChange={this.handleChange}
           />
         </FormControl>
-        {this.state.passwordConfirm.length < MIN_LENGTH_PASSWORD ? <div className={classes.minPassword}>Минимальное кол-во
-          символов {this.state.passwordConfirm.length}/{MIN_LENGTH_PASSWORD}</div> : null}
+        {this.state.passwordConfirm.length < MIN_LENGTH_PASSWORD ?
+          <div className={classes.minPassword}>Минимальное кол-во
+            символов {this.state.passwordConfirm.length}/{MIN_LENGTH_PASSWORD}</div> : null}
 
         <div className={classes.submitField}>
           <Button variant="raised" color="primary" className={classNames(classes.button, classes.submitButton)}>

@@ -13,7 +13,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import {Link} from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
-import GoogleIcon from'./google-icon.svg';
+import GoogleIcon from './google-icon.svg';
 
 const widthRoot = 330;
 
@@ -59,10 +59,10 @@ const styles = theme => ({
     marginLeft: 24,
     color: theme.palette.primary.light,
     textDecoration: 'none',
-	  display: 'flex',
+    display: 'flex',
     alignItems: 'center',
   },
-	signInWithGoogleImg: {
+  signInWithGoogleImg: {
     marginRight: 10,
   },
   divider: {
@@ -167,7 +167,7 @@ class SignIn extends React.PureComponent {
             Вход
           </Button>
           <a href="#!" className={classes.signInWithGoogle}>
-            <img src={GoogleIcon} className={classes.signInWithGoogleImg}/>
+            <img src={GoogleIcon} className={classes.signInWithGoogleImg} alt="GoogleIcon"/>
             Войти с Google
           </a>
         </div>
@@ -176,6 +176,7 @@ class SignIn extends React.PureComponent {
 
         <Link to="/auth/restore-password" className={classes.link}>Восстановить пароль</Link>
         <Link to="/auth/sign-up" className={classes.link}>Регистрация</Link>
+
       </div>
     );
   }

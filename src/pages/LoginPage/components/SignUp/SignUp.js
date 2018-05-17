@@ -179,7 +179,8 @@ class SignUp extends React.PureComponent {
         </FormControl>
 
         {this.state.password.length < MIN_LENGTH_PASSWORD ?
-          <div className={classes.minPassword}>Минимальное кол-во символов {this.state.password.length}/{MIN_LENGTH_PASSWORD}</div> : null}
+          <div className={classes.minPassword}>Минимальное кол-во
+            символов {this.state.password.length}/{MIN_LENGTH_PASSWORD}</div> : null}
 
 
         <div className={classes.submitField}>
