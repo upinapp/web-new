@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import Adapter from 'enzyme-adapter-react-16';
 import AudienceByDayTable from './AudienceByDayTable';
 import configureStore from '../../../../configureStore';
-import {mapToObject} from "../../../../utils";
+import {mapToObject} from '../../../../utils';
 
 configure({adapter: new Adapter()});
 
@@ -26,8 +26,7 @@ beforeEach(() => {
   for (let key in renderedComponent.find('AudienceByDayTable').props().classes) {
     classes[key] = '.' + renderedComponent.find('AudienceByDayTable').props().classes[key];
   }
-})
-
+});
 
 function transformArray(audienceByDate) {
   let allDataToPeriod = {
@@ -54,7 +53,6 @@ describe('AudienceByDayTable:', () => {
     ReactDOM.unmountComponentAtNode(div);
   });
 
-
   // проверки на присутствие нужных элементов
   it('Component should have a title', () => {
     expect(renderedComponent.find(classes.tableTitle).length).to.equal(1);
@@ -79,17 +77,17 @@ describe('AudienceByDayTable:', () => {
 
         row.find('td').forEach(cell => {
           switch (iteratorOfColumn) {
-            case 3:
-              expect(cell.contains(audienceByDateFromStore[iteratorOfRow].users)).to.equal(true);
-              break;
-            case 4:
-              expect(cell.contains(audienceByDateFromStore[iteratorOfRow].newUsers)).to.equal(true);
-              break;
-            case 5:
-              expect(cell.contains(audienceByDateFromStore[iteratorOfRow].session)).to.equal(true);
-              break;
-            default:
-              break;
+          case 3:
+            expect(cell.contains(audienceByDateFromStore[iteratorOfRow].users)).to.equal(true);
+            break;
+          case 4:
+            expect(cell.contains(audienceByDateFromStore[iteratorOfRow].newUsers)).to.equal(true);
+            break;
+          case 5:
+            expect(cell.contains(audienceByDateFromStore[iteratorOfRow].session)).to.equal(true);
+            break;
+          default:
+            break;
           }
           iteratorOfColumn++;
         });
@@ -102,24 +100,23 @@ describe('AudienceByDayTable:', () => {
 
         row.find('td').forEach(cell => {
           switch (iteratorOfColumn) {
-            case 3:
-              expect(cell.contains(sumAllUser.users)).to.equal(true);
-              break;
-            case 4:
-              expect(cell.contains(sumAllUser.newUsers)).to.equal(true);
-              break;
-            case 5:
-              expect(cell.contains(sumAllUser.session)).to.equal(true);
-              break;
-            default:
-              break;
+          case 3:
+            expect(cell.contains(sumAllUser.users)).to.equal(true);
+            break;
+          case 4:
+            expect(cell.contains(sumAllUser.newUsers)).to.equal(true);
+            break;
+          case 5:
+            expect(cell.contains(sumAllUser.session)).to.equal(true);
+            break;
+          default:
+            break;
           }
           iteratorOfColumn++;
         });
       }
       iteratorOfRow++;
-    })
+    });
   });
-
 
 });

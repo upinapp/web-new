@@ -1,18 +1,16 @@
 import React from 'react';
-import PropTypes from "prop-types";
-import {withStyles} from "material-ui/styles/index";
-import {compose} from "redux";
-import AudienceByDayTable from "../../components/AudienceByDayTable/AudienceByDayTable";
-import {mapToObject} from "../../../../utils";
-import {connect} from "react-redux";
-
+import PropTypes from 'prop-types';
+import {withStyles} from 'material-ui/styles/index';
+import {compose} from 'redux';
+import AudienceByDayTable from '../../components/AudienceByDayTable/AudienceByDayTable';
+import {mapToObject} from '../../../../utils';
+import {connect} from 'react-redux';
 
 const styles = theme => ({
   root: {
     width: '100%',
   }
 });
-
 
 class RetentionPage extends React.PureComponent {
   render() {

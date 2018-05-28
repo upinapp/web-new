@@ -1,12 +1,11 @@
 import React from 'react';
-import {compose} from "redux";
-import PropTypes from "prop-types";
-import {withStyles} from "material-ui/styles/index";
+import {compose} from 'redux';
+import PropTypes from 'prop-types';
+import {withStyles} from 'material-ui/styles/index';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
-
 
 const widthRoot = 330;
 const MIN_LENGTH_PASSWORD = 6;

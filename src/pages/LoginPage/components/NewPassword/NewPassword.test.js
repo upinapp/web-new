@@ -21,9 +21,9 @@ beforeEach(() => {
 
   // получаем его коллекцию классов
   for (let key in renderedComponent.find('NewPassword').props().classes) {
-    classes[key] = '.' + renderedComponent.find('NewPassword').props().classes[key]
+    classes[key] = '.' + renderedComponent.find('NewPassword').props().classes[key];
   }
-  ;
+  
 });
 
 describe('NewPassword:', () => {
@@ -36,7 +36,6 @@ describe('NewPassword:', () => {
       div);
     ReactDOM.unmountComponentAtNode(div);
   });
-
 
   // проверки на присутствие нужных элементов
 

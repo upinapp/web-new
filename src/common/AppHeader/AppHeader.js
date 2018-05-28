@@ -1,7 +1,7 @@
-import React from "react";
-import { withStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
-import logo from "./logo.png";
+import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import logo from './logo.png';
 
 const styles = theme => ({
   root: {

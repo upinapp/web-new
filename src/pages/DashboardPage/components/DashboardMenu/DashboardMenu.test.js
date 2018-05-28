@@ -9,15 +9,15 @@ import configureStore from '../../../../configureStore';
 const store = configureStore({});
 
 describe('DashboardMenu:', () => {
-	it('renders without crashing', () => {
-		const div = document.createElement('div');
-		ReactDOM.render(
-			<Provider store={store}>
-				<BrowserRouter>
-					<DashboardMenu/>
-				</BrowserRouter>
-			</Provider>,
-			div);
-		ReactDOM.unmountComponentAtNode(div);
-	})
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <DashboardMenu/>
+        </BrowserRouter>
+      </Provider>,
+      div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
 });

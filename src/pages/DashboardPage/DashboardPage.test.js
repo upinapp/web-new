@@ -16,5 +16,6 @@ describe('DashboardPage:', () => {
       </Provider>,
       div);
     ReactDOM.unmountComponentAtNode(div);
-  })
+  });
 });
+

@@ -13,11 +13,11 @@ export const ADD_NEW_APP = 'ADD_NEW_APP';
  */
 export function myAppsReducer(state = myAppsInitialState, action) {
   switch (action.type) {
-    case ADD_NEW_APP:
-      return state.merge({
-        list: [...state.get('list'), action.payload]
-      });
-    default:
-      return state;
+  case ADD_NEW_APP:
+    return state.merge({
+      list: [...state.get('list'), action.payload]
+    });
+  default:
+    return state;
   }
 }
