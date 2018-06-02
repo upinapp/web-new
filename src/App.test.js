@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import createHistory from "history/createBrowserHistory";
-import { Provider } from "react-redux";
-import { ConnectedRouter } from "react-router-redux";
+import createHistory from 'history/createBrowserHistory';
+import {Provider} from 'react-redux';
+import {ConnectedRouter} from 'react-router-redux';
 
 import App from './App';
-import configureStore from "./configureStore";
+import configureStore from './configureStore';
 
 const initialState = {};
 const history = createHistory();
@@ -17,9 +17,9 @@ describe('App:', () => {
     ReactDOM.render(
       <Provider store={store}>
         <ConnectedRouter history={history}>
-          <App />
+          <App/>
         </ConnectedRouter>
       </Provider>, div);
     ReactDOM.unmountComponentAtNode(div);
-  })
+  });
 });

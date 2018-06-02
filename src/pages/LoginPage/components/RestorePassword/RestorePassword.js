@@ -1,14 +1,13 @@
 import React from 'react';
-import {compose} from "redux";
-import PropTypes from "prop-types";
-import {withStyles} from "material-ui/styles/index";
+import {compose} from 'redux';
+import PropTypes from 'prop-types';
+import {withStyles} from 'material-ui/styles/index';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import {Link} from 'react-router-dom';
-
 
 const widthRoot = 330;
 
@@ -80,7 +79,6 @@ class RestorePassword extends React.PureComponent {
     this.handleChange = this.handleChange.bind(this);
   }
 
-
   handleChange(e) {
     let val = e.target.value;
     this.setState({[e.target.name]: val});
@@ -88,7 +86,6 @@ class RestorePassword extends React.PureComponent {
 
   render() {
     const {classes} = this.props;
-
 
     return (
       <div className={classes.root}>
@@ -124,7 +121,6 @@ class RestorePassword extends React.PureComponent {
     );
   }
 }
-
 
 RestorePassword.propTypes = {
   classes: PropTypes.object.isRequired,

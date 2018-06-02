@@ -1,7 +1,7 @@
 import React from 'react';
-import {compose} from "redux";
-import PropTypes from "prop-types";
-import {withStyles} from "material-ui/styles/index";
+import {compose} from 'redux';
+import PropTypes from 'prop-types';
+import {withStyles} from 'material-ui/styles/index';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -12,7 +12,6 @@ import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import {Link} from 'react-router-dom';
-
 
 const widthRoot = 330;
 const MIN_LENGTH_PASSWORD = 6;
@@ -181,7 +180,6 @@ class SignUp extends React.PureComponent {
         {this.state.password.length < MIN_LENGTH_PASSWORD ?
           <div className={classes.minPassword}>Минимальное кол-во
             символов {this.state.password.length}/{MIN_LENGTH_PASSWORD}</div> : null}
-
 
         <div className={classes.submitField}>
           <Button variant="raised" color="primary" className={classNames(classes.button, classes.submitButton)}>

@@ -1,14 +1,13 @@
 import React from 'react';
-import PropTypes from "prop-types";
-import {withStyles} from "material-ui/styles/index";
-import {compose} from "redux";
+import PropTypes from 'prop-types';
+import {withStyles} from 'material-ui/styles/index';
+import {compose} from 'redux';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-import SignIn from "./components/SignIn/SignIn";
-import SignUp from "./components/SignUp/SignUp";
-import NewPassword from "./components/NewPassword/NewPassword";
-import RestorePassword from "./components/RestorePassword/RestorePassword";
-
+import SignIn from './components/SignIn/SignIn';
+import SignUp from './components/SignUp/SignUp';
+import NewPassword from './components/NewPassword/NewPassword';
+import RestorePassword from './components/RestorePassword/RestorePassword';
 
 const styles = theme => ({
   root: {
@@ -29,7 +28,7 @@ const styles = theme => ({
     width: '50%',
     backgroundColor: theme.palette.primary.light
   }
-})
+});
 
 class LoginPage extends React.PureComponent {
   render() {

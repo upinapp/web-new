@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
 
 import DashboardMenu from './DashboardMenu';
 import configureStore from '../../../../configureStore';
@@ -12,9 +13,11 @@ describe('DashboardMenu:', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <Provider store={store}>
-        <DashboardMenu />
+        <BrowserRouter>
+          <DashboardMenu/>
+        </BrowserRouter>
       </Provider>,
       div);
     ReactDOM.unmountComponentAtNode(div);
-  })
+  });
 });

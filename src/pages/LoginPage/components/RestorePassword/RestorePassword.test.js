@@ -26,7 +26,7 @@ beforeEach(() => {
   for (let key in renderedComponent.find('RestorePassword').props().classes) {
     classes[key] = '.' + renderedComponent.find('RestorePassword').props().classes[key];
   }
-})
+});
 
 describe('RestorePassword:', () => {
 
@@ -41,7 +41,6 @@ describe('RestorePassword:', () => {
       div);
     ReactDOM.unmountComponentAtNode(div);
   });
-
 
   // проверки на присутствие нужных элементов
   it('Component should a title', () => {

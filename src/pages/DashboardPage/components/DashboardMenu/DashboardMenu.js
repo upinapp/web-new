@@ -1,23 +1,24 @@
-import AppsIcon from "@material-ui/icons/Apps";
-import ChatIcon from "@material-ui/icons/Chat";
-import DonutSmallIcon from "@material-ui/icons/DonutSmall";
-import EventIcon from "@material-ui/icons/Event";
-import FlagIcon from "@material-ui/icons/Flag";
-import GroupIcon from "@material-ui/icons/Group";
-import StarRateIcon from "@material-ui/icons/Star";
-import SwapHorizIcon from "@material-ui/icons/SwapHoriz";
-import VideogameAssetIcon from "@material-ui/icons/VideogameAsset";
-import classNames from "classnames";
-import Divider from "material-ui/Divider";
-import List, { ListItem, ListItemIcon, ListItemText } from "material-ui/List";
-import ListSubheader from "material-ui/List/ListSubheader";
-import { withStyles } from "material-ui/styles";
-import SvgIcon from "material-ui/SvgIcon";
-import React from "react";
-import { connect } from "react-redux";
-import { compose } from "redux";
+import AppsIcon from '@material-ui/icons/Apps';
+import ChatIcon from '@material-ui/icons/Chat';
+import DonutSmallIcon from '@material-ui/icons/DonutSmall';
+import EventIcon from '@material-ui/icons/Event';
+import FlagIcon from '@material-ui/icons/Flag';
+import GroupIcon from '@material-ui/icons/Group';
+import StarRateIcon from '@material-ui/icons/Star';
+import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
+import VideogameAssetIcon from '@material-ui/icons/VideogameAsset';
+import classNames from 'classnames';
+import Divider from 'material-ui/Divider';
+import List, {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
+import ListSubheader from 'material-ui/List/ListSubheader';
+import {withStyles} from 'material-ui/styles';
+import SvgIcon from 'material-ui/SvgIcon';
+import React from 'react';
+import {connect} from 'react-redux';
+import {compose} from 'redux';
+import {Link} from 'react-router-dom';
 
-import { mapToObject } from "../../../../utils";
+import {mapToObject} from '../../../../utils';
 
 const styles = theme => ({
   root: {
@@ -40,7 +41,7 @@ const styles = theme => ({
 
 class DashboardMenu extends React.PureComponent {
   render() {
-    const { classes, dashboardMenu } = this.props;
+    const {classes, dashboardMenu} = this.props;
 
     return (
       <div className={classNames(!dashboardMenu.open && classes.open)}>
@@ -48,12 +49,12 @@ class DashboardMenu extends React.PureComponent {
           <ListSubheader
             className={classNames(!dashboardMenu.open && classes.hide)}
           >
-            Отчеты
+						Отчеты
           </ListSubheader>
-          <Divider />
+          <Divider/>
           <ListItem button>
             <ListItemIcon>
-              <StarRateIcon />
+              <StarRateIcon/>
             </ListItemIcon>
             <ListItemText
               disableTypography={true}
@@ -64,7 +65,7 @@ class DashboardMenu extends React.PureComponent {
 
           <ListItem button>
             <ListItemIcon>
-              <FlagIcon />
+              <FlagIcon/>
             </ListItemIcon>
             <ListItemText
               disableTypography={true}
@@ -74,7 +75,7 @@ class DashboardMenu extends React.PureComponent {
 
           <ListItem button>
             <ListItemIcon>
-              <GroupIcon />
+              <GroupIcon/>
             </ListItemIcon>
             <ListItemText
               disableTypography={true}
@@ -94,19 +95,21 @@ class DashboardMenu extends React.PureComponent {
               primary="Воронки"/>
           </ListItem>
 
-          <ListItem button>
-            <ListItemIcon>
-              <AppsIcon />
-            </ListItemIcon>
-            <ListItemText
-              disableTypography={true}
-              className={classes.label}
-              primary="Retention"/>
-          </ListItem>
+          <Link to="/dashboard/retention">
+            <ListItem button>
+              <ListItemIcon>
+                <AppsIcon/>
+              </ListItemIcon>
+              <ListItemText
+                disableTypography={true}
+                className={classes.label}
+                primary="Retention"/>
+            </ListItem>
+          </Link>
 
           <ListItem button>
             <ListItemIcon>
-              <VideogameAssetIcon />
+              <VideogameAssetIcon/>
             </ListItemIcon>
             <ListItemText
               disableTypography={true}
@@ -116,7 +119,7 @@ class DashboardMenu extends React.PureComponent {
 
           <ListItem button>
             <ListItemIcon>
-              <ChatIcon />
+              <ChatIcon/>
             </ListItemIcon>
             <ListItemText
               disableTypography={true}
@@ -126,7 +129,7 @@ class DashboardMenu extends React.PureComponent {
 
           <ListItem button>
             <ListItemIcon>
-              <SwapHorizIcon />
+              <SwapHorizIcon/>
             </ListItemIcon>
             <ListItemText
               disableTypography={true}
@@ -137,13 +140,13 @@ class DashboardMenu extends React.PureComponent {
           <ListSubheader
             className={classNames(!dashboardMenu.open && classes.hide)}
           >
-            Данные
-            </ListSubheader>
-          <Divider />
+						Данные
+          </ListSubheader>
+          <Divider/>
 
           <ListItem button>
             <ListItemIcon>
-              <EventIcon />
+              <EventIcon/>
             </ListItemIcon>
             <ListItemText
               disableTypography={true}
@@ -153,7 +156,7 @@ class DashboardMenu extends React.PureComponent {
 
           <ListItem button>
             <ListItemIcon>
-              <DonutSmallIcon />
+              <DonutSmallIcon/>
             </ListItemIcon>
             <ListItemText
               disableTypography={true}

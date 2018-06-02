@@ -24,7 +24,7 @@ beforeEach(() => {
 
   // получаем его коллекцию классов
   for (let key in renderedComponent.find('SignUp').props().classes) {
-    classes[key] = '.' + renderedComponent.find('SignUp').props().classes[key]
+    classes[key] = '.' + renderedComponent.find('SignUp').props().classes[key];
   }
 });
 
@@ -41,7 +41,6 @@ describe('SignUp:', () => {
       div);
     ReactDOM.unmountComponentAtNode(div);
   });
-
 
   // проверки на присутствие нужных элементов
 

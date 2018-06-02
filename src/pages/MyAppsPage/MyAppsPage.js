@@ -1,9 +1,9 @@
-import { withStyles } from "material-ui/styles";
-import React from "react";
-import { connect } from "react-redux";
-import { compose } from "redux";
-import AddIcon from "@material-ui/icons/Add";
-import Button from "material-ui/Button";
+import { withStyles } from 'material-ui/styles';
+import React from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import AddIcon from '@material-ui/icons/Add';
+import Button from 'material-ui/Button';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -15,9 +15,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 
-import AppHeader from "../../common/AppHeader/AppHeader";
-import { mapToObject } from "../../utils";
-import { ADD_NEW_APP } from "../../redusers";
+import AppHeader from '../../common/AppHeader/AppHeader';
+import { mapToObject } from '../../utils';
+import { ADD_NEW_APP } from '../../redusers';
 
 const styles = theme => ({
   root: {
@@ -161,7 +161,6 @@ class MyAppsPage extends React.PureComponent {
             У Вас нет еще ни одного приложения
           </div>
         }
-
 
         <Dialog onClose={this.handleClose} open={this.state.isDialogOpen}>
           <div className={classes.dialog}>

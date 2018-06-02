@@ -10,7 +10,6 @@ import configureStore from '../../../../configureStore';
 
 configure({adapter: new Adapter()});
 
-
 const store = configureStore({});
 
 let renderedComponent;
@@ -26,10 +25,9 @@ beforeEach(function () {
 
   // получаем его коллекцию классов
   for (let key in renderedComponent.find('SignIn').props().classes) {
-    classes[key] = '.' + renderedComponent.find('SignIn').props().classes[key]
+    classes[key] = '.' + renderedComponent.find('SignIn').props().classes[key];
   }
 });
-
 
 describe('SignIn:', () => {
 
