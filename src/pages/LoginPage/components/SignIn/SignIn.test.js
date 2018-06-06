@@ -65,19 +65,3 @@ describe('SignIn:', () => {
   });
 
 });
-
-// let hello;
-// beforeEach(function () {
-//   hello = 'hi';
-// });
-//
-// afterEach(function () {
-//   console.log(hello);
-// });
-//
-// describe('context', () => {
-//   it('should work', function () {
-//     console.log(hello);
-//   });
-// });
-//

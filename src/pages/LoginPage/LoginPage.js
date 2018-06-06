@@ -49,10 +49,10 @@ class LoginPage extends React.PureComponent {
           <Router>
             <Switch>
               <Route exact path="/auth" component={SignIn}/>
-              <Route path="/auth/sign-in" component={SignIn}/>
-              <Route path="/auth/sign-up" component={SignUp}/>
-              <Route path="/auth/new-password" component={NewPassword}/>
-              <Route path="/auth/restore-password" component={RestorePassword}/>
+              <Route exact path="/auth/sign-in" component={SignIn}/>
+              <Route exact path="/auth/sign-up" component={SignUp}/>
+              <Route exact path="/auth/new-password" component={NewPassword}/>
+              <Route exact path="/auth/restore-password" component={RestorePassword}/>
             </Switch>
           </Router>
         </div>

@@ -7,12 +7,12 @@ import Input from '@material-ui/core/Input';
 import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 
-const widthRoot = 330;
-const MIN_LENGTH_PASSWORD = 6;
+const rootWidth = 330;
+const MIN_PASSWORD_LENGTH = 6;
 
 const styles = theme => ({
   root: {
-    width: widthRoot,
+    width: rootWidth,
     fontFamily: 'Roboto',
   },
   title: {
@@ -135,9 +135,9 @@ class NewPassword extends React.PureComponent {
             onChange={this.handleChange}
           />
         </FormControl>
-        {this.state.passwordConfirm.length < MIN_LENGTH_PASSWORD ?
+        {this.state.passwordConfirm.length < MIN_PASSWORD_LENGTH ?
           <div className={classes.minPassword}>Минимальное кол-во
-            символов {this.state.passwordConfirm.length}/{MIN_LENGTH_PASSWORD}</div> : null}
+            символов {this.state.passwordConfirm.length}/{MIN_PASSWORD_LENGTH}</div> : null}
 
         <div className={classes.submitField}>
           <Button variant="raised" color="primary" className={classNames(classes.button, classes.submitButton)}>

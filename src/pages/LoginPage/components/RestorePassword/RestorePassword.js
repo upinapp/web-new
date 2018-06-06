@@ -9,11 +9,11 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import {Link} from 'react-router-dom';
 
-const widthRoot = 330;
+const rootWidth = 330;
 
 const styles = theme => ({
   root: {
-    width: widthRoot,
+    width: rootWidth,
     fontFamily: 'Roboto',
   },
   title: {

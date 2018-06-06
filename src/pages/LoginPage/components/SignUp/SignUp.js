@@ -12,13 +12,14 @@ import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import {Link} from 'react-router-dom';
+import {signUpUser} from '../../../../utils';
 
-const widthRoot = 330;
-const MIN_LENGTH_PASSWORD = 6;
+const rootWidth = 330;
+const MIN_PASSWORD_LENGTH = 6;
 
 const styles = theme => ({
   root: {
-    width: widthRoot,
+    width: rootWidth,
     fontFamily: 'Roboto',
   },
   title: {
@@ -103,11 +104,38 @@ class SignUp extends React.PureComponent {
       name: '',
       password: '',
       showPassword: false,
+      errorMessage: null
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleMouseDownPassword = this.handleMouseDownPassword.bind(this);
     this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
+    this.signUp = this.signUp.bind(this);
+  }
+
+  signUp = async (event) => {
+    event.preventDefault();
+    let errorCode = await signUpUser(this.state.email, this.state.password, this.state.name);
+    switch (await errorCode) {
+    case 2:
+      this.setState({'errorMessage': 'Некорректный email'});
+      break;
+    case 4:
+      this.setState({'errorMessage': 'Пользователь существует'});
+      break;
+    default:
+      this.setState({'errorMessage': null});
+      console.log('Успешно!');
+      // this.props.history.push('/apps');
+    }
+  };
+
+  renderErrorMessage() {
+    const {classes} = this.props;
+
+    return <div className={classes.error}>
+      {this.state.errorMessage}
+    </div>;
   }
 
   handleMouseDownPassword = event => {
@@ -177,12 +205,18 @@ class SignUp extends React.PureComponent {
           />
         </FormControl>
 
-        {this.state.password.length < MIN_LENGTH_PASSWORD ?
+        {
+          this.state.errorMessage &&
+          this.renderErrorMessage()
+        }
+
+        {this.state.password.length < MIN_PASSWORD_LENGTH ?
           <div className={classes.minPassword}>Минимальное кол-во
-            символов {this.state.password.length}/{MIN_LENGTH_PASSWORD}</div> : null}
+            символов {this.state.password.length}/{MIN_PASSWORD_LENGTH}</div> : null}
 
         <div className={classes.submitField}>
-          <Button variant="raised" color="primary" className={classNames(classes.button, classes.submitButton)}>
+          <Button onClick={this.signUp} variant="raised" color="primary"
+            className={classNames(classes.button, classes.submitButton)}>
             Продолжить
           </Button>
         </div>
