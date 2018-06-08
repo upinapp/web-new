@@ -1,81 +1,9 @@
-import React from 'react';
-import {compose} from 'redux';
-import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles/index';
+import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
-import classNames from 'classnames';
-import Button from '@material-ui/core/Button';
+import React from 'react';
 
-const rootWidth = 330;
 const MIN_PASSWORD_LENGTH = 6;
-
-const styles = theme => ({
-  root: {
-    width: rootWidth,
-    fontFamily: 'Roboto',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: '500',
-    textAlign: 'left',
-    paddingBottom: 4,
-  },
-  wrapperInput: {
-    width: '100%',
-    backgroundColor: 'rgba(0, 0, 0, .04)',
-  },
-  textField: {
-    borderRadius: 2,
-    fontSize: 16,
-    color: 'rgba(0, 0, 0, .87)',
-    padding: '0px 8px 3px',
-  },
-  label: {
-    marginTop: 29,
-    display: 'block',
-    fontSize: 12,
-    lineHeight: '1.33',
-    color: 'rgba(0, 0, 0, .54)',
-    marginBottom: 4,
-  },
-  submitField: {
-    marginTop: 24,
-    display: 'flex',
-    alignItems: 'center',
-  },
-  submitButton: {
-    color: 'white',
-    backgroundColor: theme.palette.primary.light
-  },
-  divider: {
-    marginTop: 16,
-    marginBottom: 8
-  },
-  link: {
-    display: 'block',
-    textDecoration: 'none',
-    color: theme.palette.primary.light,
-    marginBottom: 8,
-  },
-  error: {
-    marginTop: 16,
-    backgroundColor: theme.palette.error.light,
-    color: 'white',
-    fontFamily: 'Roboto',
-    fontSize: 10,
-    fontWeight: '500',
-    textAlign: 'center',
-    padding: '8px 0',
-  },
-  minPassword: {
-    textAlign: 'right',
-    fontFamily: 'Roboto',
-    fontSize: 12,
-    lineHeight: '1.3',
-    color: 'rgba(0, 0, 0, .54)',
-  },
-});
 
 class NewPassword extends React.PureComponent {
 
@@ -106,41 +34,39 @@ class NewPassword extends React.PureComponent {
   }
 
   render() {
-    const {classes} = this.props;
-
     return (
-      <div className={classes.root}>
-        <h2 className={classes.title}>Новый пароль</h2>
+      <div className="login-page__component">
+        <h2 className="login-page__component__title">Новый пароль</h2>
 
-        <label className={classes.label} htmlFor="password">Пароль</label>
-        <FormControl className={classNames(classes.margin, classes.wrapperInput)}>
+        <label className="login-page__component__label" htmlFor="password">Пароль</label>
+        <FormControl className="login-page__component__wrapper-input">
           <Input
             id="password"
             name="password"
             type={this.state.showPassword ? 'text' : 'password'}
-            className={classes.textField}
+            className="login-page__component__text-field"
             value={this.state.password}
             onChange={this.handleChange}
           />
         </FormControl>
 
-        <label className={classes.label} htmlFor="password">Подтверждение пароля</label>
-        <FormControl className={classNames(classes.margin, classes.wrapperInput)}>
+        <label className="login-page__component__label" htmlFor="password">Подтверждение пароля</label>
+        <FormControl className="login-page__component__wrapper-input">
           <Input
             id="passwordConfirm"
             name="passwordConfirm"
             type={this.state.showPassword ? 'text' : 'password'}
-            className={classes.textField}
+            className="login-page__component__text-field"
             value={this.state.passwordConfirm}
             onChange={this.handleChange}
           />
         </FormControl>
         {this.state.passwordConfirm.length < MIN_PASSWORD_LENGTH ?
-          <div className={classes.minPassword}>Минимальное кол-во
+          <div className="login-page__component__min-password">Минимальное кол-во
             символов {this.state.passwordConfirm.length}/{MIN_PASSWORD_LENGTH}</div> : null}
 
-        <div className={classes.submitField}>
-          <Button variant="raised" color="primary" className={classNames(classes.button, classes.submitButton)}>
+        <div className="login-page__component__submit-field">
+          <Button className="login-page__component__submit-button">
             Сменить пароль
           </Button>
         </div>
@@ -149,11 +75,4 @@ class NewPassword extends React.PureComponent {
   }
 }
 
-NewPassword.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};
-
-export default compose(
-  withStyles(styles, {withTheme: true})
-)(NewPassword);
+export default NewPassword;

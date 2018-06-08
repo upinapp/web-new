@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {expect} from 'chai';
-import {configure, mount} from 'enzyme';
+import {configure, shallow} from 'enzyme';
 import {Provider} from 'react-redux';
 import Adapter from 'enzyme-adapter-react-16';
 import NewPassword from './NewPassword';
@@ -12,18 +12,11 @@ configure({adapter: new Adapter()});
 const store = configureStore({});
 
 let renderedComponent;
-const classes = {};
+
 beforeEach(() => {
-  // рендерим компонент
-  renderedComponent = mount(
+  renderedComponent = shallow(
     <NewPassword/>
   );
-
-  // получаем его коллекцию классов
-  for (let key in renderedComponent.find('NewPassword').props().classes) {
-    classes[key] = '.' + renderedComponent.find('NewPassword').props().classes[key];
-  }
-  
 });
 
 describe('NewPassword:', () => {
@@ -40,18 +33,18 @@ describe('NewPassword:', () => {
   // проверки на присутствие нужных элементов
 
   it('Component should a title', () => {
-    expect(renderedComponent.find(classes.title).length).to.equal(1);
+    expect(renderedComponent.find('.login-page__component__title').length).to.equal(1);
   });
 
   it('Component should field for insert password', () => {
-    expect(renderedComponent.find('Input[name="password"]').length).to.equal(1);
+    expect(renderedComponent.find('WithStyles(Input)[name="password"]').length).to.equal(1);
   });
 
   it('Component should field for insert confirm password', () => {
-    expect(renderedComponent.find('Input[name="passwordConfirm"]').length).to.equal(1);
+    expect(renderedComponent.find('WithStyles(Input)[name="passwordConfirm"]').length).to.equal(1);
   });
 
   it('Component should submit button', () => {
-    expect(renderedComponent.find('Button' + classes.submitButton).length).to.equal(1);
+    expect(renderedComponent.find('.login-page__component__submit-field').length).to.equal(1);
   });
 });

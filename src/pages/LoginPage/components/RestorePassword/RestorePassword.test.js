@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {expect} from 'chai';
-import {configure, mount} from 'enzyme';
+import {configure, shallow} from 'enzyme';
 import {Provider} from 'react-redux';
 import Adapter from 'enzyme-adapter-react-16';
 import RestorePassword from './RestorePassword';
@@ -15,17 +15,9 @@ const store = configureStore({});
 let renderedComponent;
 const classes = {};
 beforeEach(() => {
-  // рендерим компонент
-  renderedComponent = mount(
-    <BrowserRouter>
-      <RestorePassword/>
-    </BrowserRouter>
+  renderedComponent = shallow(
+    <RestorePassword/>
   );
-
-  // получаем его коллекцию классов
-  for (let key in renderedComponent.find('RestorePassword').props().classes) {
-    classes[key] = '.' + renderedComponent.find('RestorePassword').props().classes[key];
-  }
 });
 
 describe('RestorePassword:', () => {
@@ -44,15 +36,15 @@ describe('RestorePassword:', () => {
 
   // проверки на присутствие нужных элементов
   it('Component should a title', () => {
-    expect(renderedComponent.find(classes.title).length).to.equal(1);
+    expect(renderedComponent.find('.login-page__component__title').length).to.equal(1);
   });
 
   it('Component should field of sending email', () => {
-    expect(renderedComponent.find('Input#email').length).to.equal(1);
+    expect(renderedComponent.find('WithStyles(Input)[name="email"]').length).to.equal(1);
   });
 
   it('Component should submit button', () => {
-    expect(renderedComponent.find('Button' + classes.submitButton).length).to.equal(1);
+    expect(renderedComponent.find('.login-page__component__submit-field').length).to.equal(1);
   });
 
 });
