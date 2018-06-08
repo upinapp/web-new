@@ -1,0 +1,14 @@
+.login-page__component {
+
+  &__sign-in-with-google {
+    margin-left: 24px;
+    color: #536dfe;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+
+    &-icon {
+      margin-right: 10px;
+    }
+  }
+}

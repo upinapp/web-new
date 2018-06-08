@@ -1,97 +1,17 @@
-import React from 'react';
-import {compose} from 'redux';
-import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles/index';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import IconButton from '@material-ui/core/IconButton';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import FormControl from '@material-ui/core/FormControl';
+import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import React from 'react';
 import {Link} from 'react-router-dom';
+import {signUpUser} from '../../../../utils';
+import './SignUp.style.css';
 
-const widthRoot = 330;
-const MIN_LENGTH_PASSWORD = 6;
-
-const styles = theme => ({
-  root: {
-    width: widthRoot,
-    fontFamily: 'Roboto',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: '500',
-    textAlign: 'left',
-    paddingBottom: 4,
-  },
-  wrapperInput: {
-    width: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.04)',
-  },
-  textField: {
-    borderRadius: 2,
-    fontSize: 16,
-    color: 'rgba(0, 0, 0, 0.87)',
-    padding: '0px 8px 3px',
-  },
-  label: {
-    marginTop: 29,
-    display: 'block',
-    fontSize: 12,
-    lineHeight: '1.33',
-    color: 'rgba(0, 0, 0, 0.54)',
-    marginBottom: 4,
-  },
-  submitField: {
-    marginTop: 24,
-    display: 'flex',
-    alignItems: 'center',
-  },
-  submitButton: {
-    color: 'white',
-    backgroundColor: theme.palette.primary.light
-  },
-  divider: {
-    marginTop: 16,
-    marginBottom: 8
-  },
-  link: {
-    display: 'block',
-    textDecoration: 'none',
-    color: theme.palette.primary.light,
-    marginBottom: 8,
-  },
-  error: {
-    marginTop: 16,
-    backgroundColor: theme.palette.error.light,
-    color: 'white',
-    fontFamily: 'Roboto',
-    fontSize: 10,
-    fontWeight: '500',
-    textAlign: 'center',
-    padding: '8px 0',
-  },
-  minPassword: {
-    textAlign: 'right',
-    fontFamily: 'Roboto',
-    fontSize: 12,
-    lineHeight: '1.3',
-    color: 'rgba(0, 0, 0, 0.54)',
-  },
-  privacy: {
-    marginTop: 16,
-    color: 'rgba(0, 0, 0, 0.54)',
-    fontSize: 12,
-    lineHeight: '1.3',
-  },
-  inlineLink: {
-    color: theme.palette.primary.light,
-    textDecoration: 'none',
-  }
-});
+const MIN_PASSWORD_LENGTH = 6;
 
 class SignUp extends React.PureComponent {
 
@@ -103,11 +23,36 @@ class SignUp extends React.PureComponent {
       name: '',
       password: '',
       showPassword: false,
+      errorMessage: null
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleMouseDownPassword = this.handleMouseDownPassword.bind(this);
     this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
+    this.signUp = this.signUp.bind(this);
+  }
+
+  signUp = async (event) => {
+    event.preventDefault();
+    let errorCode = await signUpUser(this.state.email, this.state.password, this.state.name);
+    switch (await errorCode) {
+    case 2:
+      this.setState({'errorMessage': 'Некорректный email'});
+      break;
+    case 4:
+      this.setState({'errorMessage': 'Пользователь существует'});
+      break;
+    default:
+      this.setState({'errorMessage': null});
+      console.log('Успешно!');
+      // this.props.history.push('/apps');
+    }
+  };
+
+  renderErrorMessage() {
+    return <div className="login-page__component_error-message">
+      {this.state.errorMessage}
+    </div>;
   }
 
   handleMouseDownPassword = event => {
@@ -124,43 +69,41 @@ class SignUp extends React.PureComponent {
   }
 
   render() {
-    const {classes} = this.props;
-
     return (
-      <div className={classes.root}>
-        <h2 className={classes.title}>Регистрация</h2>
+      <div className="login-page__component">
+        <h2 className="login-page__component__title">Регистрация</h2>
 
-        <label className={classes.label} htmlFor="email">Email</label>
-        <FormControl className={classes.wrapperInput}>
+        <label className="login-page__component__label" htmlFor="email">Email</label>
+        <FormControl className="login-page__component__wrapper-input">
           <Input
             id="email"
             name="email"
-            className={classes.textField}
+            className="login-page__component__text-field"
             type="text"
             value={this.state.email}
             onChange={this.handleChange}
           />
         </FormControl>
 
-        <label className={classes.label} htmlFor="name">Имя</label>
-        <FormControl className={classes.wrapperInput}>
+        <label className="login-page__component__label" htmlFor="name">Имя</label>
+        <FormControl className="login-page__component__wrapper-input">
           <Input
             id="name"
             name="name"
-            className={classes.textField}
+            className="login-page__component__text-field"
             type="text"
             value={this.state.name}
             onChange={this.handleChange}
           />
         </FormControl>
 
-        <label className={classes.label} htmlFor="password">Пароль</label>
-        <FormControl className={classNames(classes.margin, classes.wrapperInput)}>
+        <label className="login-page__component__label" htmlFor="password">Пароль</label>
+        <FormControl className="login-page__component__wrapper-input">
           <Input
             id="password"
             name="password"
             type={this.state.showPassword ? 'text' : 'password'}
-            className={classes.textField}
+            className="login-page__component__text-field"
             value={this.state.password}
             onChange={this.handleChange}
             endAdornment={
@@ -177,35 +120,38 @@ class SignUp extends React.PureComponent {
           />
         </FormControl>
 
-        {this.state.password.length < MIN_LENGTH_PASSWORD ?
-          <div className={classes.minPassword}>Минимальное кол-во
-            символов {this.state.password.length}/{MIN_LENGTH_PASSWORD}</div> : null}
+        {
+          this.state.errorMessage &&
+          this.renderErrorMessage()
+        }
 
-        <div className={classes.submitField}>
-          <Button variant="raised" color="primary" className={classNames(classes.button, classes.submitButton)}>
+        {this.state.password.length < MIN_PASSWORD_LENGTH ?
+          <div className="login-page__component__min-password">Минимальное кол-во
+            символов {this.state.password.length}/{MIN_PASSWORD_LENGTH}</div> : null}
+
+        <div className="login-page__component__submit-field">
+          <Button
+            onClick={this.signUp}
+            variant="raised"
+            color="primary"
+            className="login-page__component__submit-button">
             Продолжить
           </Button>
         </div>
 
-        <div className={classes.privacy}>
-          Продолжив вы соглашаетесь с <Link to="#" className={classes.inlineLink}>политикой конфиденциальности и
+        <div className="login-page__component__privacy">
+          Продолжив вы соглашаетесь с <Link to="#" className="login-page__component__inline-link">политикой
+          конфиденциальности и
           правилами использования</Link>
         </div>
 
-        <Divider className={classes.divider}/>
+        <Divider className="login-page__component__divider"/>
 
-        <Link to="/auth/sign-in" className={classes.link}>Вход</Link>
+        <Link to="/auth/sign-in" className="login-page__component__link">Вход</Link>
 
       </div>
     );
   }
 }
 
-SignUp.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};
-
-export default compose(
-  withStyles(styles, {withTheme: true})
-)(SignUp);
+export default SignUp;

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {expect} from 'chai';
-import {configure, mount} from 'enzyme';
+import {configure, shallow} from 'enzyme';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import Adapter from 'enzyme-adapter-react-16';
@@ -13,20 +13,11 @@ configure({adapter: new Adapter()});
 const store = configureStore({});
 
 let renderedComponent;
-const classes = {};
 
 beforeEach(function () {
-  // рендерим компонент
-  renderedComponent = mount(
-    <BrowserRouter>
-      <SignIn/>
-    </BrowserRouter>
+  renderedComponent = shallow(
+    <SignIn/>
   );
-
-  // получаем его коллекцию классов
-  for (let key in renderedComponent.find('SignIn').props().classes) {
-    classes[key] = '.' + renderedComponent.find('SignIn').props().classes[key];
-  }
 });
 
 describe('SignIn:', () => {
@@ -45,39 +36,23 @@ describe('SignIn:', () => {
 
   // проверки на присутствие нужных элементов
   it('Component should a title', () => {
-    expect(renderedComponent.find(classes.title).length).to.equal(1);
-  });
-
-  it('Component should field for insert password', () => {
-    expect(renderedComponent.find('Input[name="password"]').length).to.equal(1);
+    expect(renderedComponent.find('.login-page__component__title').length).to.equal(1);
   });
 
   it('Component should field for insert email', () => {
-    expect(renderedComponent.find('Input[name="email"]').length).to.equal(1);
+    expect(renderedComponent.find('WithStyles(Input)[name="email"]').length).to.equal(1);
+  });
+
+  it('Component should field for insert password', () => {
+    expect(renderedComponent.find('WithStyles(Input)[name="password"]').length).to.equal(1);
   });
 
   it('Component should button for log in with google account', () => {
-    expect(renderedComponent.find(classes.signInWithGoogle).length).to.equal(1);
+    expect(renderedComponent.find('.login-page__component__sign-in-with-google').length).to.equal(1);
   });
 
   it('Component should submit button', () => {
-    expect(renderedComponent.find('Button' + classes.submitButton).length).to.equal(1);
+    expect(renderedComponent.find('.login-page__component__submit-field').length).to.equal(1);
   });
 
 });
-
-// let hello;
-// beforeEach(function () {
-//   hello = 'hi';
-// });
-//
-// afterEach(function () {
-//   console.log(hello);
-// });
-//
-// describe('context', () => {
-//   it('should work', function () {
-//     console.log(hello);
-//   });
-// });
-//

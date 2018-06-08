@@ -1,91 +1,16 @@
-import React from 'react';
-import {compose} from 'redux';
-import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles/index';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import IconButton from '@material-ui/core/IconButton';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import classNames from 'classnames';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import FormControl from '@material-ui/core/FormControl';
+import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import React from 'react';
 import {Link} from 'react-router-dom';
-import Paper from '@material-ui/core/Paper';
+import {signInUser} from '../../../../utils';
 import GoogleIcon from './google-icon.svg';
-
-const widthRoot = 330;
-
-const styles = theme => ({
-  root: {
-    width: widthRoot,
-    fontFamily: 'Roboto',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: '500',
-    textAlign: 'left',
-    paddingBottom: 4,
-  },
-  wrapperInput: {
-    width: '100%',
-    backgroundColor: 'rgba(0, 0, 0, .04)',
-  },
-  textField: {
-    borderRadius: 2,
-    fontSize: 16,
-    color: 'rgba(0, 0, 0, .87)',
-    padding: '0px 8px 3px',
-  },
-  label: {
-    marginTop: 29,
-    display: 'block',
-    fontSize: 12,
-    lineHeight: '1.33',
-    color: 'rgba(0, 0, 0, .54)',
-    marginBottom: 4,
-  },
-  submitField: {
-    marginTop: 24,
-    display: 'flex',
-    alignItems: 'center',
-  },
-  submitButton: {
-    color: 'white',
-    backgroundColor: theme.palette.primary.light
-  },
-  signInWithGoogle: {
-    marginLeft: 24,
-    color: theme.palette.primary.light,
-    textDecoration: 'none',
-    display: 'flex',
-    alignItems: 'center',
-  },
-  signInWithGoogleImg: {
-    marginRight: 10,
-  },
-  divider: {
-    marginTop: 32,
-    marginBottom: 8
-  },
-  link: {
-    display: 'block',
-    textDecoration: 'none',
-    color: theme.palette.primary.light,
-    marginBottom: 8,
-  },
-  error: {
-    marginTop: 16,
-    backgroundColor: theme.palette.error.light,
-    color: 'white',
-    fontFamily: 'Roboto',
-    fontSize: 10,
-    fontWeight: '500',
-    textAlign: 'center',
-    padding: '8px 0',
-  }
-});
+import './SignIn.style.css';
 
 class SignIn extends React.PureComponent {
 
@@ -96,6 +21,7 @@ class SignIn extends React.PureComponent {
       email: '',
       password: '',
       showPassword: false,
+      errorMessage: null
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -116,32 +42,56 @@ class SignIn extends React.PureComponent {
     this.setState({[e.target.name]: val});
   }
 
+  logIn = async (event) => {
+    event.preventDefault();
+    let errorCode = await signInUser(this.state.email, this.state.password);
+    switch (await errorCode) {
+    case 2:
+      this.setState({'errorMessage': 'Некорректный email'});
+      break;
+    case 3:
+      this.setState({'errorMessage': 'Пользователь не найден'});
+      break;
+    case 4:
+      this.setState({'errorMessage': 'Неверный пароль'});
+      break;
+    default:
+      this.setState({'errorMessage': null});
+      console.log('Успешно!');
+      // this.props.history.push('/apps');
+    }
+  };
+
+  renderErrorMessage() {
+    return <div className="login-page__component_error-message">
+      {this.state.errorMessage}
+    </div>;
+  }
+
   render() {
-    const {classes} = this.props;
-
     return (
-      <div className={classes.root}>
-        <h2 className={classes.title}>Вход</h2>
+      <form className="login-page__component" onSubmit={this.logIn}>
+        <h2 className="login-page__component__title">Вход</h2>
 
-        <label className={classes.label} htmlFor="email">Email</label>
-        <FormControl className={classes.wrapperInput}>
+        <label className="login-page__component__label" htmlFor="email">Email</label>
+        <FormControl className="login-page__component__wrapper-input">
           <Input
             id="email"
             name="email"
-            className={classes.textField}
+            className="login-page__component__text-field"
             type="text"
             value={this.state.email}
             onChange={this.handleChange}
           />
         </FormControl>
 
-        <label className={classes.label} htmlFor="password">Пароль</label>
-        <FormControl className={classNames(classes.margin, classes.wrapperInput)}>
+        <label className="login-page__component__label" htmlFor="password">Пароль</label>
+        <FormControl className="login-page__component__wrapper-input">
           <Input
             id="password"
             name="password"
             type={this.state.showPassword ? 'text' : 'password'}
-            className={classes.textField}
+            className="login-page__component__text-field"
             value={this.state.password}
             onChange={this.handleChange}
             endAdornment={
@@ -158,35 +108,34 @@ class SignIn extends React.PureComponent {
           />
         </FormControl>
 
-        <Paper className={classes.error}>
-          Не верный email или пароль
-        </Paper>
+        {
+          this.state.errorMessage &&
+          this.renderErrorMessage()
+        }
 
-        <div className={classes.submitField}>
-          <Button variant="raised" color="primary" className={classNames(classes.button, classes.submitButton)}>
+        <div className="login-page__component__submit-field">
+          <Button
+            type="submit"
+            variant="raised"
+            color="primary"
+            className="login-page__component__submit-button">
             Вход
+            {/*TODO вставить анимацию получения данных*/}
           </Button>
-          <a href="#!" className={classes.signInWithGoogle}>
-            <img src={GoogleIcon} className={classes.signInWithGoogleImg} alt="GoogleIcon"/>
+          <a href="#!" className="login-page__component__sign-in-with-google">
+            <img src={GoogleIcon} className="login-page__component__sign-in-with-google-icon" alt="GoogleIcon"/>
             Войти с Google
           </a>
         </div>
 
-        <Divider className={classes.divider}/>
+        <Divider className="login-page__component__divider"/>
 
-        <Link to="/auth/restore-password" className={classes.link}>Восстановить пароль</Link>
-        <Link to="/auth/sign-up" className={classes.link}>Регистрация</Link>
+        <Link to="/auth/restore-password" className="login-page__component__link">Восстановить пароль</Link>
+        <Link to="/auth/sign-up" className="login-page__component__link">Регистрация</Link>
 
-      </div>
+      </form>
     );
   }
 }
 
-SignIn.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};
-
-export default compose(
-  withStyles(styles, {withTheme: true})
-)(SignIn);
+export default SignIn;
