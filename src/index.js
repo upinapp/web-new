@@ -9,7 +9,7 @@ import { ConnectedRouter } from 'react-router-redux';
 
 import App from './App';
 import configureStore from './configureStore';
-import './index.css';
+import './index.scss';
 import registerServiceWorker from './registerServiceWorker';
 
 // Create redux store with history

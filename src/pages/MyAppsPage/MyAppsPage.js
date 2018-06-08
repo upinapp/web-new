@@ -1,70 +1,22 @@
-import { withStyles } from 'material-ui/styles';
-import React from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import AddIcon from '@material-ui/icons/Add';
-import Button from 'material-ui/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
+import AddIcon from '@material-ui/icons/Add';
+import Button from 'material-ui/Button';
+import React from 'react';
+import { connect } from 'react-redux';
 
 import AppHeader from '../../common/AppHeader/AppHeader';
-import { mapToObject } from '../../utils';
 import { ADD_NEW_APP } from '../../redusers';
-
-const styles = theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  menu: {
-    padding: 24,
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  menuTitle: {
-    fontSize: 24,
-  },
-  addAppButton: {},
-  dialog: {
-    width: 385,
-    height: 382
-  },
-  label: {
-    marginTop: 29,
-    display: 'block',
-    fontSize: 12,
-    lineHeight: '1.33',
-    color: 'rgba(0, 0, 0, .54)',
-    marginBottom: 4,
-  },
-  wrapperInput: {
-    width: '100%',
-    backgroundColor: 'rgba(0, 0, 0, .04)',
-  },
-  dialogActions: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-    height: 100
-  },
-  dialogAddButton: {
-    color: theme.palette.white
-  },
-  emptyList: {
-    marginTop: 25,
-    textAlign: 'center',
-    fontWeight: 500,
-    fontSize: 18
-  }
-});
+import { mapToObject } from '../../utils';
+import './MyAppsPage.style.css';
 
 class MyAppsPage extends React.PureComponent {
   state = {
@@ -113,26 +65,24 @@ class MyAppsPage extends React.PureComponent {
 
   handleInputChange = (e) => {
     let val = e.target.value;
-    this.setState({[e.target.name]: val});
+    this.setState({ [e.target.name]: val });
   };
 
   render() {
-    const { classes } = this.props;
-
     return (
-      <div className={classes.root}>
+      <div className="my-apps">
         <AppHeader title="Analytics"/>
 
-        <div className={classes.menu}>
-          <div className={classes.menuTitle}>Мои приложения</div>
-          <Button onClick={this.handleClickOpen} className={classes.addAppButton}>
+        <div className="my-apps__menu">
+          <div className="my-apps__menu-title">Мои приложения</div>
+          <Button onClick={this.handleClickOpen}>
             <AddIcon />
             Добавить
           </Button>
         </div>
 
         {this.props.apps.list && this.props.apps.list.length > 0 ?
-          <Table className={classes.table}>
+          <Table>
             <TableHead>
               <TableRow>
                 <TableCell>Название</TableCell>
@@ -157,43 +107,43 @@ class MyAppsPage extends React.PureComponent {
             </TableBody>
           </Table>
           :
-          <div className={classes.emptyList}>
+          <div className="my-apps__empty-list">
             У Вас нет еще ни одного приложения
           </div>
         }
 
         <Dialog onClose={this.handleClose} open={this.state.isDialogOpen}>
-          <div className={classes.dialog}>
-            <DialogTitle id="simple-dialog-title">Новое приложение</DialogTitle>
+          <div className="my-apps__dialog">
+            <DialogTitle>Новое приложение</DialogTitle>
             <DialogContent>
 
-              <label className={classes.label} htmlFor="email">Название</label>
-              <FormControl className={classes.wrapperInput}>
+              <label className="my-apps__dialog-label" htmlFor="email">Название</label>
+              <FormControl className="my-apps__dialog-form-wrapper">
                 <Input
                   id="appName"
                   name="appName"
                   type="text"
-                  className={classes.textField}
+                  className="my-apps__dialog-form-input"
                   onChange={this.handleInputChange}
                 />
               </FormControl>
 
-              <label className={classes.label} htmlFor="email">Часовой пояс</label>
-              <FormControl className={classes.wrapperInput}>
+              <label className="my-apps__dialog-label" htmlFor="email">Часовой пояс</label>
+              <FormControl className="my-apps__dialog-form-wrapper">
                 <Input
                   id="region"
                   name="region"
                   type="text"
-                  className={classes.textField}
+                  className="my-apps__dialog-form-input"
                   onChange={this.handleInputChange}
                 />
               </FormControl>
 
-              <div className={classes.dialogActions}>
+              <div className="my-apps__dialog-actions">
                 <Button
                   variant="raised"
                   color="primary"
-                  className={classes.dialogAddButton}
+                  className="my-apps__dialog-actions-add"
                   onClick={this.addNewApp}>
                   Добавить
                 </Button>
@@ -208,12 +158,9 @@ class MyAppsPage extends React.PureComponent {
   }
 }
 
-export default compose(
-  connect((state) => {
-    return {
-      apps: mapToObject(state.get('apps')),
-      dispatch: state.dispatch
-    };
-  }),
-  withStyles(styles, { withTheme: true })
-)(MyAppsPage);
+export default connect((state) => {
+  return {
+    apps: mapToObject(state.get('apps')),
+    dispatch: state.dispatch
+  };
+})(MyAppsPage);
