@@ -12,6 +12,11 @@
     justify-content: flex-end;
     align-items: center;
     margin-right: 20px;
+    @media (max-width: 768px) {
+      width: 100%;
+      margin: 0;
+      justify-content: center;
+    }
   }
 
   &__component {
@@ -87,6 +92,9 @@
   &__decorate {
     width: 50%;
     background-color: #536dfe;
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
 }
