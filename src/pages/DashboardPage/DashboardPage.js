@@ -10,9 +10,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { DASHBOARD_MENU_TOGGLE } from '../../redusers';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import { DASHBOARD_MENU_TOGGLE } from '../../redusers';
 import DashboardMenu from './components/DashboardMenu/DashboardMenu';
 import RetentionPage from './pages/RetentionPage/RetentionPage';
 
@@ -86,6 +86,7 @@ const styles = theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.white,
     padding: theme.spacing.unit * 3,
+    overflow: 'scroll'
   },
 });
 
@@ -143,6 +144,7 @@ class DashboardPage extends React.PureComponent {
           <main className={classes.content}>
             <Switch>
               <Route exact path="/dashboard/retention" component={RetentionPage}/>
+              <Route exact path="/dashboard" component={RetentionPage}/>
             </Switch>
           </main>
         </div>

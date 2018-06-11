@@ -10,6 +10,12 @@
     &-title {
       font-size: 24px;
     }
+
+    &-table {
+      &-name {
+        cursor: pointer;
+      }
+    }
   }
 
   &__dialog {
