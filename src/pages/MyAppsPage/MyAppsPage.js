@@ -12,10 +12,11 @@ import AddIcon from '@material-ui/icons/Add';
 import Button from 'material-ui/Button';
 import React from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 
 import { UserService } from '../../services';
 import AppHeader from '../../common/AppHeader/AppHeader';
-import { ADD_NEW_APP } from '../../redusers';
+import { ADD_NEW_APP, SET_SELECTED_APP } from '../../redusers';
 import './MyAppsPage.style.css';
 
 class MyAppsPage extends React.PureComponent {
@@ -73,6 +74,14 @@ class MyAppsPage extends React.PureComponent {
     this.setState({ [e.target.name]: val });
   };
 
+  openApp = (app) => {
+    this.props.dispatch({
+      type: SET_SELECTED_APP,
+      payload: app
+    });
+    this.props.dispatch(push('/dashboard'));
+  };
+
   render() {
     return (
       <div className="my-apps">
@@ -100,7 +109,11 @@ class MyAppsPage extends React.PureComponent {
               {this.props.apps.list.map(app => {
                 return (
                   <TableRow key={app.id}>
-                    <TableCell component="th" scope="row">
+                    <TableCell
+                      className="my-apps__menu-table-name"
+                      component="th"
+                      scope="row"
+                      onClick={() => this.openApp(app)}>
                       {app.name}
                     </TableCell>
                     <TableCell numeric>{app.statistics.totalUsers}</TableCell>
@@ -157,7 +170,6 @@ class MyAppsPage extends React.PureComponent {
             </DialogContent>
           </div>
         </Dialog>
-
       </div>
     );
   }

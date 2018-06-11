@@ -10,7 +10,9 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import MyAppsPage from './pages/MyAppsPage/MyAppsPage';
 import IndexPage from './pages/IndexPage/IndexPage';
 import { Switch, Route } from 'react-router-dom';
+
 import { CustomTheme } from './configs';
+import './App.style.css';
 
 const generateClassName = createGenerateClassName({
   dangerouslyUseGlobalCSS: true,
@@ -20,7 +22,7 @@ const generateClassName = createGenerateClassName({
 class App extends React.PureComponent {
   render() {
     return (
-      <div>
+      <div className="App">
         <JssProvider generateClassName={generateClassName}>
           <MuiThemeProvider theme={CustomTheme}>
             <Switch>

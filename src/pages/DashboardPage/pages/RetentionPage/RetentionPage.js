@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles/index';
 import {compose} from 'redux';
-import AudienceByDayTable from '../../components/AudienceByDayTable/AudienceByDayTable';
 import {connect} from 'react-redux';
+
+import AudienceByDayTable from '../../components/AudienceByDayTable/AudienceByDayTable';
+import LineChart from '../../components/LineChart/LineChart';
 
 const styles = theme => ({
   root: {
@@ -17,6 +19,8 @@ class RetentionPage extends React.PureComponent {
 
     return (
       <div className={classes.root}>
+        <LineChart />
+        <br/><br/>
         <AudienceByDayTable dataAboutUsers={audienceByDate}/>
       </div>
     );
