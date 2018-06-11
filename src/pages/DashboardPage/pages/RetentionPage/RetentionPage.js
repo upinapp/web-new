@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles/index';
 import {compose} from 'redux';
 import AudienceByDayTable from '../../components/AudienceByDayTable/AudienceByDayTable';
-import {mapToObject} from '../../../../utils';
 import {connect} from 'react-redux';
 
 const styles = theme => ({
@@ -29,12 +28,15 @@ RetentionPage.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
+function mapStateToProps(state) {
+  const stateObject = state.toJS();
+  return {
+    audienceByDate: stateObject.audienceByDate,
+    dispatch: state.dispatch
+  };
+}
+
 export default compose(
-  connect((state) => {
-    return {
-      audienceByDate: mapToObject(state.get('audienceByDate')),
-      dispatch: state.dispatch
-    };
-  }),
+  connect(mapStateToProps),
   withStyles(styles, {withTheme: true})
 )(RetentionPage);

@@ -1,2 +1,2 @@
 export * from './utils';
-export * from './api-methods';
+export * from './store.config';

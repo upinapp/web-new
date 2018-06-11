@@ -7,8 +7,12 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {signUpUser} from '../../../../utils';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+
+import { APP_LOADING } from '../../../../redusers';
+import { AuthService } from '../../../../services';
 import './SignUp.style.css';
 
 const MIN_PASSWORD_LENGTH = 6;
@@ -34,19 +38,21 @@ class SignUp extends React.PureComponent {
 
   signUp = async (event) => {
     event.preventDefault();
-    let errorCode = await signUpUser(this.state.email, this.state.password, this.state.name);
+    this.props.dispatch({ type: APP_LOADING, payload: true });
+    const errorCode = await AuthService.signUpUser(this.state.email, this.state.password, this.state.name);
     switch (await errorCode) {
-    case 2:
-      this.setState({'errorMessage': 'Некорректный email'});
-      break;
-    case 4:
-      this.setState({'errorMessage': 'Пользователь существует'});
-      break;
-    default:
-      this.setState({'errorMessage': null});
-      console.log('Успешно!');
-      // this.props.history.push('/apps');
+      case 2:
+        this.setState({ 'errorMessage': 'Некорректный email' });
+        break;
+      case 4:
+        this.setState({ 'errorMessage': 'Пользователь уже существует' });
+        break;
+      default:
+        this.setState({ 'errorMessage': null });
+        this.props.dispatch(push('/apps'));
     }
+
+    this.props.dispatch({ type: APP_LOADING, payload: false });
   };
 
   renderErrorMessage() {
@@ -60,12 +66,12 @@ class SignUp extends React.PureComponent {
   };
 
   handleClickShowPassword = () => {
-    this.setState({showPassword: !this.state.showPassword});
+    this.setState({ showPassword: !this.state.showPassword });
   };
 
   handleChange(e) {
     let val = e.target.value;
-    this.setState({[e.target.name]: val});
+    this.setState({ [e.target.name]: val });
   }
 
   render() {
@@ -154,4 +160,8 @@ class SignUp extends React.PureComponent {
   }
 }
 
-export default SignUp;
+export default connect((state) => {
+  return {
+    dispatch: state.dispatch
+  };
+})(SignUp);

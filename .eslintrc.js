@@ -19,7 +19,7 @@ module.exports = {
 	],
 	'rules': {
 		// отступы в 2 пробела
-		'indent': ['error', 2],
+		'indent': ['error', 2, {"SwitchCase": 1}],
 		// переносы строк в стиде unix
 		'linebreak-style': ['error', 'unix'],
 		// кавычки должны быть одинарные

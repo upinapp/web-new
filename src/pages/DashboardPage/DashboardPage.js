@@ -4,18 +4,16 @@ import classNames from 'classnames';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import IconButton from 'material-ui/IconButton';
-import {withStyles} from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Toolbar from 'material-ui/Toolbar';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {connect} from 'react-redux';
-import {compose} from 'redux';
-import {DASHBOARD_MENU_TOGGLE} from '../../redusers';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { DASHBOARD_MENU_TOGGLE } from '../../redusers';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import {mapToObject} from '../../utils';
 import DashboardMenu from './components/DashboardMenu/DashboardMenu';
-
 import RetentionPage from './pages/RetentionPage/RetentionPage';
 
 const drawerWidth = 260;
@@ -92,65 +90,65 @@ const styles = theme => ({
 });
 
 class DashboardPage extends React.PureComponent {
-	state = {
-	  open: true,
-	};
+  state = {
+    open: true,
+  };
 
-	handleDrawerOpen = () => {
-	  this.props.dispatch({type: DASHBOARD_MENU_TOGGLE, payload: true});
-	};
+  handleDrawerOpen = () => {
+    this.props.dispatch({ type: DASHBOARD_MENU_TOGGLE, payload: true });
+  };
 
-	handleDrawerClose = () => {
-	  this.props.dispatch({type: DASHBOARD_MENU_TOGGLE, payload: false});
-	};
+  handleDrawerClose = () => {
+    this.props.dispatch({ type: DASHBOARD_MENU_TOGGLE, payload: false });
+  };
 
-	render() {
-	  const {classes, dashboardMenu} = this.props;
+  render() {
+    const { classes, dashboardMenu } = this.props;
 
-	  return (
-	    <Router>
-	      <div className={classes.root}>
-	        <AppBar
-	          position="absolute"
-	          className={classNames(classes.appBar, dashboardMenu.open && classes.appBarShift)}
-	        >
-	          <Toolbar disableGutters={!this.state.open}>
-	            <IconButton
-	              aria-label="open drawer"
-	              onClick={this.handleDrawerOpen}
-	              className={classNames(classes.menuButton, dashboardMenu.open && classes.hide)}
-	            >
-	              <MenuIcon/>
-	            </IconButton>
-	            <IconButton
-	              onClick={this.handleDrawerClose}
-	              className={classNames(!dashboardMenu.open && classes.hide)}
-	            >
-	              <ArrowBackIcon/>
-	            </IconButton>
-	          </Toolbar>
-	        </AppBar>
-	        <Drawer
-	          variant="permanent"
-	          classes={{
-	            paper: classNames(classes.drawerPaper, !dashboardMenu.open && classes.drawerPaperClose),
-	          }}
-	          open={this.state.open}
-	        >
-	          <div className={classes.appLogo}>
+    return (
+      <Router>
+        <div className={classes.root}>
+          <AppBar
+            position="absolute"
+            className={classNames(classes.appBar, dashboardMenu.open && classes.appBarShift)}
+          >
+            <Toolbar disableGutters={!this.state.open}>
+              <IconButton
+                aria-label="open drawer"
+                onClick={this.handleDrawerOpen}
+                className={classNames(classes.menuButton, dashboardMenu.open && classes.hide)}
+              >
+                <MenuIcon/>
+              </IconButton>
+              <IconButton
+                onClick={this.handleDrawerClose}
+                className={classNames(!dashboardMenu.open && classes.hide)}
+              >
+                <ArrowBackIcon/>
+              </IconButton>
+            </Toolbar>
+          </AppBar>
+          <Drawer
+            variant="permanent"
+            classes={{
+              paper: classNames(classes.drawerPaper, !dashboardMenu.open && classes.drawerPaperClose),
+            }}
+            open={this.state.open}
+          >
+            <div className={classes.appLogo}>
 
-	          </div>
-	          <DashboardMenu/>
-	        </Drawer>
-	        <main className={classes.content}>
-	          <Switch>
-	            <Route exact path="/dashboard/retention" component={RetentionPage}/>
-	          </Switch>
-	        </main>
-	      </div>
-	    </Router>
-	  );
-	}
+            </div>
+            <DashboardMenu/>
+          </Drawer>
+          <main className={classes.content}>
+            <Switch>
+              <Route exact path="/dashboard/retention" component={RetentionPage}/>
+            </Switch>
+          </main>
+        </div>
+      </Router>
+    );
+  }
 }
 
 DashboardPage.propTypes = {
@@ -158,13 +156,16 @@ DashboardPage.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
+function mapStateToProps(state) {
+  const stateObject = state.toJS();
+  return {
+    dashboardMenu: stateObject.dashboardMenu,
+    route: stateObject.route,
+    dispatch: state.dispatch
+  };
+}
+
 export default compose(
-  connect((state) => {
-    return {
-      dashboardMenu: mapToObject(state.get('dashboardMenu')),
-      route: mapToObject(state.get('route')),
-      dispatch: state.dispatch
-    };
-  }),
-  withStyles(styles, {withTheme: true})
+  connect(mapStateToProps),
+  withStyles(styles, { withTheme: true })
 )(DashboardPage);

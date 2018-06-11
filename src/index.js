@@ -1,21 +1,14 @@
-// Needed for redux-saga es6 generator support
 import 'babel-polyfill';
-import createHistory from 'history/createBrowserHistory';
-// Import all the third party stuff
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
+import { store, history } from './utils';
 
 import App from './App';
-import configureStore from './configureStore';
-import './index.scss';
 import registerServiceWorker from './registerServiceWorker';
+import './index.css';
 
-// Create redux store with history
-const initialState = {};
-const history = createHistory();
-const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('root');
 
 ReactDOM.render(

@@ -19,12 +19,11 @@ const routeInitialState = fromJS({
  */
 export function routeReducer(state = routeInitialState, action) {
   switch (action.type) {
-  /* istanbul ignore next */
-  case LOCATION_CHANGE:
-    return state.merge({
-      location: action.payload,
-    });
-  default:
-    return state;
+    case LOCATION_CHANGE:
+      return state.merge({
+        location: action.payload,
+      });
+    default:
+      return state;
   }
 }

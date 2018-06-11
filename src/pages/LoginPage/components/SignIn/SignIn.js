@@ -7,8 +7,12 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {signInUser} from '../../../../utils';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+
+import { APP_LOADING } from '../../../../redusers';
+import { AuthService } from '../../../../services';
 import GoogleIcon from './google-icon.svg';
 import './SignIn.style.css';
 
@@ -34,32 +38,35 @@ class SignIn extends React.PureComponent {
   };
 
   handleClickShowPassword = () => {
-    this.setState({showPassword: !this.state.showPassword});
+    this.setState({ showPassword: !this.state.showPassword });
   };
 
   handleChange(e) {
     let val = e.target.value;
-    this.setState({[e.target.name]: val});
+    this.setState({ [e.target.name]: val });
   }
 
   logIn = async (event) => {
     event.preventDefault();
-    let errorCode = await signInUser(this.state.email, this.state.password);
+    this.props.dispatch({ type: APP_LOADING, payload: true });
+    const errorCode = await AuthService.signInUser(this.state.email, this.state.password);
+
     switch (await errorCode) {
-    case 2:
-      this.setState({'errorMessage': 'Некорректный email'});
-      break;
-    case 3:
-      this.setState({'errorMessage': 'Пользователь не найден'});
-      break;
-    case 4:
-      this.setState({'errorMessage': 'Неверный пароль'});
-      break;
-    default:
-      this.setState({'errorMessage': null});
-      console.log('Успешно!');
-      // this.props.history.push('/apps');
+      case 2:
+        this.setState({ 'errorMessage': 'Некорректный email' });
+        break;
+      case 3:
+        this.setState({ 'errorMessage': 'Пользователь не найден' });
+        break;
+      case 4:
+        this.setState({ 'errorMessage': 'Неверный пароль' });
+        break;
+      default:
+        this.setState({ 'errorMessage': null });
+        this.props.dispatch(push('/apps'));
     }
+
+    this.props.dispatch({ type: APP_LOADING, payload: false });
   };
 
   renderErrorMessage() {
@@ -138,4 +145,8 @@ class SignIn extends React.PureComponent {
   }
 }
 
-export default SignIn;
+export default connect((state) => {
+  return {
+    dispatch: state.dispatch
+  };
+})(SignIn);
