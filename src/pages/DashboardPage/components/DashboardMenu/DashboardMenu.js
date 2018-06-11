@@ -18,8 +18,6 @@ import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {Link} from 'react-router-dom';
 
-import {mapToObject} from '../../../../utils';
-
 const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper
@@ -169,13 +167,16 @@ class DashboardMenu extends React.PureComponent {
   }
 }
 
+function mapStateToProps(state) {
+  const stateObject = state.toJS();
+  return {
+    dashboardMenu: stateObject.dashboardMenu,
+    route: stateObject.route,
+    dispatch: state.dispatch
+  };
+}
+
 export default compose(
-  connect((state) => {
-    return {
-      dashboardMenu: mapToObject(state.get('dashboardMenu')),
-      route: mapToObject(state.get('route')),
-      dispatch: state.dispatch
-    };
-  }),
+  connect(mapStateToProps),
   withStyles(styles)
 )(DashboardMenu);

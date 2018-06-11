@@ -13,9 +13,9 @@ import Button from 'material-ui/Button';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { UserService } from '../../services';
 import AppHeader from '../../common/AppHeader/AppHeader';
 import { ADD_NEW_APP } from '../../redusers';
-import { mapToObject } from '../../utils';
 import './MyAppsPage.style.css';
 
 class MyAppsPage extends React.PureComponent {
@@ -25,6 +25,11 @@ class MyAppsPage extends React.PureComponent {
     appName: '',
     region: ''
   };
+
+  constructor(props) {
+    super(props);
+    UserService.getUserApplications();
+  }
 
   handleClickOpen = () => {
     this.setState({
@@ -94,13 +99,13 @@ class MyAppsPage extends React.PureComponent {
             <TableBody>
               {this.props.apps.list.map(app => {
                 return (
-                  <TableRow key={app.name}>
+                  <TableRow key={app.id}>
                     <TableCell component="th" scope="row">
                       {app.name}
                     </TableCell>
-                    <TableCell numeric>{app.totalUsers}</TableCell>
-                    <TableCell numeric>{app.newUsers}</TableCell>
-                    <TableCell numeric>{app.sessions}</TableCell>
+                    <TableCell numeric>{app.statistics.totalUsers}</TableCell>
+                    <TableCell numeric>{app.statistics.newUsers}</TableCell>
+                    <TableCell numeric>{app.statistics.sessions}</TableCell>
                   </TableRow>
                 );
               })}
@@ -158,9 +163,12 @@ class MyAppsPage extends React.PureComponent {
   }
 }
 
-export default connect((state) => {
+function mapStateToProps(state) {
+  const stateObject = state.toJS();
   return {
-    apps: mapToObject(state.get('apps')),
+    apps: stateObject.apps,
     dispatch: state.dispatch
   };
-})(MyAppsPage);
+}
+
+export default connect(mapStateToProps)(MyAppsPage);

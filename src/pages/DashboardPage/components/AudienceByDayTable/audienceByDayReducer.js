@@ -1,7 +1,7 @@
-import {fromJS} from 'immutable';
+import { fromJS } from 'immutable';
 
 // Initial routing state
-const audienceByDayState = fromJS([
+const audienceByDayState = [
   {
     date: '22 марта',
     users: 1,
@@ -20,14 +20,14 @@ const audienceByDayState = fromJS([
     newUsers: 4,
     session: 8,
   },
-]);
+];
 
 /**
  * Merge route into the global application state
  */
 export function audienceByDateReducer(state = audienceByDayState, action) {
   switch (action.type) {
-  default:
-    return state;
+    default:
+      return state;
   }
 }

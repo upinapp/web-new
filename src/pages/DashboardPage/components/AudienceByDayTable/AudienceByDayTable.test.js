@@ -1,18 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {expect} from 'chai';
-import {configure, mount} from 'enzyme';
-import {Provider} from 'react-redux';
+import { expect } from 'chai';
+import { configure, mount } from 'enzyme';
+import { Provider } from 'react-redux';
 import Adapter from 'enzyme-adapter-react-16';
 import AudienceByDayTable from './AudienceByDayTable';
-import configureStore from '../../../../configureStore';
-import {mapToObject} from '../../../../utils';
+import { store } from '../../../../utils';
 
-configure({adapter: new Adapter()});
+configure({ adapter: new Adapter() });
 
-const store = configureStore({});
-
-const audienceByDateFromStore = mapToObject(store.getState())['audienceByDate'];
+const audienceByDateFromStore = store.getState()['audienceByDate'];
 
 let renderedComponent;
 const classes = {};
@@ -77,17 +74,17 @@ describe('AudienceByDayTable:', () => {
 
         row.find('td').forEach(cell => {
           switch (iteratorOfColumn) {
-          case 3:
-            expect(cell.contains(audienceByDateFromStore[iteratorOfRow].users)).to.equal(true);
-            break;
-          case 4:
-            expect(cell.contains(audienceByDateFromStore[iteratorOfRow].newUsers)).to.equal(true);
-            break;
-          case 5:
-            expect(cell.contains(audienceByDateFromStore[iteratorOfRow].session)).to.equal(true);
-            break;
-          default:
-            break;
+            case 3:
+              expect(cell.contains(audienceByDateFromStore[iteratorOfRow].users)).to.equal(true);
+              break;
+            case 4:
+              expect(cell.contains(audienceByDateFromStore[iteratorOfRow].newUsers)).to.equal(true);
+              break;
+            case 5:
+              expect(cell.contains(audienceByDateFromStore[iteratorOfRow].session)).to.equal(true);
+              break;
+            default:
+              break;
           }
           iteratorOfColumn++;
         });
@@ -100,17 +97,17 @@ describe('AudienceByDayTable:', () => {
 
         row.find('td').forEach(cell => {
           switch (iteratorOfColumn) {
-          case 3:
-            expect(cell.contains(sumAllUser.users)).to.equal(true);
-            break;
-          case 4:
-            expect(cell.contains(sumAllUser.newUsers)).to.equal(true);
-            break;
-          case 5:
-            expect(cell.contains(sumAllUser.session)).to.equal(true);
-            break;
-          default:
-            break;
+            case 3:
+              expect(cell.contains(sumAllUser.users)).to.equal(true);
+              break;
+            case 4:
+              expect(cell.contains(sumAllUser.newUsers)).to.equal(true);
+              break;
+            case 5:
+              expect(cell.contains(sumAllUser.session)).to.equal(true);
+              break;
+            default:
+              break;
           }
           iteratorOfColumn++;
         });

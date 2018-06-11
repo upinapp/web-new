@@ -4,7 +4,7 @@
 
 import {combineReducers} from 'redux-immutable';
 import {audienceByDateReducer} from './pages/DashboardPage/components/AudienceByDayTable/audienceByDayReducer';
-import {routeReducer, dashboardMenuReducer, myAppsReducer, userReducer} from './redusers';
+import {routeReducer, dashboardMenuReducer, myAppsReducer, userReducer, loadingReducer} from './redusers';
 
 /**
  * Creates the main reducer with the dynamically injected ones
@@ -16,6 +16,7 @@ export default function createReducer(injectedReducers) {
     apps: myAppsReducer,
     audienceByDate: audienceByDateReducer,
     user: userReducer,
+    loading: loadingReducer,
     ...injectedReducers,
   });
 }
