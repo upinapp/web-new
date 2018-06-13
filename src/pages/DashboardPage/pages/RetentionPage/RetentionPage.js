@@ -5,6 +5,7 @@ import {compose} from 'redux';
 import {connect} from 'react-redux';
 
 import AudienceByDayTable from '../../components/AudienceByDayTable/AudienceByDayTable';
+import ChoiceDateRange from '../../components/ChoiceDateRange/ChoiceDateRange';
 import LineChart from '../../components/LineChart/LineChart';
 
 const styles = theme => ({
@@ -14,11 +15,17 @@ const styles = theme => ({
 });
 
 class RetentionPage extends React.PureComponent {
+
+  handleSelect(date){
+    console.log(date); // Momentjs object
+  }
+
   render() {
     const {classes, audienceByDate} = this.props;
 
     return (
       <div className={classes.root}>
+        <ChoiceDateRange/>
         <LineChart />
         <br/><br/>
         <AudienceByDayTable dataAboutUsers={audienceByDate}/>
