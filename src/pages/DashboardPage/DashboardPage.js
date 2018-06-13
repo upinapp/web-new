@@ -15,6 +15,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { DASHBOARD_MENU_TOGGLE } from '../../redusers';
 import DashboardMenu from './components/DashboardMenu/DashboardMenu';
 import RetentionPage from './pages/RetentionPage/RetentionPage';
+import AudiencePage from './pages/AudiencePage/AudiencePage';
+import EventPage from './pages/EventPage/EventPage';
+import FunnelPage from './pages/FunnelPage/FunnelPage';
 
 const drawerWidth = 260;
 
@@ -84,6 +87,7 @@ const styles = theme => ({
   content: {
     marginTop: 63,
     flexGrow: 1,
+    minWidth: '100%',
     backgroundColor: theme.palette.white,
     padding: theme.spacing.unit * 3,
     overflow: 'scroll'
@@ -143,8 +147,11 @@ class DashboardPage extends React.PureComponent {
           </Drawer>
           <main className={classes.content}>
             <Switch>
-              <Route exact path="/dashboard/retention" component={RetentionPage}/>
               <Route exact path="/dashboard" component={RetentionPage}/>
+              <Route exact path="/dashboard/retention" component={RetentionPage}/>
+              <Route exact path="/dashboard/funnel" component={FunnelPage}/>
+              <Route exact path="/dashboard/event" component={EventPage}/>
+              <Route exact path="/dashboard/audience" component={AudiencePage}/>
             </Switch>
           </main>
         </div>
