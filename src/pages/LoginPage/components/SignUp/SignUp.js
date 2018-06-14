@@ -39,7 +39,10 @@ class SignUp extends React.PureComponent {
   signUp = async (event) => {
     event.preventDefault();
     this.props.dispatch({ type: APP_LOADING, payload: true });
-    const errorCode = await AuthService.signUpUser(this.state.email, this.state.password, this.state.name);
+
+    const res = await AuthService.signUpUser(this.state.email, this.state.password, this.state.name);
+    const errorCode = (await res.json()).code;
+
     switch (await errorCode) {
       case 2:
         this.setState({ 'errorMessage': 'Некорректный email' });
