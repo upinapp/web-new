@@ -31,6 +31,27 @@ export class AuthService {
     return res;
   }
 
+  static async restorePasswordRequest(email) {
+    const res = await HttpService.post(API.restorePasswordRequest, {
+      email: email,
+    });
+    return res;
+  }
+
+  static async restorePasswordConfirm(email, code, password) {
+    const res = await HttpService.post(API.restorePasswordConfirm, {
+      email: email,
+      code: code,
+      password: password,
+    });
+
+    if (res.ok) {
+      this.saveUserToStore(await res.json());
+    }
+
+    return res;
+  }
+
   static saveUserToStore(data) {
     const { profile, accessToken } = data;
     localStorage.setItem('accessToken', accessToken);
