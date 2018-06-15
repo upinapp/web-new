@@ -16,10 +16,6 @@ const styles = theme => ({
 
 class RetentionPage extends React.PureComponent {
 
-  handleSelect(date){
-    console.log(date); // Momentjs object
-  }
-
   render() {
     const {classes, audienceByDate} = this.props;
 
