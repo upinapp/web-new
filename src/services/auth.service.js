@@ -56,14 +56,11 @@ export class AuthService {
     const { profile, accessToken } = data;
     localStorage.setItem('accessToken', accessToken);
     store.dispatch({
-      type: SET_ACCESS_TOKEN,
-      payload: accessToken
-    });
-    store.dispatch({
       type: SET_USER, payload: {
         email: profile.email,
         name: profile.name,
         id: profile.id,
+        accessToken: accessToken
       }
     });
   }

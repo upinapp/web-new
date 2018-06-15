@@ -50,7 +50,7 @@ class SignIn extends React.PureComponent {
     event.preventDefault();
     this.props.dispatch({ type: APP_LOADING, payload: true });
     const res = await AuthService.signInUser(this.state.email, this.state.password);
-    const errorCode = (await res.json()).code;
+    const errorCode = 0;
 
     switch (await errorCode) {
       case 2:

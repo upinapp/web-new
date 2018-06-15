@@ -1,18 +1,19 @@
+import { createGenerateClassName } from '@material-ui/core/styles';
+import { MuiThemeProvider } from 'material-ui/styles';
 import React from 'react';
 import JssProvider from 'react-jss/lib/JssProvider';
-import { MuiThemeProvider } from 'material-ui/styles';
-import { createGenerateClassName } from '@material-ui/core/styles';
-import { withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import './App.style.css';
 import AppLoading from './common/AppLoading/AppLoading';
 
-import DashboardPage from './pages/DashboardPage/DashboardPage';
-import LoginPage from './pages/LoginPage/LoginPage';
-import MyAppsPage from './pages/MyAppsPage/MyAppsPage';
-import IndexPage from './pages/IndexPage/IndexPage';
-import { Switch, Route } from 'react-router-dom';
+import { PrivateRoute } from './common/PrivateRoute';
 
 import { CustomTheme } from './configs';
-import './App.style.css';
+import DashboardPage from './pages/DashboardPage/DashboardPage';
+import IndexPage from './pages/IndexPage/IndexPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import MyAppsPage from './pages/MyAppsPage/MyAppsPage';
+import { UserService } from './services';
 
 const generateClassName = createGenerateClassName({
   dangerouslyUseGlobalCSS: true,
@@ -20,6 +21,11 @@ const generateClassName = createGenerateClassName({
 });
 
 class App extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    UserService.getUser();
+  }
+
   render() {
     return (
       <div className="App">
@@ -28,8 +34,8 @@ class App extends React.PureComponent {
             <Switch>
               <Route exact path="/" component={IndexPage}/>
               <Route path="/auth/" component={LoginPage}/>
-              <Route path="/dashboard" component={DashboardPage}/>
-              <Route path="/apps" component={MyAppsPage}/>
+              <PrivateRoute path="/dashboard" component={DashboardPage}/>
+              <PrivateRoute path="/apps" component={MyAppsPage}/>
             </Switch>
           </MuiThemeProvider>
         </JssProvider>

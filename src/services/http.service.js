@@ -12,6 +12,7 @@ export class HttpService {
   };
 
   static async get(url, search = {}, headers = this.defaultHeaders) {
+    headers['Access-Token'] = localStorage.getItem('accessToken');
     return fetch(url, {
       method: Methods.GET,
       headers: headers,
@@ -20,6 +21,7 @@ export class HttpService {
   }
 
   static async post(url, body = {}, headers = this.defaultHeaders) {
+    headers['Access-Token'] = localStorage.getItem('accessToken');
     return fetch(url, {
       method: Methods.POST,
       headers: headers,

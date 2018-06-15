@@ -1,5 +1,4 @@
 import { fromJS } from 'immutable';
-import { ADD_NEW_APP } from './apps.reducer';
 
 // Initial routing state
 const userInitialState = fromJS({
@@ -25,7 +24,8 @@ export function userReducer(state = userInitialState, action) {
       return state.merge({
         email: action.payload.email,
         id: action.payload.id,
-        name: action.payload.name
+        name: action.payload.name,
+        accessToken: action.payload.accessToken
       });
     default:
       return state;
