@@ -26,6 +26,7 @@ const PLATFORMS = [ 'iOS', 'Android', 'Unity', 'Xamarin' ];
 class MyAppsPage extends React.PureComponent {
   state = {
     isDialogOpen: false,
+    searchApp: '',
     isSettingsAppOpen: false,
     selectedValue: null,
     appName: '',
@@ -260,10 +261,24 @@ class MyAppsPage extends React.PureComponent {
 
         <div className="my-apps__menu">
           <div className="my-apps__menu-title">Мои приложения</div>
-          <Button onClick={this.handleClickOpen}>
-            <AddIcon/>
-            Добавить
-          </Button>
+
+          <div className="space-between-fix">
+            <FormControl className="my-apps__search-field">
+              <Input
+                id="searchApp"
+                name="searchApp"
+                type="text"
+                placeholder="Поиск"
+                className="my-apps__dialog-form-input"
+                onChange={this.handleInputChange}
+              />
+            </FormControl>
+
+            <Button onClick={this.handleClickOpen}>
+              <AddIcon/>
+              Добавить
+            </Button>
+          </div>
         </div>
 
         {this.props.apps.list && this.props.apps.list.length > 0 ?

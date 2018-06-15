@@ -27,7 +27,7 @@ class CustomDateRange extends React.PureComponent {
     });
   }
 
-  handleClickOpenDateRange = () => {
+  handleClickToggleDateRange = () => {
     this.setState({'isDateRangeOpen': !this.state.isDateRangeOpen});
   };
 
@@ -45,7 +45,7 @@ class CustomDateRange extends React.PureComponent {
         </div>
 
         <div className="button-open-date-range">
-          <IconButton aria-label="Выберите интервал" onClick={this.handleClickOpenDateRange}>
+          <IconButton aria-label="Выберите интервал" onClick={this.handleClickToggleDateRange}>
             <Icon>date_range</Icon>
           </IconButton>
         </div>
@@ -57,7 +57,7 @@ class CustomDateRange extends React.PureComponent {
               <input className="date-input" value={'C ' + moment(this.state.startDate).format('DD MMM YYYY')} type="text" disabled/>
               <input className="date-input" value={'По ' + moment(this.state.endDate).format('DD MMM YYYY')} type="text" disabled/>
             </div>
-            <Button className="save-date" variant="raised">
+            <Button className="save-date" variant="raised"  onClick={this.handleClickToggleDateRange}>
               Показать
             </Button>
           </form>
