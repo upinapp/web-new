@@ -41,7 +41,7 @@ class AppHeader extends React.PureComponent {
 
 AppHeader.propTypes = {
   classes: PropTypes.object.isRequired,
-  title: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(AppHeader);

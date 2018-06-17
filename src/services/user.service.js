@@ -5,11 +5,30 @@ import { API } from '../configs/api.confing';
 
 export class UserService {
   static async getUserApplications(page = 1, count = 10) {
-    const res = await HttpService.get(`${API.userApps}?page=${page}&per-page=${count}`);
+    const res = await HttpService.get(`${API.userAppsList}?page=${page}&per-page=${count}`);
 
     if (res.ok) {
       const data = await res.json();
+      data.applications.forEach((app) => {
+        app.statusIntegration = {
+          'iOS': 'undefined',
+          'Android': 'pending',
+          'Unity': 'success',
+          'Xamarin': 'error',
+        };
+        return app;
+      });
       store.dispatch({ type: SET_APP_LIST, payload: data.applications });
+    }
+
+    return res;
+  }
+
+  static async createNewApplication(name, timezone) {
+    const res = await HttpService.post(`${API.createUserApp}`, { name, timezone });
+
+    if (!res.ok) {
+      // TODO: Global error
     }
 
     return res;
@@ -35,5 +54,15 @@ export class UserService {
     store.dispatch({ type: SET_USER, payload: user });
 
     return user;
+  }
+
+  static async getTimezones() {
+    const res = await HttpService.get(API.getTimezones);
+
+    if (!res.ok) {
+      // TODO: Global error
+    }
+
+    return res;
   }
 }

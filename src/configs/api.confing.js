@@ -3,6 +3,8 @@ export const API = {
   registration: 'http://ec2-18-207-118-194.compute-1.amazonaws.com:1337/create',
   restorePasswordRequest: 'http://ec2-18-207-118-194.compute-1.amazonaws.com:1337/passwordRestore/request',
   restorePasswordConfirm: 'http://ec2-18-207-118-194.compute-1.amazonaws.com:1337/passwordRestore/confirm',
-  userApps: 'http://ec2-18-207-118-194.compute-1.amazonaws.com:1339/list',
+  userAppsList: 'http://ec2-18-207-118-194.compute-1.amazonaws.com:1339/list',
+  createUserApp: 'http://ec2-18-207-118-194.compute-1.amazonaws.com:1339/create',
+  getTimezones: 'http://ec2-18-207-118-194.compute-1.amazonaws.com:1339/timeZones',
   getUserProfile: 'http://ec2-18-207-118-194.compute-1.amazonaws.com:1337/get',
 };

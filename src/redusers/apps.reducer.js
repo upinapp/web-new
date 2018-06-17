@@ -3,12 +3,14 @@ import { fromJS } from 'immutable';
 // Initial routing state
 const myAppsInitialState = fromJS({
   list: [],
-  selected: null
+  selected: null,
+  timezones: [],
 });
 
 export const ADD_NEW_APP = 'ADD_NEW_APP';
 export const SET_APP_LIST = 'SET_APP_LIST';
 export const SET_SELECTED_APP = 'SET_SELECTED_APP';
+export const SET_TIMEZONES = 'SET_TIMEZONES';
 
 /**
  * Merge route into the global application state
@@ -26,6 +28,10 @@ export function myAppsReducer(state = myAppsInitialState, action) {
     case SET_SELECTED_APP:
       return state.merge({
         selected: action.payload
+      });
+    case SET_TIMEZONES:
+      return state.merge({
+        timezones: action.payload
       });
     default:
       return state;
