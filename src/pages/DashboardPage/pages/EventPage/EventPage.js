@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import ChoiceDateRange from '../../components/ChoiceDateRange/ChoiceDateRange';
 
 class EventPage extends React.PureComponent {
   constructor(props) {
@@ -9,7 +10,10 @@ class EventPage extends React.PureComponent {
 
   render() {
     return(
-      <div>Event page</div>
+      <div>
+        <ChoiceDateRange/>
+        <div>Event page</div>
+      </div>
     );
   }
 }

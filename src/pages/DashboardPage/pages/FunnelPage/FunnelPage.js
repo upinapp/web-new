@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import ChoiceDateRange from '../../components/ChoiceDateRange/ChoiceDateRange';
 
 class FunnelPage extends React.PureComponent {
   constructor(props) {
@@ -9,7 +10,10 @@ class FunnelPage extends React.PureComponent {
 
   render() {
     return(
-      <div>Funnel page</div>
+      <div>
+        <ChoiceDateRange/>
+        <div>Funnel page</div>
+      </div>
     );
   }
 }
