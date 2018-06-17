@@ -1,15 +1,15 @@
-import React from 'react';
-import {compose} from 'redux';
-import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles/index';
 import Icon from '@material-ui/core/Icon';
-import classNames from 'classnames';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import classNames from 'classnames';
+import { withStyles } from 'material-ui/styles/index';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { compose } from 'redux';
 
 const styles = theme => ({
   root: {
@@ -49,7 +49,7 @@ function transformArray(element) {
   allDataToPeriod.users += element.users;
   allDataToPeriod.newUsers += element.newUsers;
   allDataToPeriod.session += element.session;
-  return Object.assign({id: id}, element);
+  return Object.assign({ id: id }, element);
 }
 
 let data = null;
@@ -68,7 +68,7 @@ class AudienceByDayTable extends React.PureComponent {
   }
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
 
     return (
       <div>
@@ -80,11 +80,17 @@ class AudienceByDayTable extends React.PureComponent {
               <TableCell className={classes.disabledBorder}></TableCell>
               <TableCell className={classes.disabledBorder}></TableCell>
               <TableCell className={classes.disabledBorder}></TableCell>
-              <TableCell numeric
-												 className={classNames(classes.disabledBorder, classes.labelOfColumn)}>Пользователи</TableCell>
+              <TableCell
+                numeric
+                className={classNames(classes.disabledBorder, classes.labelOfColumn)}>
+                Пользователи
+              </TableCell>
               <TableCell numeric className={classNames(classes.disabledBorder, classes.labelOfColumn)}>Новые</TableCell>
-              <TableCell numeric
-												 className={classNames(classes.disabledBorder, classes.labelOfColumn)}>Сессии</TableCell>
+              <TableCell
+                numeric
+                className={classNames(classes.disabledBorder, classes.labelOfColumn)}>
+                Сессии
+              </TableCell>
               <TableCell
                 className={classNames(classes.disabledBorder, classes.labelOfColumn)}><Icon>more_vert</Icon></TableCell>
             </TableRow>
@@ -92,7 +98,7 @@ class AudienceByDayTable extends React.PureComponent {
           <TableBody>
             <TableRow key="all" className={classes.allDataToPeriod}>
               <TableCell component="th" scope="row" className={classes.disabledBorder}>
-								Всего
+                Всего
               </TableCell>
               <TableCell className={classes.disabledBorder}></TableCell>
               <TableCell className={classes.disabledBorder}></TableCell>
@@ -131,5 +137,5 @@ AudienceByDayTable.propTypes = {
 };
 
 export default compose(
-  withStyles(styles, {withTheme: true})
+  withStyles(styles, { withTheme: true })
 )(AudienceByDayTable);

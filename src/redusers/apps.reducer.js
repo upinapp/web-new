@@ -8,6 +8,7 @@ const myAppsInitialState = fromJS({
 });
 
 export const ADD_NEW_APP = 'ADD_NEW_APP';
+export const UPDATE_APP = 'UPDATE_APP';
 export const SET_APP_LIST = 'SET_APP_LIST';
 export const SET_SELECTED_APP = 'SET_SELECTED_APP';
 export const SET_TIMEZONES = 'SET_TIMEZONES';
@@ -33,6 +34,16 @@ export function myAppsReducer(state = myAppsInitialState, action) {
       return state.merge({
         timezones: action.payload
       });
+    case UPDATE_APP: {
+      const stateObject = state.toJS();
+      const list = stateObject.list;
+      const index = stateObject.list.findIndex((e) => e.id === action.payload.id);
+      list.splice(index, 1, action.payload);
+
+      return state.merge({
+        list: list
+      });
+    }
     default:
       return state;
   }

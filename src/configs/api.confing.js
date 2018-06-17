@@ -5,6 +5,7 @@ export const API = {
   restorePasswordConfirm: 'http://ec2-18-207-118-194.compute-1.amazonaws.com:1337/passwordRestore/confirm',
   userAppsList: 'http://ec2-18-207-118-194.compute-1.amazonaws.com:1339/list',
   createUserApp: 'http://ec2-18-207-118-194.compute-1.amazonaws.com:1339/create',
+  updateUserApp: 'http://ec2-18-207-118-194.compute-1.amazonaws.com:1339/update',
   getTimezones: 'http://ec2-18-207-118-194.compute-1.amazonaws.com:1339/timeZones',
   getUserProfile: 'http://ec2-18-207-118-194.compute-1.amazonaws.com:1337/get',
 };

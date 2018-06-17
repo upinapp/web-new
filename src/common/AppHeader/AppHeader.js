@@ -5,12 +5,17 @@ import logo from '../../assets/images/logo.svg';
 
 const styles = theme => ({
   root: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
     padding: '0 20px',
     flexGrow: 1,
     borderBottom: '1px solid #d1d1d1',
     backgroundColor: theme.palette.white,
     display: 'flex',
     alignItems: 'center',
+    zIndex: 1000,
     ...theme.mixins.toolbar
   },
   logo: {

@@ -21,9 +21,6 @@ class CreateNewAppDialog extends React.PureComponent {
     this.state = {
       timezone: ''
     };
-
-    this.onTimezoneChanged = this.onTimezoneChanged.bind(this);
-    this.createNewApp = this.createNewApp.bind(this);
   }
 
   handleInputChange = (e) => {
@@ -31,20 +28,20 @@ class CreateNewAppDialog extends React.PureComponent {
     this.setState({ [e.target.name]: val });
   };
 
-  onTimezoneChanged(e) {
+  onTimezoneChanged = (e) => {
     this.setState({ timezone: e.target.value });
-  }
+  };
 
-  async createNewApp() {
+  createNewApp = async () => {
     this.props.dispatch({ type: APP_LOADING, payload: true });
 
     const response = await UserService.createNewApplication(this.state.name, this.state.timezone);
     const body = await response.json();
 
     this.props.dispatch({ type: ADD_NEW_APP, payload: body.application });
-    this.props.onClose(true);
+    this.props.onClose();
     this.props.dispatch({ type: APP_LOADING, payload: false });
-  }
+  };
 
   render() {
     return (
@@ -78,7 +75,11 @@ class CreateNewAppDialog extends React.PureComponent {
                 {
                   this.props.timezones.map((timezone) => {
                     return (
-                      <MenuItem key={timezone.value} value={timezone.value}>{timezone.title}</MenuItem>
+                      <MenuItem
+                        key={timezone.value}
+                        value={timezone.value}>
+                        {timezone.title}
+                      </MenuItem>
                     );
                   })
                 }

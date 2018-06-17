@@ -4,7 +4,7 @@ import { store } from '../utils';
 import { API } from '../configs/api.confing';
 
 export class UserService {
-  static async getUserApplications(page = 1, count = 10) {
+  static async getUserApplications(page = 1, count = 100) {
     const res = await HttpService.get(`${API.userAppsList}?page=${page}&per-page=${count}`);
 
     if (res.ok) {
@@ -26,6 +26,16 @@ export class UserService {
 
   static async createNewApplication(name, timezone) {
     const res = await HttpService.post(`${API.createUserApp}`, { name, timezone });
+
+    if (!res.ok) {
+      // TODO: Global error
+    }
+
+    return res;
+  }
+
+  static async updateApplication(id, name, timezone) {
+    const res = await HttpService.post(`${API.updateUserApp}/${id}`, { name, timezone });
 
     if (!res.ok) {
       // TODO: Global error

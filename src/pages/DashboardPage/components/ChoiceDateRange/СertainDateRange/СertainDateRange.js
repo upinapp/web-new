@@ -7,10 +7,10 @@ const currentDate = new Date;
 // с неделей и месяцем тоже пока решил не заморачиваться, потому что еще не известно в
 // каком формате это будет требовать сервер
 const NAMES_TIME_PERIOD = [
-  {name: 'Сегодня', date: currentDate},
-  {name: 'Вчера', date: currentDate.setDate(currentDate.getDate() - 1) },
-  {name: 'Неделя', date: {startDate: 1, endDate: 1,}},
-  {name: 'Месяц', date: {startDate: 1, endDate: 1,}},
+  { name: 'Сегодня', date: currentDate },
+  { name: 'Вчера', date: currentDate.setDate(currentDate.getDate() - 1) },
+  { name: 'Неделя', date: { startDate: 1, endDate: 1, } },
+  { name: 'Месяц', date: { startDate: 1, endDate: 1, } },
 ];
 
 class CertainDateRange extends React.PureComponent {
@@ -25,13 +25,19 @@ class CertainDateRange extends React.PureComponent {
   // сначала думал отправлять это в store и localStorage, но потом подумал, что у нас для каждого графика
   // и прочего будет свой фильтер и решил этого пока не делать
   changeCheckedPeriod = (index) => {
-    this.setState({'checkedPeriod': index});
+    this.setState({ 'checkedPeriod': index });
   }
 
   renderNamePeriod(name, key) {
-    return <div onClick={() => {this.changeCheckedPeriod(key);}} className={classNames('static-date-range__item', key === this.state.checkedPeriod ? 'active' : null)} key={key} >
-      {name}
-    </div>;
+    return (
+      <div
+        onClick={() => {
+          this.changeCheckedPeriod(key);
+        }}
+        className={classNames('static-date-range__item', key === this.state.checkedPeriod ? 'active' : null)}
+        key={key}>
+        {name}
+      </div>);
   }
 
   renderBackgroundForActivePeriod(index) {
