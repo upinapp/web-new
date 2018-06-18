@@ -7,6 +7,8 @@ import {connect} from 'react-redux';
 import AudienceByDayTable from '../../components/AudienceByDayTable/AudienceByDayTable';
 import ChoiceDateRange from '../../components/ChoiceDateRange/ChoiceDateRange';
 import LineChart from '../../components/LineChart/LineChart';
+import RetentionTable
+  from '../../components/RetentionTable/RetentionTable';
 
 const styles = theme => ({
   root: {
@@ -17,14 +19,11 @@ const styles = theme => ({
 class RetentionPage extends React.PureComponent {
 
   render() {
-    const {classes, audienceByDate} = this.props;
+    const {classes} = this.props;
 
     return (
       <div className={classes.root}>
-        <ChoiceDateRange/>
-        <LineChart />
-        <br/><br/>
-        <AudienceByDayTable dataAboutUsers={audienceByDate}/>
+        <RetentionTable/>
       </div>
     );
   }

@@ -87,7 +87,6 @@ const styles = theme => ({
   content: {
     marginTop: 63,
     flexGrow: 1,
-    minWidth: '100%',
     backgroundColor: theme.palette.white,
     padding: theme.spacing.unit * 3,
     overflow: 'scroll'
