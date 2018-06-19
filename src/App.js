@@ -5,6 +5,7 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import './App.style.css';
 import AppLoading from './common/AppLoading/AppLoading';
+import AppNotification from './common/AppNotification/AppNotification';
 
 import { PrivateRoute } from './common/PrivateRoute';
 
@@ -40,6 +41,7 @@ class App extends React.PureComponent {
           </MuiThemeProvider>
         </JssProvider>
         <AppLoading />
+        <AppNotification />
       </div>
     );
   }

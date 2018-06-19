@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { ADD_NEW_APP, APP_LOADING } from '../../../../redusers';
+import { ADD_NEW_APP, APP_LOADING, SHOW_GLOBAL_SUCCESS } from '../../../../redusers';
 import { UserService } from '../../../../services';
 import './CreateNewAppDialog.style.css';
 
@@ -41,6 +41,7 @@ class CreateNewAppDialog extends React.PureComponent {
     this.props.dispatch({ type: ADD_NEW_APP, payload: body.application });
     this.props.onClose();
     this.props.dispatch({ type: APP_LOADING, payload: false });
+    this.props.dispatch({ type: SHOW_GLOBAL_SUCCESS, payload: 'Приложение успешно создано!' });
   };
 
   render() {

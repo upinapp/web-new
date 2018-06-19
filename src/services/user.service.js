@@ -1,4 +1,5 @@
 import { HttpService } from './http.service';
+import { HttpErrorService } from './http-error.service';
 import { SET_APP_LIST, SET_USER } from '../redusers';
 import { store } from '../utils';
 import { API } from '../configs/api.confing';
@@ -19,6 +20,8 @@ export class UserService {
         return app;
       });
       store.dispatch({ type: SET_APP_LIST, payload: data.applications });
+    } else {
+      HttpErrorService.handle(res);
     }
 
     return res;
@@ -28,7 +31,7 @@ export class UserService {
     const res = await HttpService.post(`${API.createUserApp}`, { name, timezone });
 
     if (!res.ok) {
-      // TODO: Global error
+      HttpErrorService.handle(res);
     }
 
     return res;
@@ -38,7 +41,7 @@ export class UserService {
     const res = await HttpService.post(`${API.updateUserApp}/${id}`, { name, timezone });
 
     if (!res.ok) {
-      // TODO: Global error
+      HttpErrorService.handle(res);
     }
 
     return res;
@@ -59,6 +62,8 @@ export class UserService {
       user.id = profile.id;
       user.name = profile.name;
       user.accessToken = localStorage.getItem('accessToken');
+    } else {
+      HttpErrorService.handle(res);
     }
 
     store.dispatch({ type: SET_USER, payload: user });
@@ -70,7 +75,7 @@ export class UserService {
     const res = await HttpService.get(API.getTimezones);
 
     if (!res.ok) {
-      // TODO: Global error
+      HttpErrorService.handle(res);
     }
 
     return res;

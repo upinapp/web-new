@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles/index';
-import {compose} from 'redux';
-import {connect} from 'react-redux';
+import { withStyles } from 'material-ui/styles';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 
 import AudienceByDayTable from '../../components/AudienceByDayTable/AudienceByDayTable';
 import ChoiceDateRange from '../../components/ChoiceDateRange/ChoiceDateRange';
@@ -19,7 +19,7 @@ const styles = theme => ({
 class RetentionPage extends React.PureComponent {
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
 
     return (
       <div className={classes.root}>
@@ -44,5 +44,5 @@ function mapStateToProps(state) {
 
 export default compose(
   connect(mapStateToProps),
-  withStyles(styles, {withTheme: true})
+  withStyles(styles, { withTheme: true })
 )(RetentionPage);

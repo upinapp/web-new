@@ -12,7 +12,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { APP_LOADING, UPDATE_APP } from '../../../../redusers';
+import { APP_LOADING, UPDATE_APP, SHOW_GLOBAL_SUCCESS } from '../../../../redusers';
 import { UserService } from '../../../../services';
 import './EditAppDialog.style.css';
 
@@ -49,6 +49,7 @@ class EditAppDialog extends React.PureComponent {
 
       this.props.dispatch({ type: UPDATE_APP, payload: body.application });
       this.props.dispatch({ type: APP_LOADING, payload: false });
+      this.props.dispatch({ type: SHOW_GLOBAL_SUCCESS, payload: 'Приложение успешно изменено!' });
     }
 
     this.props.onClose();
