@@ -17,6 +17,18 @@ export class AuthService {
     return res;
   }
 
+  static async signInWithGoogle(accessToken, tokenId) {
+    const res = await HttpService.post(API.google, {
+      idToken: tokenId,
+      accessToken: accessToken
+    });
+    let answer = await res.json();
+    if (res.ok) {
+      this.saveUserToStore(answer);
+    }
+    return answer;
+  }
+
   static async signUpUser(email, password, name) {
     const res = await HttpService.post(API.registration, {
       email: email,
