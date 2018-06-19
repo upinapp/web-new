@@ -64,7 +64,7 @@ class AudienceByDayTable extends React.PureComponent {
       newUsers: 0,
       session: 0,
     };
-    data = this.props.dataAboutUsers.map(user => transformArray(user));
+    data = this.props.data.map(user => transformArray(user));
   }
 
   render() {

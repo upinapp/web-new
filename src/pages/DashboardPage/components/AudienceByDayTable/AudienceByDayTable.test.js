@@ -16,7 +16,7 @@ const classes = {};
 beforeEach(() => {
   // рендерим компонент
   renderedComponent = mount(
-    <AudienceByDayTable dataAboutUsers={audienceByDateFromStore}/>
+    <AudienceByDayTable data={audienceByDateFromStore}/>
   );
 
   // получаем его коллекцию классов
@@ -44,7 +44,7 @@ describe('AudienceByDayTable:', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <Provider store={store}>
-        <AudienceByDayTable dataAboutUsers={audienceByDateFromStore}/>
+        <AudienceByDayTable data={audienceByDateFromStore}/>
       </Provider>,
       div);
     ReactDOM.unmountComponentAtNode(div);
