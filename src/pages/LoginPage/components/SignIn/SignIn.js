@@ -51,9 +51,9 @@ class SignIn extends React.PureComponent {
     event.preventDefault();
     this.props.dispatch({ type: APP_LOADING, payload: true });
     const res = await AuthService.signInUser(this.state.email, this.state.password);
-    const errorCode = 0;
+    const errorCode = res.code;
 
-    switch (await errorCode) {
+    switch (errorCode) {
       case 2:
         this.setState({ 'errorMessage': 'Некорректный email' });
         break;
