@@ -10,11 +10,25 @@ export class AuthService {
       password: password
     });
 
+    let answer = await res.json();
+
     if (res.ok) {
-      this.saveUserToStore(await res.json());
+      this.saveUserToStore(answer);
     }
 
-    return res;
+    return answer;
+  }
+
+  static async signInWithGoogle(accessToken, tokenId) {
+    const res = await HttpService.post(API.google, {
+      idToken: tokenId,
+      accessToken: accessToken
+    });
+    let answer = await res.json();
+    if (res.ok) {
+      this.saveUserToStore(answer);
+    }
+    return answer;
   }
 
   static async signUpUser(email, password, name) {
@@ -46,7 +60,10 @@ export class AuthService {
     });
 
     if (res.ok) {
-      this.saveUserToStore(await res.json());
+      const signInRes = await this.signInUser(email, password);
+      if (signInRes) {
+        return res;
+      }
     }
 
     return res;
