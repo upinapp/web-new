@@ -2,13 +2,25 @@
 
   &__sign-in-with-google {
     margin-left: 24px;
-    color: #536dfe;
-    text-decoration: none;
+    height: 28px;
     display: flex;
+    color: #536dfe;
+    padding: 0 0 0 38px;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
     align-items: center;
+    justify-content: space-between;
+    background: none no-repeat left center;
+    text-align: left;
 
-    &-icon {
-      margin-right: 10px;
+    &:hover{
+      cursor: pointer;
+    }
+    &:focus {
+      outline: none;
     }
   }
+
+
 }

@@ -15,6 +15,7 @@ import { APP_LOADING } from '../../../../redusers';
 import { AuthService } from '../../../../services';
 import GoogleIcon from './google-icon.svg';
 import './SignIn.style.css';
+import {GoogleLogin} from 'react-google-login';
 
 class SignIn extends React.PureComponent {
 
@@ -50,11 +51,33 @@ class SignIn extends React.PureComponent {
     event.preventDefault();
     this.props.dispatch({ type: APP_LOADING, payload: true });
     const res = await AuthService.signInUser(this.state.email, this.state.password);
-    const errorCode = 0;
+    const errorCode = res.code;
 
-    switch (await errorCode) {
+    switch (errorCode) {
       case 2:
         this.setState({ 'errorMessage': 'Некорректный email' });
+        break;
+      case 3:
+        this.setState({ 'errorMessage': 'Пользователь не найден' });
+        break;
+      case 4:
+        this.setState({ 'errorMessage': 'Неверный пароль' });
+        break;
+      default:
+        this.setState({ 'errorMessage': null });
+        this.props.dispatch(push('/apps'));
+    }
+
+    this.props.dispatch({ type: APP_LOADING, payload: false });
+  };
+
+  logInWithGoogle = async (response) => {
+    this.props.dispatch({ type: APP_LOADING, payload: true });
+    let res = await AuthService.signInWithGoogle(response.accessToken, response.tokenId);
+    let errorCode = res.code;
+    switch (errorCode) {
+      case 2:
+        this.setState({ 'errorMessage': 'Invalid clientID' });
         break;
       case 3:
         this.setState({ 'errorMessage': 'Пользователь не найден' });
@@ -128,12 +151,16 @@ class SignIn extends React.PureComponent {
             color="primary"
             className="login-page__component__submit-button">
             Вход
-            {/*TODO вставить анимацию получения данных*/}
           </Button>
-          <a href="#!" className="login-page__component__sign-in-with-google">
-            <img src={GoogleIcon} className="login-page__component__sign-in-with-google-icon" alt="GoogleIcon"/>
-            Войти с Google
-          </a>
+          <GoogleLogin
+            className="login-page__component__sign-in-with-google"
+            buttonText="Войти с Google"
+            style={{backgroundImage: `url('${GoogleIcon}')`}}
+            clientId="427062901685-1bc7s4f1un9skr1ljhv80rc2e0h2d8rm.apps.googleusercontent.com"
+            scope='https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+            fetchBasicProfile={false}
+            onSuccess={this.logInWithGoogle}
+          />
         </div>
 
         <Divider className="login-page__component__divider"/>
