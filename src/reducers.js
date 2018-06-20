@@ -4,7 +4,7 @@
 
 import { combineReducers } from 'redux-immutable';
 
-import { audienceByDateReducer } from './pages/DashboardPage/components/AudienceByDayTable/audienceByDayReducer';
+import { audienceByDateReducer } from './pages/DashboardPage/pages/AudiencePage/components/Table/audienceByDayReducer';
 import {
   dashboardMenuReducer,
   loadingReducer,

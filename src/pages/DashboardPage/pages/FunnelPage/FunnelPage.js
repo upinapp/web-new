@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
+
 import ChoiceDateRange from '../../components/ChoiceDateRange/ChoiceDateRange';
+
+import './FunnelPage.style.css';
 
 class FunnelPage extends React.PureComponent {
   constructor(props) {
@@ -9,10 +11,15 @@ class FunnelPage extends React.PureComponent {
   }
 
   render() {
-    return(
-      <div>
+    return (
+      <div className="FunnelPage">
         <ChoiceDateRange/>
-        <div>Funnel page</div>
+
+        <div className="FunnelPage__chart">
+          <div className="FunnelPage__chart-title">Воронки</div>
+          <div className="FunnelPage__chart-subtitle">Все пользователи</div>
+        </div>
+
       </div>
     );
   }
@@ -25,6 +32,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default compose(
-  connect(mapStateToProps)
-)(FunnelPage);
+export default connect(mapStateToProps)(FunnelPage);

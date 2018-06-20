@@ -1,38 +1,48 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import { compose } from 'redux';
 import { connect } from 'react-redux';
 
-import AudienceByDayTable from '../../components/AudienceByDayTable/AudienceByDayTable';
 import ChoiceDateRange from '../../components/ChoiceDateRange/ChoiceDateRange';
 import LineChart from '../../components/LineChart/LineChart';
-import RetentionTable
-  from '../../components/RetentionTable/RetentionTable';
+import RetentionTable from './components/Table/RetentionTable';
 
-const styles = theme => ({
-  root: {
-    width: '100%',
-  }
-});
+import './RetentionPage.style.css';
+
+const labels = ['День 1', 'День 2', 'День 3', 'День 4', 'День 5', 'День 6', 'День 7'];
+const data = [
+  {
+    label: '24 марта 2018',
+    data: [100, 75, 21, 12, 10, 0],
+    backgroundColor: ['transparent'],
+    borderColor: ['#2962ff'],
+    borderWidth: 2
+  },
+  {
+    label: '25 марта 2018',
+    data: [100, 50, 25, 12, 20, 0],
+    backgroundColor: ['transparent'],
+    borderColor: ['#ef5350'],
+    borderWidth: 2
+  },
+];
 
 class RetentionPage extends React.PureComponent {
 
   render() {
-    const { classes } = this.props;
-
     return (
-      <div className={classes.root}>
+      <div className="RetentionPage">
+        <ChoiceDateRange />
+
+        <div className="RetentionPage__chart">
+          <div className="RetentionPage__chart-title">Retention отчет</div>
+          <div className="RetentionPage__chart-subtitle">21% пользователей</div>
+          <LineChart data={data} labels={labels}/>
+        </div>
+
         <RetentionTable/>
       </div>
     );
   }
 }
-
-RetentionPage.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};
 
 function mapStateToProps(state) {
   const stateObject = state.toJS();
@@ -42,7 +52,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default compose(
-  connect(mapStateToProps),
-  withStyles(styles, { withTheme: true })
-)(RetentionPage);
+export default connect(mapStateToProps)(RetentionPage);

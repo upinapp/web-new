@@ -1,5 +1,5 @@
 import { API } from '../configs/api.confing';
-import { SET_USER, SET_ACCESS_TOKEN } from '../redusers';
+import { SET_USER } from '../redusers';
 import { store } from '../utils/store.config';
 import { HttpService } from './http.service';
 
@@ -10,13 +10,13 @@ export class AuthService {
       password: password
     });
 
-    let answer = await res.json();
+    const data = await res.json();
 
     if (res.ok) {
-      this.saveUserToStore(answer);
+      this.saveUserToStore(data);
     }
 
-    return answer;
+    return data;
   }
 
   static async signInWithGoogle(accessToken, tokenId) {
@@ -24,11 +24,14 @@ export class AuthService {
       idToken: tokenId,
       accessToken: accessToken
     });
-    let answer = await res.json();
+
+    const data = await res.json();
+
     if (res.ok) {
-      this.saveUserToStore(answer);
+      this.saveUserToStore(data);
     }
-    return answer;
+
+    return data;
   }
 
   static async signUpUser(email, password, name) {
@@ -46,10 +49,7 @@ export class AuthService {
   }
 
   static async restorePasswordRequest(email) {
-    const res = await HttpService.post(API.restorePasswordRequest, {
-      email: email,
-    });
-    return res;
+    return await HttpService.post(API.restorePasswordRequest, { email });
   }
 
   static async restorePasswordConfirm(email, code, password) {
@@ -60,10 +60,7 @@ export class AuthService {
     });
 
     if (res.ok) {
-      const signInRes = await this.signInUser(email, password);
-      if (signInRes) {
-        return res;
-      }
+      await this.signInUser(email, password);
     }
 
     return res;
@@ -71,7 +68,9 @@ export class AuthService {
 
   static saveUserToStore(data) {
     const { profile, accessToken } = data;
+
     localStorage.setItem('accessToken', accessToken);
+
     store.dispatch({
       type: SET_USER, payload: {
         email: profile.email,

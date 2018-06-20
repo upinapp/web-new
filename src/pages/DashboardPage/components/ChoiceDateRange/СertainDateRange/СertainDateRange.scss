@@ -1,5 +1,4 @@
 .static-date-range {
-  font-family: Roboto;
 
   &__container {
     border-radius: 2px;
@@ -12,6 +11,7 @@
     align-items: center;
     position: relative;
     box-sizing: border-box;
+    margin-bottom: 20px;
 
     .background-for-active {
       background-color: rgb(255, 229, 127);

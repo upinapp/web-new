@@ -80,12 +80,7 @@ class RetentionTable extends React.PureComponent {
 
                     <TableCell className="label">
                       <div className="space-beetwen-fix">
-                        <Checkbox
-                          className="checkbox"
-                          // checked={this.state.checkedA}
-                          // onChange={this.handleChange('checkedA')}
-                          // value="checkedA"
-                        />
+
                         <Moment format="DD MMMM - YYYY" locale="ru">{dateRetention.day}</Moment>
                       </div>
                       <div className="start-date">

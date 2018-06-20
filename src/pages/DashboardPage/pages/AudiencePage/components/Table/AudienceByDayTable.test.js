@@ -5,7 +5,7 @@ import { configure, mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import Adapter from 'enzyme-adapter-react-16';
 import AudienceByDayTable from './AudienceByDayTable';
-import { store } from '../../../../utils';
+import { store } from '../../../../../../utils/index';
 
 configure({ adapter: new Adapter() });
 
@@ -39,7 +39,7 @@ function transformArray(audienceByDate) {
   return allDataToPeriod;
 }
 
-describe('AudienceByDayTable:', () => {
+describe('Table:', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(

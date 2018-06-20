@@ -24,10 +24,10 @@ const generateClassName = createGenerateClassName({
 class App extends React.PureComponent {
   constructor(props) {
     super(props);
+
     if (localStorage.getItem('accessToken')) {
       UserService.getUser();
     }
-
   }
 
   render() {

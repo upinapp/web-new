@@ -19,23 +19,16 @@ class LineChart extends React.PureComponent {
   componentDidMount() {
     const chartContainer = document.getElementById('LineChart__content');
     const ctx = chartContainer.getContext('2d');
-    const myChart = new Chart(ctx, {
+    chartContainer.height = 290;
+
+    const chart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: ['24 марта', '25 марта', '26 марта', '27 марта', '28 марта', '29 марта'],
-        datasets: [{
-          label: 'Пользователи',
-          data: [1000, 800, 380, 100, 100, 0],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-          ],
-          borderColor: [
-            'rgba(255,99,132,1)',
-          ],
-          borderWidth: 1
-        }]
+        labels: this.props.labels,
+        datasets: this.props.data
       },
       options: {
+        maintainAspectRatio: false,
         responsive: true,
         elements: {
           line: {
