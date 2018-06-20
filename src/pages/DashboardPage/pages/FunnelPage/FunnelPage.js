@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import ChoiceDateRange from '../../components/ChoiceDateRange/ChoiceDateRange';
 
 import './FunnelPage.style.css';
+import FunnelTable from './components/Table/FunnelTable';
 
 class FunnelPage extends React.PureComponent {
   constructor(props) {
@@ -20,6 +21,7 @@ class FunnelPage extends React.PureComponent {
           <div className="FunnelPage__chart-subtitle">Все пользователи</div>
         </div>
 
+        <FunnelTable/>
       </div>
     );
   }

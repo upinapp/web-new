@@ -5,6 +5,7 @@ import ChoiceDateRange from '../../components/ChoiceDateRange/ChoiceDateRange';
 import LineChart from '../../components/LineChart/LineChart';
 
 import './EventPage.style.css';
+import EventTable from './components/Table/EventTable';
 
 const labels = ['День 1', 'День 2', 'День 3', 'День 4', 'День 5', 'День 6', 'День 7'];
 const data = [
@@ -40,6 +41,7 @@ class EventPage extends React.PureComponent {
           <LineChart data={data} labels={labels}/>
         </div>
 
+        <EventTable/>
       </div>
     );
   }

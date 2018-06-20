@@ -1,21 +1,15 @@
-import Checkbox from '@material-ui/core/es/Checkbox/Checkbox';
-import Icon from '@material-ui/core/es/Icon/Icon';
-import Table from '@material-ui/core/es/Table/Table';
-import TableCell from '@material-ui/core/es/TableCell/TableCell';
-import TableHead from '@material-ui/core/es/TableHead/TableHead';
-import TableRow from '@material-ui/core/es/TableRow/TableRow';
+import {Icon, Table, TableCell, TableHead, TableRow, TableBody} from '@material-ui/core/';
 import React from 'react';
 import './RetentionTable.css';
 import Moment from 'react-moment';
 import {RETENTION, MOCK_ALL} from './table-data.mock';
-import TableBody from '@material-ui/core/es/TableBody/TableBody';
 
 class RetentionTable extends React.PureComponent {
 
   constructor(props) {
     super(props);
 
-    this.state =  {
+    this.state = {
       days: RETENTION
     };
   }
