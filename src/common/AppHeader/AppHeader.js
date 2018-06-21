@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import logo from '../../assets/images/logo.svg';
+import InfoBar from './InfoBar/InfoBar';
 
 const styles = theme => ({
   root: {
@@ -9,13 +10,15 @@ const styles = theme => ({
     top: 0,
     left: 0,
     width: '100%',
-    padding: '0 20px',
+    padding: '5px 20px',
     flexGrow: 1,
     borderBottom: '1px solid #d1d1d1',
     backgroundColor: theme.palette.white,
     display: 'flex',
     alignItems: 'center',
     zIndex: 1000,
+    justifyContent: 'space-between',
+    boxSizing: 'border-box',
     ...theme.mixins.toolbar
   },
   logo: {
@@ -35,10 +38,14 @@ class AppHeader extends React.PureComponent {
 
     return (
       <div className={classes.root}>
-        <img className={classes.logo} src={logo} alt="logo"/>
-        <div className={classes.title}>
-          {this.props.title}
+        <div className="space-between-fix">
+          <img className={classes.logo} src={logo} alt="logo"/>
+          <div className={classes.title}>
+            {this.props.title}
+          </div>
         </div>
+
+        <InfoBar/>
       </div>
     );
   }
