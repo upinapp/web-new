@@ -20,6 +20,10 @@ module.exports = {
   'rules': {
     // отступы в 2 пробела
     'indent': ['error', 2, { 'SwitchCase': 1 }],
+    // неболее 1го пробела подряд
+    'no-multi-spaces': "error",
+    // без пробелов в конце строк (кроме комментариев)
+    'no-trailing-spaces': ["error", { "ignoreComments": true }],
     // переносы строк в стиде unix
     'linebreak-style': ['error', 'unix'],
     // кавычки должны быть одинарные
