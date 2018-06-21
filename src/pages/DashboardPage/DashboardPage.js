@@ -19,6 +19,8 @@ import AudiencePage from './pages/AudiencePage/AudiencePage';
 import EventPage from './pages/EventPage/EventPage';
 import FunnelPage from './pages/FunnelPage/FunnelPage';
 
+import appLogo from '../../assets/images/logo.svg';
+
 const drawerWidth = 260;
 
 const styles = theme => ({
@@ -82,7 +84,10 @@ const styles = theme => ({
     ...theme.mixins.toolbar,
   },
   appLogo: {
-    minHeight: 20
+    marginLeft: 25,
+    marginTop: 16,
+    height: 28,
+    width: 35
   },
   content: {
     marginTop: 63,
@@ -95,14 +100,16 @@ const styles = theme => ({
 
 class DashboardPage extends React.PureComponent {
   state = {
-    open: true,
+    open: false
   };
 
   handleDrawerOpen = () => {
+    this.setState({open: true});
     this.props.dispatch({ type: DASHBOARD_MENU_TOGGLE, payload: true });
   };
 
   handleDrawerClose = () => {
+    this.setState({open: false});
     this.props.dispatch({ type: DASHBOARD_MENU_TOGGLE, payload: false });
   };
 
@@ -139,9 +146,8 @@ class DashboardPage extends React.PureComponent {
             }}
             open={this.state.open}
           >
-            <div className={classes.appLogo}>
 
-            </div>
+            <img className={classes.appLogo} src={appLogo} alt="logo"/>
             <DashboardMenu/>
           </Drawer>
           <main className={classes.content}>

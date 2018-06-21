@@ -1,28 +1,28 @@
 import React from 'react';
 import Chart from 'chart.js';
 
-import './LineChart.style.css';
+import './BarChart.style.css';
 
-class LineChart extends React.PureComponent {
+class BarChart extends React.PureComponent {
   constructor(props) {
     super(props);
   }
 
   render() {
     return (
-      <div className="LineChart">
-        <canvas id="LineChart__content"/>
+      <div className="BarChart">
+        <canvas id="BarChart__content"/>
       </div>
     );
   }
 
   componentDidMount() {
-    const chartContainer = document.getElementById('LineChart__content');
+    const chartContainer = document.getElementById('BarChart__content');
     const ctx = chartContainer.getContext('2d');
     chartContainer.height = 290;
 
     const chart = new Chart(ctx, {
-      type: 'line',
+      type: 'bar',
       data: {
         labels: this.props.labels,
         datasets: this.props.data
@@ -37,9 +37,14 @@ class LineChart extends React.PureComponent {
           }
         },
         scales: {
+          xAxes: [{
+            stacked: true
+          }],
           yAxes: [{
             ticks: {
-              beginAtZero: true
+              max: 100,
+              min: 0,
+              stepSize: 10
             }
           }]
         }
@@ -48,4 +53,4 @@ class LineChart extends React.PureComponent {
   }
 }
 
-export default LineChart;
+export default BarChart;

@@ -2,9 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import ChoiceDateRange from '../../components/ChoiceDateRange/ChoiceDateRange';
+import BarChart from '../../components/BarChart/BarChart';
+import FunnelTable from './components/Table/FunnelTable';
 
 import './FunnelPage.style.css';
-import FunnelTable from './components/Table/FunnelTable';
+
+const labels = ['to_cart', 'order_step1_address', 'order_is_processed'];
+const data = [
+  {
+    data: [25, 18, 8, 12, 10, 0],
+    backgroundColor: ['#2962ff'],
+  },
+];
 
 class FunnelPage extends React.PureComponent {
   constructor(props) {
@@ -19,6 +28,7 @@ class FunnelPage extends React.PureComponent {
         <div className="FunnelPage__chart">
           <div className="FunnelPage__chart-title">Воронки</div>
           <div className="FunnelPage__chart-subtitle">Все пользователи</div>
+          <BarChart data={data} labels={labels}/>
         </div>
 
         <FunnelTable/>
