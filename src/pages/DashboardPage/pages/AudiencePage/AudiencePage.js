@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import AudienceByDayTable from './components/Table/AudienceByDayTable';
+import AudienceByDayTable from './components/Table/AudienceTable';
 import ChoiceDateRange from '../../components/ChoiceDateRange/ChoiceDateRange';
 import LineChart from '../../components/LineChart/LineChart';
 

@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { configure, mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import Adapter from 'enzyme-adapter-react-16';
-import AudienceByDayTable from './AudienceByDayTable';
+import AudienceTable from './AudienceTable';
 import { store } from '../../../../../../utils/index';
 
 configure({ adapter: new Adapter() });
@@ -16,12 +16,12 @@ const classes = {};
 beforeEach(() => {
   // рендерим компонент
   renderedComponent = mount(
-    <AudienceByDayTable data={audienceByDateFromStore}/>
+    <AudienceTable data={audienceByDateFromStore}/>
   );
 
   // получаем его коллекцию классов
-  for (let key in renderedComponent.find('AudienceByDayTable').props().classes) {
-    classes[key] = '.' + renderedComponent.find('AudienceByDayTable').props().classes[key];
+  for (let key in renderedComponent.find('AudienceTable').props().classes) {
+    classes[key] = '.' + renderedComponent.find('AudienceTable').props().classes[key];
   }
 });
 
@@ -44,7 +44,7 @@ describe('Table:', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       <Provider store={store}>
-        <AudienceByDayTable data={audienceByDateFromStore}/>
+        <AudienceTable data={audienceByDateFromStore}/>
       </Provider>,
       div);
     ReactDOM.unmountComponentAtNode(div);
