@@ -16,7 +16,7 @@ class RetentionTable extends React.PureComponent {
 
   render() {
     return (
-      <div>
+      <div className="retention-table">
         <div className="retention-table__title">
           Удержание после первого визита <Icon className="icon">info_outline</Icon>
         </div>

@@ -14,7 +14,7 @@ class EventTable extends React.PureComponent {
   // TODO: расскоментить CheckBox'ы после фикса JSS
   render() {
     return (
-      <div>
+      <div className="event-table">
         <div className="event-table__title">
           Все события <Icon className="icon">info_outline</Icon>
         </div>

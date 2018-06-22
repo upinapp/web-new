@@ -22,7 +22,7 @@ class FunnelTable extends React.PureComponent {
   // TODO: расскоментить Radio после фикса JSS
   render() {
     return (
-      <div>
+      <div className="funnel-table">
         <div className="funnel-table__title">
           Все воронки <Icon className="icon">info_outline</Icon>
         </div>

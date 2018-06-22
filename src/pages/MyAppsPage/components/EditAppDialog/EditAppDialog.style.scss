@@ -5,12 +5,20 @@
 
     &.settings-app {
       width: 746px;
+      @media (max-width: 810px) {
+        width: 100%;
+        min-width: 310px;
+      }
       height: 619px;
       border-radius: 2px;
       display: flex;
 
       .settings-panel {
         width: 421px;
+        @media (max-width: 810px) {
+          width: 100%;
+          min-width: 310px;
+        }
       }
 
       .integration-panel {
@@ -19,6 +27,9 @@
         padding-left: 24px;
         padding-top: 24px;
         box-sizing: border-box;
+        @media (max-width: 810px) {
+          display: none;
+        }
 
         .title {
           margin-top: 56px;

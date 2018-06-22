@@ -1,5 +1,10 @@
 .retention-table {
   font-family: 'Roboto';
+  width: 100%;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   &__title {
     font-size: 16px;
@@ -19,6 +24,7 @@
   &__table {
     border-top: 1px solid rgba(224, 224, 224, 1);
     width: 100%;
+    min-width: 1024px;
     table-layout: fixed;
 
     .MuiTableCell-root:last-child {
@@ -82,13 +88,13 @@
     .percent {
       font-size: 14px;
       font-weight: 500;
-      line-height: 1.7142857142857142;
+      line-height: 1.71;
       color: rgba(0, 0, 0, 0.87);
     }
 
     .number {
       font-size: 12px;
-      line-height: 1.3333333333333333;
+      line-height: 1.33;
       color: rgba(0, 0, 0, 0.54);
     }
 
@@ -103,7 +109,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 8px;
+        padding-right: 8px;
 
         .start-date {
           text-align: right;
