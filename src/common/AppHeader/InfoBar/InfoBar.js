@@ -5,7 +5,6 @@ import './InfoBar.style.css';
 
 class InfoBar extends React.PureComponent {
   render() {
-
     return (
       <div className="header-info-bar">
         <IconButton className="icon">

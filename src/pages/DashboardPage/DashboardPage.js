@@ -4,9 +4,7 @@ import classNames from 'classnames';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import IconButton from 'material-ui/IconButton';
-import { withStyles } from 'material-ui/styles';
 import Toolbar from 'material-ui/Toolbar';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -42,7 +40,7 @@ class DashboardPage extends React.PureComponent {
 
     return (
       <Router>
-        <div className="root">
+        <div className="DashboardPage">
           <AppBar
             position="absolute"
             className={classNames('app-bar', dashboardMenu.open && 'app-bar-shift')}

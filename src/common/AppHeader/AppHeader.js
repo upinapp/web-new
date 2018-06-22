@@ -7,7 +7,7 @@ import './AppHeader.style.css';
 class AppHeader extends React.PureComponent {
   render() {
     return (
-      <div className="root">
+      <div className="Header-root">
         <div className="space-between-fix">
           <img className="logo" src={logo} alt="logo"/>
           <div className="title">

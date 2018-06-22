@@ -1,73 +1,73 @@
 $drawerWidth: 260px;
 
-.root {
+.DashboardPage {
   flex-grow: 1;
   height: 100%;
   z-index: 1;
-  overflow: hidden;
+  overflow-x: hidden;
   position: relative !important;
   display: flex;
   padding: 0 !important;
-}
 
-.app-bar {
-  z-index: 1201 !important;
-  transition: width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,
-              margin 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
-  background-color: white !important;
-}
+  .app-bar {
+    z-index: 1201 !important;
+    transition: width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,
+    margin 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+    background-color: white !important;
+  }
 
-.app-bar-shift {
-  margin-left: $drawerWidth;
-  width: calc(100% - 260px) !important;
-  transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,
-              margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
-}
+  .app-bar-shift {
+    margin-left: $drawerWidth;
+    width: calc(100% - 260px) !important;
+    transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,
+    margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+  }
 
-.menu-button {
-  margin-left: 12px !important;
-  margin-right: 36px !important;
-}
+  .menu-button {
+    margin-left: 12px !important;
+    margin-right: 36px !important;
+  }
 
-.hide {
-  display: none !important;
-}
+  .hide {
+    display: none !important;
+  }
 
-.drawer-paper {
-  position: relative !important;
-  white-space: nowrap;
-  width: $drawerWidth;
-  background-color: #fafafa;
-  transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms !important;
-}
+  .drawer-paper {
+    position: relative !important;
+    white-space: nowrap;
+    width: $drawerWidth;
+    background-color: #fafafa;
+    transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms !important;
+  }
 
-.drawer-paper-close {
-  overflow-x: hidden;
-  transition: width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
-  width: 56px;
-  @media (min-width: 600px) {
-     width: 72px;
+  .drawer-paper-close {
+    overflow-x: hidden;
+    transition: width 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+    width: 56px;
+    @media (min-width: 600px) {
+      width: 72px;
+    };
+  }
+
+  .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 8px;
+  }
+
+  .app-logo {
+    margin-left: 25px;
+    margin-top: 16px;
+    height: 28px;
+    width: 35px;
+  }
+
+  .content {
+    margin-top: 63px !important;
+    flex-grow: 1;
+    background-color: white;
+    padding: 24px !important;
+    overflow: scroll;
   };
 }
-
-.toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 8px;
-}
-
-.app-logo {
-  margin-left: 25px;
-  margin-top: 16px;
-  height: 28px;
-  width: 35px;
-}
-
-.content {
-  margin-top: 63px !important;
-  flex-grow: 1;
-  background-color: white;
-  padding: 24px !important;
-  overflow: scroll;
-};

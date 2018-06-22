@@ -1,6 +1,7 @@
-.static-date-range {
+.CertainDateRange {
   width: 320px;
   min-width: 240px;
+
   @media (max-width: 500px) {
     width: 50%;
     min-width: 0;
@@ -28,7 +29,7 @@
       align-items: center;
       font-size: 14px;
       font-weight: 500;
-      line-height: 1.7142857142857142;
+      line-height: 1.71;
       color: rgba(0, 0, 0, 0.54);
       height: 100%;
       overflow: hidden;

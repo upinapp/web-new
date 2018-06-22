@@ -1,7 +1,8 @@
-.retention-table {
+.RetentionTable {
   font-family: 'Roboto';
   width: 100%;
   overflow-x: scroll;
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -38,7 +39,6 @@
     }
 
     .head {
-
       th {
         padding: 20px 0;
         text-align: right;
@@ -65,9 +65,7 @@
               margin-right: 11px;
             }
           }
-
         }
-
       }
 
       .label-column {
@@ -120,7 +118,5 @@
         border-right: 2px solid rgb(239, 83, 80);
       }
     }
-
   }
-
 }

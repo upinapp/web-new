@@ -1,11 +1,13 @@
 .choice-date-range-container {
   display: flex;
   align-items: flex-end;
+  margin: 10px 0 20px;
+
   @media (min-width: 430px) {
     position: relative;
   }
+
   @media (max-width: 400px) {
     align-items: center;
   }
-  margin: 10px 0 20px;
 }

@@ -1,8 +1,5 @@
-import amber from '@material-ui/core/colors/amber';
-import green from '@material-ui/core/colors/green';
 import IconButton from '@material-ui/core/IconButton';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
-import { withStyles } from 'material-ui/styles';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CloseIcon from '@material-ui/icons/Close';
 import ErrorIcon from '@material-ui/icons/Error';
@@ -11,6 +8,7 @@ import WarningIcon from '@material-ui/icons/Warning';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
+import './CustomSnackbarContent.style.css';
 
 const variantIcon = {
   success: CheckCircleIcon,
@@ -19,43 +17,17 @@ const variantIcon = {
   info: InfoIcon,
 };
 
-const styles = theme => ({
-  success: {
-    backgroundColor: green[600],
-  },
-  error: {
-    backgroundColor: theme.palette.error.dark,
-  },
-  info: {
-    backgroundColor: theme.palette.primary.dark,
-  },
-  warning: {
-    backgroundColor: amber[700],
-  },
-  icon: {
-    fontSize: 20,
-  },
-  iconVariant: {
-    opacity: 0.9,
-    marginRight: theme.spacing.unit,
-  },
-  message: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-});
-
 function CustomSnackbarContent(props) {
-  const { classes, className, message, onClose, variant, ...other } = props;
+  const { className, message, onClose, variant, ...other } = props;
   const Icon = variantIcon[variant];
 
   return (
     <SnackbarContent
-      className={classNames(classes[variant], className)}
+      className={classNames(variant, className, 'CustomSnackbarContent')}
       aria-describedby="client-snackbar"
       message={
-        <span id="client-snackbar" className={classes.message}>
-          <Icon className={classNames(classes.icon, classes.iconVariant)}/>
+        <span id="client-snackbar" className="message">
+          <Icon className="icon icon-variant"/>
           {message}
         </span>
       }
@@ -64,10 +36,9 @@ function CustomSnackbarContent(props) {
           key="close"
           aria-label="Close"
           color="inherit"
-          className={classes.close}
           onClick={onClose}
         >
-          <CloseIcon className={classes.icon}/>
+          <CloseIcon className="icon"/>
         </IconButton>,
       ]}
       {...other}
@@ -76,11 +47,10 @@ function CustomSnackbarContent(props) {
 }
 
 CustomSnackbarContent.propTypes = {
-  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   message: PropTypes.node,
   onClose: PropTypes.func,
   variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired,
 };
 
-export const CustomSnackbarContentWrapper = withStyles(styles)(CustomSnackbarContent);
+export const CustomSnackbarContentWrapper = (CustomSnackbarContent);

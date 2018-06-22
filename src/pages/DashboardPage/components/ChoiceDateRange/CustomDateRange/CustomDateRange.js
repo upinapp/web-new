@@ -33,8 +33,7 @@ class CustomDateRange extends React.PureComponent {
 
   render() {
     return (
-      <div className="custom-date-range container">
-
+      <div className="CustomDateRange container">
         <div className="current-date">
           <div className="date start">
             <Moment className="hidden-less-680" format="DD MMMM" locale="ru">
@@ -57,7 +56,6 @@ class CustomDateRange extends React.PureComponent {
                 </Moment>
               </div>
           }
-
         </div>
 
         <div className="button-open-date-range">
@@ -97,7 +95,6 @@ class CustomDateRange extends React.PureComponent {
             </div>
           </div>
         </div>
-
       </div>
     );
   }

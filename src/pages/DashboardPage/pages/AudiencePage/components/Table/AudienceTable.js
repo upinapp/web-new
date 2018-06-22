@@ -7,42 +7,34 @@ import TableRow from '@material-ui/core/TableRow';
 import React from 'react';
 import './AudienceTable.style.css';
 
-let id = null;
-let allDataToPeriod = null;
-
-function transformArray(element) {
-  id += 1;
-  allDataToPeriod.users += element.users;
-  allDataToPeriod.newUsers += element.newUsers;
-  allDataToPeriod.session += element.session;
-  return Object.assign({ id: id }, element);
-}
-
-let data = null;
-
 class AudienceTable extends React.PureComponent {
 
   constructor(props) {
     super(props);
 
-    allDataToPeriod = {
-      users: 0,
-      newUsers: 0,
-      session: 0,
+    this.state = {
+      allUsers: 0,
+      allNewUsers: 0,
+      allSession: 0
     };
-    data = this.props.data.map(user => transformArray(user));
+
+    this.props.data.map( date => {
+      this.state = {
+        'allUsers' : this.state.allUsers += date.users,
+        'allNewUsers' : this.state.allNewUsers += date.newUsers,
+        'allSession' : this.state.allSession += date.session,
+      };
+    });
   }
 
   render() {
-
     return (
-      <div className="audience-table">
-        <div className="audience-table__title">
+      <div className="AudienceTable">
+        <div className="AudienceTable__title">
           Аудитория по дням<Icon className="icon">info_outline</Icon>
         </div>
 
-        <Table className="audience-table__table">
-
+        <Table className="AudienceTable__table">
           <TableHead>
             <TableRow>
               <TableCell className="description-column header">
@@ -73,19 +65,18 @@ class AudienceTable extends React.PureComponent {
           </TableHead>
 
           <TableBody>
-
             <TableRow key="all" className="row-all">
               <TableCell className="description-column">
                 Всего
               </TableCell>
-              <TableCell className="simple-data">{allDataToPeriod.users}</TableCell>
-              <TableCell className="simple-data">{allDataToPeriod.newUsers}</TableCell>
-              <TableCell className="simple-data">{allDataToPeriod.session}</TableCell>
+              <TableCell className="simple-data"> { this.state.allUsers } </TableCell>
+              <TableCell className="simple-data"> { this.state.allNewUsers } </TableCell>
+              <TableCell className="simple-data"> { this.state.allSession } </TableCell>
               <TableCell className="fix-actions-in-header"></TableCell>
             </TableRow>
 
             {
-              data.map( (day, index) => {
+              this.props.data.map( (day, index) => {
                 return (
                   <TableRow key={index}>
                     <TableCell className="description-column">
@@ -113,17 +104,15 @@ class AudienceTable extends React.PureComponent {
                 );
               })
             }
-
           </TableBody>
         </Table>
 
-        <div className="audience-table__show-more">
+        <div className="AudienceTable__show-more">
           Загрузить еще
           {/*<IconButton className="icon">*/}
           <Icon>refresh</Icon>
           {/*</IconButton>*/}
         </div>
-
       </div>
     );
   }

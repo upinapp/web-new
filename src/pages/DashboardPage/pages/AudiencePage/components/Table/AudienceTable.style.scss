@@ -1,7 +1,8 @@
-.audience-table {
+.AudienceTable {
   font-family: 'Roboto';
   width: 100%;
   overflow-x: scroll;
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -61,7 +62,6 @@
       }
 
       .text {
-
         .name {
           font-size: 13px;
           line-height: 1.53;
@@ -97,7 +97,6 @@
       line-height: 1.53;
 
       &.header {
-
         .text {
           font-size: 12px;
           font-weight: 500;
@@ -130,8 +129,6 @@
       vertical-align: middle;
       padding-right: 8px !important;
     }
-
-
   }
 
   &__show-more {

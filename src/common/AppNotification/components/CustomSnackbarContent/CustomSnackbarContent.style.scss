@@ -1,0 +1,31 @@
+.CustomSnackbarContent {
+  .success {
+    background-color: #43a047;
+  }
+
+  .error {
+    background-color: #ef5350;
+  }
+
+  .info {
+    background-color: #315eff;
+  }
+
+  .warning {
+    background-color: #ffa000;
+  }
+
+  .icon {
+    font-size: 20px;
+  }
+
+  .icon-variant {
+    opacity: 0.9;
+    margin-right: 8px;
+  }
+
+  .message {
+    display: flex;
+    align-items: center;
+  }
+}

@@ -43,8 +43,8 @@ class CertainDateRange extends React.PureComponent {
 
   render() {
     return (
-      <div className="static-date-range">
-        <div className="static-date-range__full hidden-less-500">
+      <div className="CertainDateRange">
+        <div className="CertainDateRange__full hidden-less-500">
           {
             NAMES_TIME_PERIOD.map((period, index) => {return (
               <div
@@ -60,7 +60,7 @@ class CertainDateRange extends React.PureComponent {
           <div className={classNames('background-for-active', 'checked' + this.state.checkedPeriodIndex)}></div>
         </div>
 
-        <div className="static-date-range__mobile hidden-more-500">
+        <div className="CertainDateRange__mobile hidden-more-500">
           <FormControl>
             <Select
               value={this.state.checkedPeriodName}
