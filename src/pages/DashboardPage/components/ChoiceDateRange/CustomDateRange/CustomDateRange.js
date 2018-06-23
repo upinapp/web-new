@@ -33,14 +33,28 @@ class CustomDateRange extends React.PureComponent {
 
   render() {
     return (
-      <div className="custom-date-range container">
-
+      <div className="CustomDateRange container">
         <div className="current-date">
-          <div className="date start"><Moment format="DD MMMM" locale="ru">{this.state.startDate}</Moment></div>
+          <div className="date start">
+            <Moment className="hidden-less-680" format="DD MMMM" locale="ru">
+              {this.state.startDate}
+            </Moment>
+            <Moment className="hidden-more-680 hidden-less-400" format="DD.MM" locale="ru">
+              {this.state.startDate}
+            </Moment>
+          </div>
+
           {
             this.state.startDate !== this.state.endDate &&
-            <div className="date end">&nbsp;-&nbsp;<Moment format="DD MMMM" locale="ru">{this.state.endDate}</Moment>
-            </div>
+              <div className="date end hidden-less-400">
+                &nbsp;-&nbsp;
+                <Moment className="hidden-less-680" format="DD MMMM" locale="ru">{
+                  this.state.endDate}
+                </Moment>
+                <Moment className="hidden-more-680" format="DD.MM" locale="ru">
+                  {this.state.endDate}
+                </Moment>
+              </div>
           }
         </div>
 
@@ -52,7 +66,7 @@ class CustomDateRange extends React.PureComponent {
 
         <div className={classNames('wrapper-for-input-date-range', this.state.isDateRangeOpen ? 'active' : null)}>
           <form className="form-panel">
-            <div className="space-between-fix">
+            <div className="top-elements space-between-fix">
               <div className="title">Период</div>
               <input
                 className="date-input"
@@ -73,7 +87,7 @@ class CustomDateRange extends React.PureComponent {
             <div className="change-year">
               <Icon className="previous-years">keyboard_arrow_left</Icon> 2017 2018
             </div>
-            <Divider/>
+            <Divider className="hidden-desktop"/>
             <div className="wrapper-for-date-range">
               <DateRange
                 onChange={this.handleSelect}
@@ -81,7 +95,6 @@ class CustomDateRange extends React.PureComponent {
             </div>
           </div>
         </div>
-
       </div>
     );
   }

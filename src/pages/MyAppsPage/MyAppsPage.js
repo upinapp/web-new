@@ -5,6 +5,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import AddIcon from '@material-ui/icons/Add';
 import { Icon, IconButton } from 'material-ui';
 import Button from 'material-ui/Button';
@@ -112,6 +113,11 @@ class MyAppsPage extends React.PureComponent {
                 placeholder="Поиск"
                 className="my-apps__dialog-form-input"
                 onChange={this.handleAppSearchInput}
+                endAdornment={
+                  <InputAdornment className="icon" position="end">
+                    <Icon>search</Icon>
+                  </InputAdornment>
+                }
               />
             </FormControl>
 

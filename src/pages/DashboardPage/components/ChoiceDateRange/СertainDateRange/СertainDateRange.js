@@ -1,3 +1,4 @@
+import {FormControl, InputLabel, MenuItem, Select} from 'material-ui';
 import React from 'react';
 import './СertainDateRange.css';
 import classNames from 'classnames';
@@ -18,42 +19,62 @@ class CertainDateRange extends React.PureComponent {
     super(props);
 
     this.state = {
-      checkedPeriod: 0
+      checkedPeriodName: '',
+      checkedPeriodIndex: 0
     };
   }
 
   // сначала думал отправлять это в store и localStorage, но потом подумал, что у нас для каждого графика
   // и прочего будет свой фильтер и решил этого пока не делать
-  changeCheckedPeriod = (index) => {
-    this.setState({ 'checkedPeriod': index });
-  }
+  changeCheckedPeriod = (name, index) => {
+    this.setState({
+      'checkedPeriodName': name,
+      'checkedPeriodIndex': index
+    });
+  };
 
-  renderNamePeriod(name, key) {
-    return (
-      <div
-        onClick={() => {
-          this.changeCheckedPeriod(key);
-        }}
-        className={classNames('static-date-range__item', key === this.state.checkedPeriod ? 'active' : null)}
-        key={key}>
-        {name}
-      </div>);
-  }
-
-  renderBackgroundForActivePeriod(index) {
-    return <div className={classNames('background-for-active', 'checked' + index)}>
-    </div>;
-  }
+  handleChange = event => {
+    let indexOfPeriod = NAMES_TIME_PERIOD.findIndex((period) => period.name === event.target.value);
+    this.setState({
+      'checkedPeriodName': event.target.value,
+      'checkedPeriodIndex': indexOfPeriod
+    });
+  };
 
   render() {
     return (
-      <div className="static-date-range__container">
-        {
-          NAMES_TIME_PERIOD.map((period, index) => this.renderNamePeriod(period.name, index))
-        }
-        {
-          this.renderBackgroundForActivePeriod(this.state.checkedPeriod)
-        }
+      <div className="CertainDateRange">
+        <div className="CertainDateRange__full hidden-less-500">
+          {
+            NAMES_TIME_PERIOD.map((period, index) => {return (
+              <div
+                onClick={() => {
+                  this.changeCheckedPeriod(period.name, index);
+                }}
+                className={'item' + (index === this.state.checkedPeriodIndex ? ' active' : '')}
+                key={index}>
+                {period.name}
+              </div>
+            );})
+          }
+          <div className={classNames('background-for-active', 'checked' + this.state.checkedPeriodIndex)}></div>
+        </div>
+
+        <div className="CertainDateRange__mobile hidden-more-500">
+          <FormControl>
+            <Select
+              value={this.state.checkedPeriodName}
+              onChange={this.handleChange}
+              name='period'
+              id='period'>
+              {
+                NAMES_TIME_PERIOD.map((period, index) => { return (
+                  <MenuItem key={index} value={period.name}>{period.name}</MenuItem>
+                ); })
+              }
+            </Select>
+          </FormControl>
+        </div>
       </div>
     );
   }

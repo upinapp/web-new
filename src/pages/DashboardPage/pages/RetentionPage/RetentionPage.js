@@ -30,8 +30,6 @@ class RetentionPage extends React.PureComponent {
   render() {
     return (
       <div className="RetentionPage">
-        <ChoiceDateRange />
-
         <div className="RetentionPage__chart">
           <div className="RetentionPage__chart-title">Retention отчет</div>
           <div className="RetentionPage__chart-subtitle">21% пользователей</div>

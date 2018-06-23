@@ -22,12 +22,12 @@ class FunnelTable extends React.PureComponent {
   // TODO: расскоментить Radio после фикса JSS
   render() {
     return (
-      <div>
-        <div className="funnel-table__title">
+      <div className="FunnelTable">
+        <div className="FunnelTable__title">
           Все воронки <Icon className="icon">info_outline</Icon>
         </div>
 
-        <Table className="funnel-table__table">
+        <Table className="FunnelTable__table">
           <TableHead>
             <TableRow>
               <TableCell className="description-column header">
@@ -55,7 +55,6 @@ class FunnelTable extends React.PureComponent {
           </TableHead>
 
           <TableBody>
-
             {
               MOCKS_DATA.map((funnel, index) => {
                 return (
@@ -96,11 +95,10 @@ class FunnelTable extends React.PureComponent {
                 );
               })
             }
-
           </TableBody>
         </Table>
 
-        <div className="funnel-table__show-more">
+        <div className="FunnelTable__show-more">
           Загрузить еще
           {/*<IconButton className="icon">*/}
           <Icon>refresh</Icon>

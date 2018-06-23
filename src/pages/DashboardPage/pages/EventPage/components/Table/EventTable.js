@@ -14,13 +14,12 @@ class EventTable extends React.PureComponent {
   // TODO: расскоментить CheckBox'ы после фикса JSS
   render() {
     return (
-      <div>
-        <div className="event-table__title">
+      <div className="EventTable">
+        <div className="EventTable__title">
           Все события <Icon className="icon">info_outline</Icon>
         </div>
 
-        <Table className="event-table__table">
-
+        <Table className="EventTable__table">
           <TableHead>
             <TableRow>
               <TableCell className="description-column header">
@@ -56,7 +55,6 @@ class EventTable extends React.PureComponent {
           </TableHead>
 
           <TableBody>
-
             {
               MOCKS_DATA.map( (event, index) => {
                 return (
@@ -94,11 +92,10 @@ class EventTable extends React.PureComponent {
                 );
               })
             }
-
           </TableBody>
         </Table>
 
-        <div className="event-table__show-more">
+        <div className="EventTable__show-more">
           Загрузить еще
           {/*<IconButton className="icon">*/}
           <Icon>refresh</Icon>

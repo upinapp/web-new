@@ -1,3 +1,21 @@
 .App {
   height: 100%;
 }
+
+.hidden-more {
+  &-680 { @media (min-width: 681px) { display: none !important; } }
+  &-500 { @media (min-width: 501px) { display: none !important; } }
+  &-400 { @media (min-width: 401px) { display: none !important; } }
+}
+
+.hidden-desktop {
+  @media (max-width: 1024px) {
+    display: none;
+  }
+}
+
+.hidden-less {
+  &-680 { @media (max-width: 680px) { display: none !important; } }
+  &-500 { @media (max-width: 500px) { display: none !important; } }
+  &-400 { @media (max-width: 400px) { display: none !important; } }
+}

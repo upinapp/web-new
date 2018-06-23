@@ -16,12 +16,12 @@ class RetentionTable extends React.PureComponent {
 
   render() {
     return (
-      <div>
-        <div className="retention-table__title">
+      <div className="RetentionTable">
+        <div className="RetentionTable__title">
           Удержание после первого визита <Icon className="icon">info_outline</Icon>
         </div>
 
-        <Table className="retention-table__table">
+        <Table className="RetentionTable__table">
           <TableHead>
             <TableRow className="head">
               <TableCell className="date">
@@ -49,7 +49,6 @@ class RetentionTable extends React.PureComponent {
             </TableRow>
           </TableHead>
           <TableBody>
-
             <TableRow className="all">
               <TableCell>
                 Всего за период
@@ -74,7 +73,6 @@ class RetentionTable extends React.PureComponent {
 
                     <TableCell className="label">
                       <div className="space-beetwen-fix">
-
                         <Moment format="DD MMMM - YYYY" locale="ru">{dateRetention.day}</Moment>
                       </div>
                       <div className="start-date">
@@ -104,7 +102,6 @@ class RetentionTable extends React.PureComponent {
             }
           </TableBody>
         </Table>
-
       </div>
     );
   }
