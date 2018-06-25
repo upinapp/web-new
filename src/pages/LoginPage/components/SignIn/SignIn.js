@@ -1,15 +1,10 @@
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import FormControl from '@material-ui/core/FormControl';
-import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import { UiInput } from '../../../../common/UpInAppFramework';
 
 import { APP_LOADING } from '../../../../redusers';
 import { AuthService } from '../../../../services';
@@ -104,40 +99,23 @@ export class SignIn extends React.PureComponent {
       <form className="login-page__component" onSubmit={this.logIn}>
         <h2 className="login-page__component__title">Вход</h2>
 
-        <label className="login-page__component__label" htmlFor="email">Email</label>
-        <FormControl className="login-page__component__wrapper-input">
-          <Input
-            id="email"
-            name="email"
-            className="login-page__component__text-field"
-            type="text"
-            value={this.state.email}
-            onChange={this.handleChange}
-          />
-        </FormControl>
+        <UiInput
+          name="email"
+          type="text"
+          label="Email"
+          value={this.state.email}
+          className="login-page__component__input"
+          onChange={this.handleChange}
+        />
 
-        <label className="login-page__component__label" htmlFor="password">Пароль</label>
-        <FormControl className="login-page__component__wrapper-input">
-          <Input
-            id="password"
-            name="password"
-            type={this.state.showPassword ? 'text' : 'password'}
-            className="login-page__component__text-field"
-            value={this.state.password}
-            onChange={this.handleChange}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="Toggle password visibility"
-                  onClick={this.handleClickShowPassword}
-                  onMouseDown={this.handleMouseDownPassword}
-                >
-                  {this.state.showPassword ? <VisibilityOff/> : <Visibility/>}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-        </FormControl>
+        <UiInput
+          name="password"
+          type="password" smartPassword
+          label="Пароль"
+          value={this.state.password}
+          className="login-page__component__input"
+          onChange={this.handleChange}
+        />
 
         {
           this.state.errorMessage &&

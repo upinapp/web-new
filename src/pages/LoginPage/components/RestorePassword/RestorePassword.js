@@ -1,14 +1,12 @@
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import './RestorePassword.style.css';
-import {push} from 'react-router-redux';
 import {APP_LOADING} from '../../../../redusers/index';
 import {AuthService} from '../../../../services/index';
+import {UiInput} from '../../../../common/UpInAppFramework/Components/Input';
 
 export class RestorePassword extends React.PureComponent {
 
@@ -66,17 +64,14 @@ export class RestorePassword extends React.PureComponent {
       <form className="login-page__component" onSubmit={this.restorePassword}>
         <h2 className="login-page__component__title">Восстановление пароля</h2>
 
-        <label className="login-page__component__label" htmlFor="email">Email</label>
-        <FormControl className="login-page__component__wrapper-input">
-          <Input
-            id="email"
-            name="email"
-            className="login-page__component__text-field"
-            type="text"
-            value={this.state.email}
-            onChange={this.handleChange}
-          />
-        </FormControl>
+        <UiInput
+          label="Email"
+          name="email"
+          className="login-page__component__input"
+          type="text"
+          value={this.state.email}
+          onChange={this.handleChange}
+        />
 
         {
           this.state.errorMessage &&

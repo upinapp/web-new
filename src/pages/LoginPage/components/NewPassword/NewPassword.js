@@ -1,11 +1,10 @@
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
 import React from 'react';
 import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 import {APP_LOADING} from '../../../../redusers/index';
 import {AuthService} from '../../../../services/index';
+import {UiInput} from '../../../../common/UpInAppFramework';
 
 const MIN_PASSWORD_LENGTH = 6;
 
@@ -82,32 +81,28 @@ export class NewPassword extends React.PureComponent {
       <form className="login-page__component" onSubmit={this.restorePasswordConfirm}>
         <h2 className="login-page__component__title">Новый пароль</h2>
 
-        <label className="login-page__component__label" htmlFor="password">Пароль</label>
-        <FormControl className="login-page__component__wrapper-input">
-          <Input
-            id="password"
-            name="password"
-            type={this.state.showPassword ? 'text' : 'password'}
-            className="login-page__component__text-field"
-            value={this.state.password}
-            onChange={this.handleChange}
-          />
-        </FormControl>
+        <UiInput
+          label="Пароль"
+          name="password"
+          type="password"
+          className="login-page__component__input"
+          value={this.state.password}
+          onChange={this.handleChange}
+        />
 
-        <label className="login-page__component__label" htmlFor="password">Подтверждение пароля</label>
-        <FormControl className="login-page__component__wrapper-input">
-          <Input
-            id="passwordConfirm"
-            name="passwordConfirm"
-            type={this.state.showPassword ? 'text' : 'password'}
-            className="login-page__component__text-field"
-            value={this.state.passwordConfirm}
-            onChange={this.handleChange}
-          />
-        </FormControl>
-        {this.state.passwordConfirm.length < MIN_PASSWORD_LENGTH ?
-          <div className="login-page__component__min-password">Минимальное кол-во
-            символов {this.state.passwordConfirm.length}/{MIN_PASSWORD_LENGTH}</div> : null}
+        <UiInput
+          label="Подтверждение пароля"
+          name="passwordConfirm"
+          type="password"
+          className="login-page__component__input"
+          value={this.state.passwordConfirm}
+          onChange={this.handleChange}
+          helperMessage={
+            this.state.passwordConfirm.length < MIN_PASSWORD_LENGTH ?
+              `Минимальное кол-во символов ${this.state.passwordConfirm.length}/${MIN_PASSWORD_LENGTH}` :
+              null
+          }
+        />
 
         {
           this.state.errorMessage &&

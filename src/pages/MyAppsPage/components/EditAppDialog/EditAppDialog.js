@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import { APP_LOADING, UPDATE_APP, SHOW_GLOBAL_SUCCESS } from '../../../../redusers';
 import { UserService } from '../../../../services';
 import './EditAppDialog.style.css';
+import {UiInput} from '../../../../common/UpInAppFramework';
 
 const PLATFORMS = ['iOS', 'Android', 'Unity', 'Xamarin'];
 
@@ -66,18 +67,14 @@ class EditAppDialog extends React.PureComponent {
           <div className="settings-panel">
             <DialogTitle>Настройки</DialogTitle>
             <DialogContent>
-
-              <label className="edit-app__dialog-label" htmlFor="email">Название</label>
-              <FormControl className="edit-app__dialog-form-wrapper">
-                <Input
-                  id="name"
-                  name="name"
-                  value={this.state.name}
-                  type="text"
-                  className="edit-app__dialog-form-input"
-                  onChange={this.handleInputChange}
-                />
-              </FormControl>
+              <UiInput
+                label="Название"
+                name="name"
+                value={this.state.name}
+                type="text"
+                className="edit-app__dialog-form-input"
+                onChange={this.handleInputChange}
+              />
 
               <label className="edit-app__dialog-label" htmlFor="email">Часовой пояс UTC</label>
               <FormControl className="edit-app__dialog-form-wrapper">
@@ -104,29 +101,23 @@ class EditAppDialog extends React.PureComponent {
                 </Select>
               </FormControl>
 
-              <label className="edit-app__dialog-label" htmlFor="email">ID приложения</label>
-              <FormControl className="edit-app__dialog-form-wrapper">
-                <Input
-                  id="appId"
-                  name="appId"
-                  value={this.state.id}
-                  type="text"
-                  className="edit-app__dialog-form-input"
-                  disabled
-                />
-              </FormControl>
+              <UiInput
+                label="ID приложения"
+                name="appId"
+                value={this.state.id}
+                type="text"
+                className="edit-app__dialog-form-input"
+                disabled
+              />
 
-              <label className="edit-app__dialog-label" htmlFor="email">API key</label>
-              <FormControl className="edit-app__dialog-form-wrapper">
-                <Input
-                  id="secret"
-                  name="secret"
-                  value={this.state.secret}
-                  type="text"
-                  className="edit-app__dialog-form-input"
-                  disabled
-                />
-              </FormControl>
+              <UiInput
+                label="API key"
+                name="secret"
+                value={this.state.secret}
+                type="text"
+                className="edit-app__dialog-form-input"
+                disabled
+              />
 
               <div className="edit-app__dialog-actions">
                 <Button
