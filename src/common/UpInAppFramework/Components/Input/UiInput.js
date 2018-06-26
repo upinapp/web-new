@@ -48,11 +48,6 @@ export class UiInput extends React.PureComponent {
   render() {
     return (
       <div className={'__ui-input ' + this.props.className}>
-        {
-          this.props.label &&
-          <label htmlFor={this.props.name}>{this.props.label}</label>
-        }
-
         <input
           type={(this.props.type === 'password') && (this.state.showPassword) ? 'text' : this.props.type}
           onChange={this.props.onChange}
@@ -63,6 +58,11 @@ export class UiInput extends React.PureComponent {
           value={this.props.value}
           disabled={this.props.disabled}
         />
+
+        {
+          this.props.label &&
+          <label htmlFor={this.props.name}>{this.props.label}</label>
+        }
 
         {
           this.props.type === 'password' && this.props.smartPassword &&

@@ -97,7 +97,7 @@ export class SignIn extends React.PureComponent {
   render() {
     return (
       <form className="login-page__component" onSubmit={this.logIn}>
-        <h2 className="login-page__component__title">Вход</h2>
+        <h2 className="MaterialLightTitleLeft">Вход</h2>
 
         <UiInput
           name="email"

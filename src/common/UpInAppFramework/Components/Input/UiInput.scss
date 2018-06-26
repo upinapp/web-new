@@ -1,3 +1,5 @@
+@import  "../../typography";
+
 .__ui-input {
   padding-top: 13px;
   width: 100%;
@@ -6,9 +8,12 @@
   position: relative;
 
   label {
-    font-size: 12px;
-    line-height: 1.33;
-    color: rgba(0, 0, 0, 0.54);
+    order: 0;
+    @include Caption;
+  }
+
+  & > * {
+    order: 1;
   }
 
   input {
@@ -54,6 +59,10 @@
   input:focus ~ .bot-line,
   .bot-line.error {
     width: 100%;
+  }
+
+  input:focus ~ label {
+    @include CaptionMain;
   }
 
   .bot-line {
