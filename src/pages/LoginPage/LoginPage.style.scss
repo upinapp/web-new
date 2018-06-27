@@ -1,3 +1,5 @@
+@import "../../common/UpInAppFramework/typography";
+
 .login-page {
   position: absolute;
   width: 100%;
@@ -23,8 +25,7 @@
     width: 300px;
 
     &__title {
-      font-size: 20px;
-      font-weight: 500;
+      @include TitleBold;
       text-align: left;
       padding-bottom: 4px;
     }
@@ -56,6 +57,7 @@
       text-decoration: none;
       color: #536dfe;
       margin-bottom: 8px;
+      @include CaptionMain;
     }
 
     &_error-message {

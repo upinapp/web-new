@@ -18,6 +18,7 @@ import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 
 import './DashboardMenu.style.css';
+import {UiDivider} from '../../../../common/UpInAppFramework/Components/Divider';
 
 class DashboardMenu extends React.PureComponent {
   render() {
@@ -31,7 +32,9 @@ class DashboardMenu extends React.PureComponent {
           >
             Отчеты
           </ListSubheader>
-          <Divider/>
+
+          <UiDivider/>
+
           <ListItem button>
             <ListItemIcon>
               <StarRateIcon/>
@@ -128,7 +131,7 @@ class DashboardMenu extends React.PureComponent {
           >
             Данные
           </ListSubheader>
-          <Divider/>
+          <UiDivider/>
 
           <ListItem button>
             <ListItemIcon>

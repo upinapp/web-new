@@ -1,0 +1,43 @@
+@import "./../../typography";
+
+.__UiButton {
+  @include Button-Dark;
+  font-family: Roboto;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  background-color: rgb(49, 94, 255);
+  border-radius: 2px;
+  border: none;
+  transition: background-color .1s linear;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:disabled {
+    background-color: rgba(79, 79, 79, 0.26);
+    @include DisabledButton;
+    cursor: default;
+
+    &:hover {
+      background-color: rgba(79, 79, 79, 0.26);
+    }
+  }
+
+  &:hover {
+    background-color: rgb(83, 109, 254);
+  }
+
+  &:focus {
+    outline: none;
+  };
+
+  &.loading {
+    color: transparent;
+
+    .loading {
+      position: absolute;
+      color: white;
+    }
+  }
+}

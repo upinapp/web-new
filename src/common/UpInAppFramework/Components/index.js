@@ -1,2 +1,3 @@
 export { UiInput } from './Input';
-export { Button } from './Button';
+export { UiButton } from './Button';
+export { UiDivider } from './Divider';

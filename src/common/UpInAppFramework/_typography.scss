@@ -149,7 +149,7 @@
   color: rgba(0, 0, 0, 0.87);
 }
 
-@mixin ButtonDisabled {
+@mixin DisabledButton {
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.5px;
@@ -217,5 +217,13 @@
   font-size: 14px;
   text-align: center;
   color: rgba(0, 0, 0, 0.87);
+}
+
+@mixin Button-Dark {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: rgb(255, 255, 255);
 }
 

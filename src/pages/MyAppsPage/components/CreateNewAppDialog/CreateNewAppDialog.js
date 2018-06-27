@@ -13,6 +13,7 @@ import { ADD_NEW_APP, APP_LOADING, SHOW_GLOBAL_SUCCESS } from '../../../../redus
 import { UserService } from '../../../../services';
 import './CreateNewAppDialog.style.css';
 import {UiInput} from '../../../../common/UpInAppFramework';
+import {UiButton} from '../../../../common/UpInAppFramework/Components/Button/UiButton';
 
 class CreateNewAppDialog extends React.PureComponent {
   constructor(props) {
@@ -85,13 +86,12 @@ class CreateNewAppDialog extends React.PureComponent {
             </FormControl>
 
             <div className="create-app__dialog-actions">
-              <Button
-                variant="raised"
-                color="primary"
-                className="create-app__dialog-actions-add"
+              <UiButton
+                type="submit"
+                loading={this.state.loading}
                 onClick={this.createNewApp}>
-                Добавить
-              </Button>
+                сохранить изменения
+              </UiButton>
             </div>
           </DialogContent>
         </div>

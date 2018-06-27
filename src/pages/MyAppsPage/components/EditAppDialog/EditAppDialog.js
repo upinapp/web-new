@@ -16,6 +16,7 @@ import { APP_LOADING, UPDATE_APP, SHOW_GLOBAL_SUCCESS } from '../../../../reduse
 import { UserService } from '../../../../services';
 import './EditAppDialog.style.css';
 import {UiInput} from '../../../../common/UpInAppFramework';
+import {UiButton} from '../../../../common/UpInAppFramework/Components/Button/UiButton';
 
 const PLATFORMS = ['iOS', 'Android', 'Unity', 'Xamarin'];
 
@@ -120,13 +121,12 @@ class EditAppDialog extends React.PureComponent {
               />
 
               <div className="edit-app__dialog-actions">
-                <Button
-                  variant="raised"
-                  color="primary"
-                  className="edit-app__dialog-actions-add"
+                <UiButton
+                  type="submit"
+                  loading={this.state.loading}
                   onClick={this.updateApp}>
                   сохранить изменения
-                </Button>
+                </UiButton>
               </div>
 
             </DialogContent>

@@ -11,6 +11,7 @@ import { AuthService } from '../../../../services';
 import GoogleIcon from './google-icon.svg';
 import './SignIn.style.css';
 import {GoogleLogin} from 'react-google-login';
+import {UiButton} from '../../../../common/UpInAppFramework/Components/Button/UiButton';
 
 export class SignIn extends React.PureComponent {
 
@@ -21,7 +22,8 @@ export class SignIn extends React.PureComponent {
       email: '',
       password: '',
       showPassword: false,
-      errorMessage: null
+      errorMessage: null,
+      loading: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -44,7 +46,7 @@ export class SignIn extends React.PureComponent {
 
   logIn = async (event) => {
     event.preventDefault();
-    this.props.dispatch({ type: APP_LOADING, payload: true });
+    this.setState({ loading: true });
     const res = await AuthService.signInUser(this.state.email, this.state.password);
     const errorCode = res.code;
 
@@ -63,7 +65,7 @@ export class SignIn extends React.PureComponent {
         this.props.dispatch(push('/apps'));
     }
 
-    this.props.dispatch({ type: APP_LOADING, payload: false });
+    this.setState({ loading: false });
   };
 
   logInWithGoogle = async (response) => {
@@ -97,7 +99,7 @@ export class SignIn extends React.PureComponent {
   render() {
     return (
       <form className="login-page__component" onSubmit={this.logIn}>
-        <h2 className="MaterialLightTitleLeft">Вход</h2>
+        <div className="login-page__component__title">Вход</div>
 
         <UiInput
           name="email"
@@ -123,13 +125,11 @@ export class SignIn extends React.PureComponent {
         }
 
         <div className="login-page__component__submit-field">
-          <Button
+          <UiButton
             type="submit"
-            variant="raised"
-            color="primary"
-            className="login-page__component__submit-button">
+            loading={this.state.loading}>
             Вход
-          </Button>
+          </UiButton>
           <GoogleLogin
             className="login-page__component__sign-in-with-google"
             buttonText="Войти с Google"

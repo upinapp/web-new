@@ -2,9 +2,8 @@ import Button from '@material-ui/core/Button';
 import React from 'react';
 import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
-import {APP_LOADING} from '../../../../redusers/index';
 import {AuthService} from '../../../../services/index';
-import {UiInput} from '../../../../common/UpInAppFramework';
+import {UiInput, UiButton} from '../../../../common/UpInAppFramework';
 
 const MIN_PASSWORD_LENGTH = 6;
 
@@ -16,7 +15,8 @@ export class NewPassword extends React.PureComponent {
     this.state = {
       password: '',
       passwordConfirm: '',
-      errorMessage: ''
+      errorMessage: '',
+      loading: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -48,7 +48,7 @@ export class NewPassword extends React.PureComponent {
       const code = new URLSearchParams(this.props.location.search).get('code');
       const email = new URLSearchParams(this.props.location.search).get('email');
 
-      this.props.dispatch({ type: APP_LOADING, payload: true });
+      this.setState({ loading: true });
       const res = await AuthService.restorePasswordConfirm(email, code, this.state.password);
       const errorCode = (await res.json()).code;
 
@@ -64,7 +64,7 @@ export class NewPassword extends React.PureComponent {
           this.props.dispatch(push('/apps'));
       }
 
-      this.props.dispatch({ type: APP_LOADING, payload: false });
+      this.setState({ loading: false });
     } else {
       this.setState({ 'errorMessage': 'Пароли не совпадают' });
     }
@@ -79,7 +79,7 @@ export class NewPassword extends React.PureComponent {
   render() {
     return (
       <form className="login-page__component" onSubmit={this.restorePasswordConfirm}>
-        <h2 className="login-page__component__title">Новый пароль</h2>
+        <div className="login-page__component__title">Новый пароль</div>
 
         <UiInput
           label="Пароль"
@@ -110,9 +110,11 @@ export class NewPassword extends React.PureComponent {
         }
 
         <div className="login-page__component__submit-field">
-          <Button className="login-page__component__submit-button" type="submit">
+          <UiButton
+            type="submit"
+            loading={this.state.loading}>
             Сменить пароль
-          </Button>
+          </UiButton>
         </div>
       </form>
     );

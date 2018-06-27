@@ -24,21 +24,9 @@
     }
   }
 
-  &__search-field {
-    border-radius: 2px;
-    background-color: rgba(0, 0, 0, 0.04);
-
-    input {
-      padding: 8px !important;
-    }
-
-    .icon {
-      margin-right: 8px;
-    }
-
-    .MuiInput-underline:before {
-      display: none;
-    }
+  &__manage{
+    display: flex;
+    justify-content: space-between;
   }
 
   &__empty-list {

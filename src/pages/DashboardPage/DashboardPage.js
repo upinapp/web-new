@@ -19,21 +19,22 @@ import FunnelPage from './pages/FunnelPage/FunnelPage';
 
 import appLogo from '../../assets/images/logo.svg';
 import './DashboardPage.style.css';
+import {push} from 'react-router-redux';
+import InfoBar from '../../common/AppHeader/InfoBar/InfoBar';
 
 class DashboardPage extends React.PureComponent {
   state = {
     open: false
   };
 
-  handleDrawerOpen = () => {
-    this.setState({open: true});
-    this.props.dispatch({ type: DASHBOARD_MENU_TOGGLE, payload: true });
+  handleDrawerToggle = () => {
+    this.props.dispatch({ type: DASHBOARD_MENU_TOGGLE, payload: !this.state.open });
+    this.setState({open: !this.state.open});
   };
 
-  handleDrawerClose = () => {
-    this.setState({open: false});
-    this.props.dispatch({ type: DASHBOARD_MENU_TOGGLE, payload: false });
-  };
+  handleClickButtonBack = () => {
+    this.props.dispatch(push('/apps'));
+  }
 
   render() {
     const { dashboardMenu } = this.props;
@@ -54,13 +55,16 @@ class DashboardPage extends React.PureComponent {
                 <MenuIcon/>
               </IconButton>
               <IconButton
-                onClick={this.handleDrawerClose}
+                onClick={this.handleClickButtonBack}
                 className={classNames(!dashboardMenu.open && 'hide')}
               >
                 <ArrowBackIcon/>
               </IconButton>
+
+              <InfoBar/>
             </Toolbar>
           </AppBar>
+
           <Drawer
             variant="permanent"
             classes={{
@@ -71,7 +75,9 @@ class DashboardPage extends React.PureComponent {
 
             <img className="app-logo" src={appLogo} alt="logo"/>
             <DashboardMenu/>
+            <div className="close-drawer" onClick={this.handleDrawerToggle}></div>
           </Drawer>
+
           <main className="content">
             <Switch>
               <Route exact path="/dashboard" component={RetentionPage}/>

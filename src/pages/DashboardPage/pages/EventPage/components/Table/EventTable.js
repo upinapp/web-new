@@ -37,7 +37,7 @@ class EventTable extends React.PureComponent {
                 События
               </TableCell>
 
-              <TableCell className="simple-data header">
+              <TableCell className="simple-data header multilines">
                 Событий на<br /> пользователя
               </TableCell>
 

@@ -9,6 +9,7 @@ import { APP_LOADING } from '../../../../redusers';
 import { AuthService } from '../../../../services';
 import './SignUp.style.css';
 import {UiInput} from '../../../../common/UpInAppFramework';
+import {UiButton} from '../../../../common/UpInAppFramework/Components/Button/UiButton';
 
 const MIN_PASSWORD_LENGTH = 6;
 
@@ -21,8 +22,7 @@ export class SignUp extends React.PureComponent {
       email: '',
       name: '',
       password: '',
-      showPassword: false,
-      errorMessage: null
+      loading: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -33,7 +33,7 @@ export class SignUp extends React.PureComponent {
 
   signUp = async (event) => {
     event.preventDefault();
-    this.props.dispatch({ type: APP_LOADING, payload: true });
+    this.setState({ loading: true });
 
     const res = await AuthService.signUpUser(this.state.email, this.state.password, this.state.name);
     const errorCode = (await res.json()).code;
@@ -50,7 +50,7 @@ export class SignUp extends React.PureComponent {
         this.props.dispatch(push('/apps'));
     }
 
-    this.props.dispatch({ type: APP_LOADING, payload: false });
+    this.setState({ loading: false });
   };
 
   renderErrorMessage() {
@@ -63,10 +63,6 @@ export class SignUp extends React.PureComponent {
     event.preventDefault();
   };
 
-  handleClickShowPassword = () => {
-    this.setState({ showPassword: !this.state.showPassword });
-  };
-
   handleChange(e) {
     let val = e.target.value;
     this.setState({ [e.target.name]: val });
@@ -75,7 +71,7 @@ export class SignUp extends React.PureComponent {
   render() {
     return (
       <div className="login-page__component">
-        <h2 className="login-page__component__title">Регистрация</h2>
+        <div className="login-page__component__title">Регистрация</div>
 
         <UiInput
           label="Email"
@@ -115,13 +111,11 @@ export class SignUp extends React.PureComponent {
         }
 
         <div className="login-page__component__submit-field">
-          <Button
-            onClick={this.signUp}
-            variant="raised"
-            color="primary"
-            className="login-page__component__submit-button">
-            Продолжить
-          </Button>
+          <UiButton
+            loading={this.state.loading}
+            onClick={this.signUp}>
+            Восстановить
+          </UiButton>
         </div>
 
         <div className="login-page__component__privacy">

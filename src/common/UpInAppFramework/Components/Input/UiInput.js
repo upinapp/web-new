@@ -1,12 +1,12 @@
 import Visibility from '@material-ui/icons/es/Visibility';
 import VisibilityOff from '@material-ui/icons/es/VisibilityOff';
+import {Icon} from 'material-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
-import './UiInput.css';
+import './UiInput.style.css';
 
-// TODO: сделать параметр errorFunction, который будет принимать регулярное выражение
-// TODO: сделать опциональную кнопку copyValue для disabled полей, которая копирует текущее значение в буфер обмена
-// TODO: сделать отдельную форму для search поля
+// TODO: параметр errorRegex, который будет принимать регулярное выражение
+// TODO: параметр copyValue для disabled полей, которая копирует текущее значение в буфер обмена
 
 /**
  * Вставляет input.
@@ -24,6 +24,7 @@ import './UiInput.css';
  * @helperMessage {string} — информационное сообщение. Показывается справа под полем, string
  * @smartPassword  {boolean} — включает для type=«password» кнопку «показать/скрыть», boolean
  * @disabled {boolean} — отключает инпут, его состояния и сообщения, boolean
+ * @search {boolean} - особый вид поял поиска
  **/
 export class UiInput extends React.PureComponent {
 
@@ -34,7 +35,6 @@ export class UiInput extends React.PureComponent {
       touched: false,
       showPassword: !!this.props.password
     };
-
   }
 
   handleBlur = () => {
@@ -47,7 +47,7 @@ export class UiInput extends React.PureComponent {
 
   render() {
     return (
-      <div className={'__ui-input ' + this.props.className}>
+      <div className={'__ui-input ' + this.props.className + (this.props.search ? ' search' : null)}>
         <input
           type={(this.props.type === 'password') && (this.state.showPassword) ? 'text' : this.props.type}
           onChange={this.props.onChange}
@@ -73,6 +73,11 @@ export class UiInput extends React.PureComponent {
                 <Visibility/>
             }
           </div>
+        }
+
+        {
+          this.props.search &&
+          <Icon className="search-icon">search</Icon>
         }
 
         <div className={(this.props.error || this.props.errorMessage) && this.state.touched ?
@@ -111,5 +116,6 @@ UiInput.propTypes = {
   helperMessage: PropTypes.string,
   smartPassword: PropTypes.bool,
   disabled: PropTypes.bool,
+  search: PropTypes.bool,
 };
 

@@ -1,11 +1,9 @@
 import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import AddIcon from '@material-ui/icons/Add';
 import { Icon, IconButton } from 'material-ui';
 import Button from 'material-ui/Button';
@@ -20,6 +18,7 @@ import CreateNewAppDialog from './components/CreateNewAppDialog/CreateNewAppDial
 import EditAppDialog from './components/EditAppDialog/EditAppDialog';
 
 import './MyAppsPage.style.css';
+import {UiInput} from '../../common/UpInAppFramework';
 
 class MyAppsPage extends React.PureComponent {
 
@@ -104,22 +103,14 @@ class MyAppsPage extends React.PureComponent {
         <div className="my-apps__menu">
           <div className="my-apps__menu-title">Мои приложения</div>
 
-          <div className="space-between-fix">
-            <FormControl className="my-apps__search-field">
-              <Input
-                id="searchApp"
-                name="searchApp"
-                type="text"
-                placeholder="Поиск"
-                className="my-apps__dialog-form-input"
-                onChange={this.handleAppSearchInput}
-                endAdornment={
-                  <InputAdornment className="icon" position="end">
-                    <Icon>search</Icon>
-                  </InputAdornment>
-                }
-              />
-            </FormControl>
+          <div className="my-apps__manage" >
+            <UiInput
+              name="searchApp"
+              type="text"
+              placeholder="Поиск"
+              onChange={this.handleAppSearchInput}
+              search
+            />
 
             <Button onClick={this.handleClickOpen}>
               <AddIcon/>
