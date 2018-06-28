@@ -17,7 +17,7 @@ import './SignUp.style.css';
 
 const MIN_PASSWORD_LENGTH = 6;
 
-class SignUp extends React.PureComponent {
+export class SignUp extends React.PureComponent {
 
   constructor(props) {
     super(props);
