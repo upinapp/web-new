@@ -4,7 +4,7 @@ import {expect} from 'chai';
 import {configure, shallow} from 'enzyme';
 import {Provider} from 'react-redux';
 import Adapter from 'enzyme-adapter-react-16';
-import NewPassword from './NewPassword';
+import { NewPassword } from './NewPassword';
 import configureStore from '../../../../configureStore';
 
 configure({adapter: new Adapter()});
@@ -45,6 +45,6 @@ describe('NewPassword:', () => {
   });
 
   it('Component should submit button', () => {
-    expect(renderedComponent.find('.login-page__component__submit-field').length).to.equal(1);
+    expect(renderedComponent.find('.login-page__component__submit-button').length).to.equal(1);
   });
 });

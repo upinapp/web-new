@@ -5,7 +5,7 @@ import {configure, shallow} from 'enzyme';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import Adapter from 'enzyme-adapter-react-16';
-import SignIn from './SignIn';
+import {SignIn} from './SignIn';
 import configureStore from '../../../../configureStore';
 
 configure({adapter: new Adapter()});

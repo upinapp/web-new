@@ -5,7 +5,7 @@ const userInitialState = fromJS({
   email: null,
   id: null,
   name: null,
-  accessToken: localStorage.getItem('accessToken')
+  accessToken: window.localStorage.getItem('accessToken')
 });
 
 export const SET_USER = 'SET_USER';
