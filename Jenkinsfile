@@ -1,14 +1,12 @@
+//Test commit
+
 pipeline {
   agent any
   stages {
     stage('Install') {
       steps {
+        sh 'npm -v'
         sh 'npm install'
-      }
-    }
-    stage('Test') {
-      steps {
-        sh 'npm run test'
       }
     }
     stage('Build') {
@@ -16,9 +14,9 @@ pipeline {
         sh 'npm run build'
       }
     }
-    stage('Deploy') {
+    stage('Test') {
       steps {
-
+        sh 'npm run test'
       }
     }
   }
