@@ -1,9 +1,17 @@
 pipeline {
   agent any
+  options {
+    skipDefaultCheckout true
+  }
   stages {
-    stage('Install') {
+    stage('Prepare') {
       steps {
         cleanWs()
+        checkout scm
+      }
+    }
+    stage('Install') {
+      steps {
         sh 'npm -v'
         sh 'npm install'
       }
