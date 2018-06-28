@@ -18,11 +18,6 @@ pipeline {
         sh 'npm run build'
       }
     }
-    stage('Deploy') {
-      steps {
-
-      }
-    }
   }
   environment {
     CI = 'true'
