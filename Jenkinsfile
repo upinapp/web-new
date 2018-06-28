@@ -1,5 +1,3 @@
-//Test commit
-
 pipeline {
   agent any
   stages {
