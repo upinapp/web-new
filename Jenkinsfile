@@ -1,8 +1,15 @@
-//Test commit
-
 pipeline {
   agent any
+  options {
+    skipDefaultCheckout true
+  }
   stages {
+    stage('Prepare') {
+      steps {
+        cleanWs()
+        checkout scm
+      }
+    }
     stage('Install') {
       steps {
         sh 'npm -v'
