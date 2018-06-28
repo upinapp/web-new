@@ -10,7 +10,7 @@ import {push} from 'react-router-redux';
 import {APP_LOADING} from '../../../../redusers/index';
 import {AuthService} from '../../../../services/index';
 
-class RestorePassword extends React.PureComponent {
+export class RestorePassword extends React.PureComponent {
 
   constructor(props) {
     super(props);

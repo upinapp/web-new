@@ -9,7 +9,7 @@ import {AuthService} from '../../../../services/index';
 
 const MIN_PASSWORD_LENGTH = 6;
 
-class NewPassword extends React.PureComponent {
+export class NewPassword extends React.PureComponent {
 
   constructor(props) {
     super(props);

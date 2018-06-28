@@ -17,7 +17,7 @@ import GoogleIcon from './google-icon.svg';
 import './SignIn.style.css';
 import {GoogleLogin} from 'react-google-login';
 
-class SignIn extends React.PureComponent {
+export class SignIn extends React.PureComponent {
 
   constructor(props) {
     super(props);

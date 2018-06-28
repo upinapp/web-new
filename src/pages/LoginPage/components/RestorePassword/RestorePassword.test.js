@@ -4,13 +4,11 @@ import {expect} from 'chai';
 import {configure, shallow} from 'enzyme';
 import {Provider} from 'react-redux';
 import Adapter from 'enzyme-adapter-react-16';
-import RestorePassword from './RestorePassword';
-import configureStore from '../../../../configureStore';
+import {RestorePassword} from './RestorePassword';
 import {BrowserRouter} from 'react-router-dom';
+import { store } from '../../../../utils';
 
 configure({adapter: new Adapter()});
-
-const store = configureStore({});
 
 let renderedComponent;
 const classes = {};
