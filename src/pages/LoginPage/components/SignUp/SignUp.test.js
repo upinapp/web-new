@@ -3,14 +3,12 @@ import ReactDOM from 'react-dom';
 import {expect} from 'chai';
 import {configure, shallow} from 'enzyme';
 import {Provider} from 'react-redux';
-import {BrowserRouter} from 'react-router-dom';
 import Adapter from 'enzyme-adapter-react-16';
 import {SignUp} from './SignUp';
-import configureStore from '../../../../configureStore';
+import {BrowserRouter} from 'react-router-dom';
+import { store } from '../../../../utils';
 
 configure({adapter: new Adapter()});
-
-const store = configureStore({});
 
 let renderedComponent;
 
@@ -41,15 +39,15 @@ describe('SignUp:', () => {
   });
 
   it('Component should field for insert name', () => {
-    expect(renderedComponent.find('WithStyles(Input)[name="name"]').length).to.equal(1);
+    expect(renderedComponent.find('UiInput[name="name"]').length).to.equal(1);
   });
 
   it('Component should field for insert email', () => {
-    expect(renderedComponent.find('WithStyles(Input)[name="email"]').length).to.equal(1);
+    expect(renderedComponent.find('UiInput[name="email"]').length).to.equal(1);
   });
 
   it('Component should field for insert password', () => {
-    expect(renderedComponent.find('WithStyles(Input)[name="password"]').length).to.equal(1);
+    expect(renderedComponent.find('UiInput[name="password"]').length).to.equal(1);
   });
 
   it('Component should privacy', () => {
@@ -57,7 +55,7 @@ describe('SignUp:', () => {
   });
 
   it('Component should submit button', () => {
-    expect(renderedComponent.find('.login-page__component__submit-field').length).to.equal(1);
+    expect(renderedComponent.find('UiButton[type="submit"]').length).to.equal(1);
   });
 
 });

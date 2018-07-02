@@ -14,7 +14,7 @@ const store = configureStore({});
 
 let renderedComponent;
 
-beforeEach(function () {
+beforeEach(() => {
   renderedComponent = shallow(
     <SignIn/>
   );
@@ -40,11 +40,11 @@ describe('SignIn:', () => {
   });
 
   it('Component should field for insert email', () => {
-    expect(renderedComponent.find('WithStyles(Input)[name="email"]').length).to.equal(1);
+    expect(renderedComponent.find('UiInput[name="email"]').length).to.equal(1);
   });
 
   it('Component should field for insert password', () => {
-    expect(renderedComponent.find('WithStyles(Input)[name="password"]').length).to.equal(1);
+    expect(renderedComponent.find('UiInput[name="password"]').length).to.equal(1);
   });
 
   it('Component should button for log in with google account', () => {

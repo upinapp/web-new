@@ -21,16 +21,10 @@ export class NewPassword extends React.PureComponent {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleMouseDownPassword = this.handleMouseDownPassword.bind(this);
-    this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
-
   }
 
   handleMouseDownPassword = event => {
     event.preventDefault();
-  };
-
-  handleClickShowPassword = () => {
-    this.setState({showPassword: !this.state.showPassword});
   };
 
   handleChange(e) {

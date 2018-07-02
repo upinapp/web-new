@@ -11,7 +11,7 @@ import { store } from '../../../../utils';
 configure({adapter: new Adapter()});
 
 let renderedComponent;
-const classes = {};
+
 beforeEach(() => {
   renderedComponent = shallow(
     <RestorePassword/>
@@ -38,11 +38,11 @@ describe('RestorePassword:', () => {
   });
 
   it('Component should field of sending email', () => {
-    expect(renderedComponent.find('WithStyles(Input)[name="email"]').length).to.equal(1);
+    expect(renderedComponent.find('UiInput[name="email"]').length).to.equal(1);
   });
 
   it('Component should submit button', () => {
-    expect(renderedComponent.find('.login-page__component__submit-field').length).to.equal(1);
+    expect(renderedComponent.find('UiButton[type="submit"]').length).to.equal(1);
   });
 
 });

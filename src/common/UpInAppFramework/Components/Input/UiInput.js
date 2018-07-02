@@ -1,5 +1,3 @@
-import Visibility from '@material-ui/icons/es/Visibility';
-import VisibilityOff from '@material-ui/icons/es/VisibilityOff';
 import {Icon} from 'material-ui';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -69,8 +67,8 @@ export class UiInput extends React.PureComponent {
           <div className="show-password" onClick={this.toggleShowPassword}>
             {
               this.state.showPassword ?
-                <VisibilityOff/> :
-                <Visibility/>
+                <Icon>visibility_off</Icon> :
+                <Icon>visibility</Icon>
             }
           </div>
         }

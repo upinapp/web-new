@@ -1,11 +1,9 @@
-import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
-import { APP_LOADING } from '../../../../redusers';
 import { AuthService } from '../../../../services';
 import './SignUp.style.css';
 import {UiInput} from '../../../../common/UpInAppFramework';
@@ -27,7 +25,6 @@ export class SignUp extends React.PureComponent {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleMouseDownPassword = this.handleMouseDownPassword.bind(this);
-    this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
     this.signUp = this.signUp.bind(this);
   }
 
@@ -112,6 +109,7 @@ export class SignUp extends React.PureComponent {
 
         <div className="login-page__component__submit-field">
           <UiButton
+            type="submit"
             loading={this.state.loading}
             onClick={this.signUp}>
             Восстановить

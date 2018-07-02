@@ -37,14 +37,14 @@ describe('NewPassword:', () => {
   });
 
   it('Component should field for insert password', () => {
-    expect(renderedComponent.find('WithStyles(Input)[name="password"]').length).to.equal(1);
+    expect(renderedComponent.find('UiInput[name="password"]').length).to.equal(1);
   });
 
   it('Component should field for insert confirm password', () => {
-    expect(renderedComponent.find('WithStyles(Input)[name="passwordConfirm"]').length).to.equal(1);
+    expect(renderedComponent.find('UiInput[name="passwordConfirm"]').length).to.equal(1);
   });
 
   it('Component should submit button', () => {
-    expect(renderedComponent.find('.login-page__component__submit-button').length).to.equal(1);
+    expect(renderedComponent.find('UiButton[type="submit"]').length).to.equal(1);
   });
 });

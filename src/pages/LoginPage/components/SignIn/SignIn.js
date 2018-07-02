@@ -21,22 +21,16 @@ export class SignIn extends React.PureComponent {
     this.state = {
       email: '',
       password: '',
-      showPassword: false,
       errorMessage: null,
       loading: false
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleMouseDownPassword = this.handleMouseDownPassword.bind(this);
-    this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
   }
 
   handleMouseDownPassword = event => {
     event.preventDefault();
-  };
-
-  handleClickShowPassword = () => {
-    this.setState({ showPassword: !this.state.showPassword });
   };
 
   handleChange(e) {
