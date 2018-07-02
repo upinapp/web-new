@@ -48,15 +48,7 @@ class DashboardPage extends React.PureComponent {
           >
             <Toolbar disableGutters={!this.state.open}>
               <IconButton
-                aria-label="open drawer"
-                onClick={this.handleDrawerOpen}
-                className={classNames('menu-button', dashboardMenu.open && 'hide')}
-              >
-                <MenuIcon/>
-              </IconButton>
-              <IconButton
                 onClick={this.handleClickButtonBack}
-                className={classNames(!dashboardMenu.open && 'hide')}
               >
                 <ArrowBackIcon/>
               </IconButton>
@@ -75,7 +67,9 @@ class DashboardPage extends React.PureComponent {
 
             <img className="app-logo" src={appLogo} alt="logo"/>
             <DashboardMenu/>
-            <div className="close-drawer" onClick={this.handleDrawerToggle}></div>
+            <div className="close-drawer-wrapper" onClick={this.handleDrawerToggle}>
+              <div className="icon"></div>
+            </div>
           </Drawer>
 
           <main className="content">
