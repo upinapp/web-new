@@ -1,0 +1,123 @@
+.RetentionTable {
+  font-family: 'Roboto';
+  width: 100%;
+  overflow-x: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 17px;
+    display: flex;
+    align-items: center;
+    padding-left: 24px;
+
+    .icon {
+      margin-left: 6px;
+      font-size: 16px;
+      color: rgba(0, 0, 0, .54);
+    }
+  }
+
+  &__table {
+    border-top: 1px solid rgba(224, 224, 224, 1);
+    width: 100%;
+    min-width: 1024px;
+    table-layout: fixed;
+
+    .MuiTableCell-root:last-child {
+      padding-right: 8px;
+    }
+
+    .checkbox {
+      width: 24px;
+      margin-left: -8px;
+      margin-right: 11px;
+    }
+
+    .head {
+      th {
+        padding: 20px 0 20px 24px;
+        text-align: right;
+        border: none;
+      }
+
+      .date {
+        width: 270px;
+
+        .container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 1.33;
+          color: rgba(0, 0, 0, .54);
+
+          .left {
+            display: flex;
+            align-items: center;
+
+            .icon-button {
+              margin-right: 11px;
+            }
+          }
+        }
+      }
+
+      .label-column {
+        padding-right: 8px;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1.33;
+        text-align: right;
+        color: rgba(0, 0, 0, .54);
+      }
+    }
+
+    .all > * {
+      border: none;
+      background-color: rgb(245, 245, 245);
+    }
+
+    .percent {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.71;
+      color: rgba(0, 0, 0, 0.87);
+    }
+
+    .number {
+      font-size: 12px;
+      line-height: 1.33;
+      color: rgba(0, 0, 0, 0.54);
+    }
+
+    .statistic-data {
+      height: 48px;
+      padding: 0 8px;
+      text-align: right;
+      vertical-align: middle;
+      border-bottom: none;
+
+      .label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 8px;
+
+        .start-date {
+          text-align: right;
+        }
+      }
+
+      &.holiday {
+        border-right: 2px solid rgb(239, 83, 80);
+      }
+    }
+  }
+}

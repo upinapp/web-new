@@ -1,0 +1,17 @@
+.RetentionPage {
+  &__chart {
+    padding-left: 24px;
+
+    &-title {
+      font-size: 24px;
+      font-weight: normal;
+      line-height: 1.33;
+    }
+
+    &-subtitle {
+      font-size: 14px;
+      margin-top: 5px;
+      color: rgba(0, 0, 0, .54);
+    }
+  }
+}

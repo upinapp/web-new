@@ -1,0 +1,14 @@
+.choice-date-range-container {
+  display: flex;
+  align-items: flex-end;
+  margin: 0 0 20px;
+  padding-left: 24px;
+
+  @media (min-width: 430px) {
+    position: relative;
+  }
+
+  @media (max-width: 400px) {
+    align-items: center;
+  }
+}

@@ -1,0 +1,50 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { expect } from 'chai';
+import { configure, shallow } from 'enzyme';
+import { Provider } from 'react-redux';
+import Adapter from 'enzyme-adapter-react-16';
+import { RestorePassword } from './RestorePassword';
+import { BrowserRouter } from 'react-router-dom';
+
+import { store } from '../../../../utils';
+
+configure({ adapter: new Adapter() });
+
+const translateMock = (val) => 'mockValue';
+let renderedComponent;
+
+beforeEach(() => {
+  renderedComponent = shallow(
+    <RestorePassword translate={translateMock} />
+  );
+});
+
+describe('RestorePassword:', () => {
+
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <RestorePassword translate={translateMock} />
+        </BrowserRouter>
+      </Provider>,
+      div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
+
+  // проверки на присутствие нужных элементов
+  it('Component should a title', () => {
+    expect(renderedComponent.find('.login-page__component__title').length).to.equal(1);
+  });
+
+  it('Component should field of sending email', () => {
+    expect(renderedComponent.find('UiInput[name="email"]').length).to.equal(1);
+  });
+
+  it('Component should submit button', () => {
+    expect(renderedComponent.find('UiButton[type="submit"]').length).to.equal(1);
+  });
+
+});

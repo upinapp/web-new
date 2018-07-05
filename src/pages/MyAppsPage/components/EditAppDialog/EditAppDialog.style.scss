@@ -1,0 +1,142 @@
+.edit-app {
+  &__dialog {
+    width: 385px;
+    height: 382px;
+
+    &.settings-app {
+      width: 746px;
+      @media (max-width: 810px) {
+        width: 100%;
+        min-width: 310px;
+      }
+      height: 619px;
+      border-radius: 2px;
+      display: flex;
+
+      .settings-panel {
+        width: 421px;
+
+        @media (max-width: 810px) {
+          width: 100%;
+          min-width: 310px;
+        }
+      }
+
+      .integration-panel {
+        width: 325px;
+        background-color: #f5f5f5;
+        padding-left: 24px;
+        padding-top: 24px;
+        box-sizing: border-box;
+
+        @media (max-width: 810px) {
+          display: none;
+        }
+
+        .title {
+          margin-top: 56px;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 1.5;
+        }
+
+        .info {
+          width: 229px;
+          font-size: 14px;
+          line-height: 1.43;
+
+          a {
+            color: #2962ff;
+          }
+        }
+
+        .subtitle {
+          margin-top: 30px;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 1.33;
+          letter-spacing: 2px;
+          color: rgba(0, 0, 0, 0.6);
+        }
+
+        .integration-status-list {
+          margin-top: 17px;
+          list-style-type: none;
+          padding: 0;
+
+          .platform {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 8px;
+
+            .check-platform-integration-status {
+              &.undefined {
+                color: #000000;
+              }
+              &.pending, &.success {
+                color: #2962ff
+              }
+              &.error {
+                color: #ef5350
+              }
+            }
+
+            .MuiIconButton-root {
+              width: 24px !important;
+              height: 24px !important;
+            }
+
+            .about {
+              width: 100%;
+              margin-left: 8px;
+              font-size: 14px;
+              font-weight: 500;
+              line-height: 1.71;
+              position: relative;
+
+              .status {
+                color: rgba(0, 0, 0, 0.54);
+              }
+
+              .show-last-events[hidden] {
+                display: none
+              }
+              .show-last-events {
+                width: 100%;
+                font-size: 12px;
+                line-height: 1.33;
+                color: #2962ff;
+                display: block;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &-label {
+      margin-top: 29px;
+      display: block;
+      font-size: 12px;
+      line-height: 1.33;
+      color: rgba(0, 0, 0, .54);
+      margin-bottom: 4px;
+    }
+
+    &-form-wrapper {
+      width: 100%;
+      background-color: rgba(0, 0, 0, .04);
+    }
+
+    &-actions {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      height: 205px;
+
+      &-add {
+        color: #ffffff !important;
+      }
+    }
+  }
+}

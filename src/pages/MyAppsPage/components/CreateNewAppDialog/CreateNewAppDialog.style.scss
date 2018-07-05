@@ -1,0 +1,42 @@
+.create-app {
+  &__dialog {
+    width: 370px;
+    height: 350px;
+
+    &.settings-app {
+      width: 746px;
+      height: 619px;
+      border-radius: 2px;
+      display: flex;
+
+      .settings-panel {
+        width: 421px;
+      }
+    }
+
+    &-label {
+      margin-top: 29px;
+      display: block;
+      font-size: 12px;
+      line-height: 1.33;
+      color: rgba(0, 0, 0, .54);
+      margin-bottom: 4px;
+    }
+
+    &-form-wrapper {
+      width: 100%;
+      background-color: rgba(0, 0, 0, .04);
+    }
+
+    &-actions {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      height: 100px;
+
+      &-add {
+        color: #ffffff !important;
+      }
+    }
+  }
+}

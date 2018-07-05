@@ -1,0 +1,193 @@
+.CustomDateRange {
+  font-family: Roboto;
+  margin-left: 16px;
+  width: 265px;
+
+  @media (max-width: 500px) {
+    width: 50%;
+    min-width: 0;
+  }
+
+  @media (max-width: 400px) {
+    width: 40px;
+  }
+
+  &.container {
+    border-radius: 2px;
+    padding: 6px 8px;
+    background-color: rgb(245, 245, 245);
+    @media (max-width: 400px) { background-color: transparent; }
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+
+    .current-date {
+      display: flex;
+
+      .date {
+        font-size: 16px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        text-align: left;
+        color: rgba(0, 0, 0, 0.54);
+      }
+    }
+
+    .button-open-date-range {
+      margin-right: -12px;
+    }
+
+    .wrapper-for-input-date-range {
+      position: absolute;
+      top: 100%;
+      left: -0%;
+      width: 880px;
+      height: 367px;
+      border-radius: 4px;
+      background-color: #ffffff;
+      box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 8px 10px 1px rgba(0, 0, 0, 0.14);
+
+      display: none;
+      &.active {
+        display: flex;
+
+        @media (max-width: 1024px) {
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          max-width: 480px;
+          min-width: 320px;
+          height: auto;
+        }
+
+        @media (max-width: 430px) {
+          z-index: 1201;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%);
+        }
+      }
+
+      .form-panel {
+        width: 240px;
+        padding: 20px;
+        background-color: #f5f5f5;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: flex-start;
+        box-sizing: border-box;
+
+        @media (max-width: 1024px) {
+          width: 100%;
+        }
+
+        .top-elements {
+          @media (max-width: 1024px) {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+          }
+        }
+
+        .title {
+          font-size: 20px;
+          font-weight: 500;
+          color: rgba(0, 0, 0, 0.87);
+          margin-bottom: 36px;
+
+          @media (max-width: 1024px) {
+            margin-bottom: 16px;
+            width: 100%;
+          }
+        }
+
+        .date-input {
+          margin-top: 16px;
+          width: 100%;
+          height: 40px;
+          border-radius: 2px;
+          background-color: rgba(0, 0, 0, 0.04);
+          padding: 8px 6px;
+          box-sizing: border-box;
+          border: none;
+          font-size: 16px;
+          line-height: 1.5;
+          text-align: left;
+          color: rgba(0, 0, 0, 0.54);
+
+          @media (max-width: 1024px) {
+            margin-top: 0;
+            width: 47%;
+          }
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        .save-date {
+          color: white !important;
+          background-color: #315eff !important;
+        }
+      }
+
+      .date-range-panel {
+        width: calc(100% - 240px);
+
+        .change-year {
+          padding: 16px 27px;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 1.71;
+          color: rgba(0, 0, 0, 0.87);
+          display: flex;
+          align-items: center;
+
+          @media (max-width: 1024px) {
+            display: none;
+          }
+
+          .previous-years {
+            margin-right: 20px;
+            transform: scale(0.8);
+          }
+        }
+
+        .wrapper-for-date-range {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: calc(100% - 57px);
+        }
+      }
+
+      .rdr-Calendar {
+        overflow-y: hidden;
+        height: 266px;
+      }
+
+      .rdr-Day {
+        &.is-inRange {
+          background-color: #fafafa !important;
+        }
+
+        &.is-selected {
+          background-color: #ffe57f !important;
+          border-radius: 100%;
+        }
+
+        &.is-passive {
+          opacity: 0 !important;
+        }
+      }
+    }
+  }
+}

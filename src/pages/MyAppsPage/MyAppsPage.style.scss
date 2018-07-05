@@ -1,0 +1,42 @@
+.my-apps {
+  flex-grow: 1;
+  padding-top: 64px;
+
+  &__menu {
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-title {
+      font-size: 24px;
+    }
+
+    &-table {
+      &-name {
+        cursor: pointer;
+      }
+
+      &-container {
+        width: 100%;
+        overflow-x: auto;
+      }
+    }
+  }
+
+  &__manage{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__empty-list {
+    margin-top: 25px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  .MuiTableBody-root .MuiTableRow-root:hover {
+    background-color: rgba(0, 0, 0, .03);
+  }
+}
