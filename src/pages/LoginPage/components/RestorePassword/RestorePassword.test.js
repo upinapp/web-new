@@ -1,20 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {expect} from 'chai';
-import {configure, shallow} from 'enzyme';
-import {Provider} from 'react-redux';
+import { expect } from 'chai';
+import { configure, shallow } from 'enzyme';
+import { Provider } from 'react-redux';
 import Adapter from 'enzyme-adapter-react-16';
-import {RestorePassword} from './RestorePassword';
-import {BrowserRouter} from 'react-router-dom';
+import { RestorePassword } from './RestorePassword';
+import { BrowserRouter } from 'react-router-dom';
+
 import { store } from '../../../../utils';
 
-configure({adapter: new Adapter()});
+configure({ adapter: new Adapter() });
 
+const translateMock = (val) => 'mockValue';
 let renderedComponent;
 
 beforeEach(() => {
   renderedComponent = shallow(
-    <RestorePassword/>
+    <RestorePassword translate={translateMock} />
   );
 });
 
@@ -25,7 +27,7 @@ describe('RestorePassword:', () => {
     ReactDOM.render(
       <Provider store={store}>
         <BrowserRouter>
-          <RestorePassword/>
+          <RestorePassword translate={translateMock} />
         </BrowserRouter>
       </Provider>,
       div);

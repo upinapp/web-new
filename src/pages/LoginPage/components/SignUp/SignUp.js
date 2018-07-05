@@ -1,11 +1,12 @@
+import './SignUp.style.css';
 import Divider from '@material-ui/core/Divider';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import { getTranslate } from 'react-localize-redux';
 
 import { AuthService } from '../../../../services';
-import './SignUp.style.css';
 import {UiInput} from '../../../../common/UpInAppFramework';
 import {UiButton} from '../../../../common/UpInAppFramework/Components/Button/UiButton';
 
@@ -66,12 +67,15 @@ export class SignUp extends React.PureComponent {
   }
 
   render() {
+    const { translate } = this.props;
     return (
       <div className="login-page__component">
-        <div className="login-page__component__title">Регистрация</div>
+        <div className="login-page__component__title">
+          { translate('auth.sign_up') }
+        </div>
 
         <UiInput
-          label="Email"
+          label={ translate('basic.email') }
           name="email"
           className="login-page__component__input"
           type="text"
@@ -80,7 +84,7 @@ export class SignUp extends React.PureComponent {
         />
 
         <UiInput
-          label="Имя"
+          label={ translate('basic.name') }
           name="name"
           className="login-page__component__input"
           type="text"
@@ -89,7 +93,7 @@ export class SignUp extends React.PureComponent {
         />
 
         <UiInput
-          label="Пароль"
+          label={ translate('basic.password') }
           name="password" smartPassword
           type="password"
           className="login-page__component__input"
@@ -112,7 +116,7 @@ export class SignUp extends React.PureComponent {
             type="submit"
             loading={this.state.loading}
             onClick={this.signUp}>
-            Восстановить
+            { translate('auth.restore') }
           </UiButton>
         </div>
 
@@ -124,7 +128,9 @@ export class SignUp extends React.PureComponent {
 
         <Divider className="login-page__component__divider"/>
 
-        <Link to="/auth/sign-in" className="login-page__component__link">Вход</Link>
+        <Link to="/auth/sign-in" className="login-page__component__link">
+          { translate('auth.sign_in') }
+        </Link>
 
       </div>
     );
@@ -133,6 +139,7 @@ export class SignUp extends React.PureComponent {
 
 export default connect((state) => {
   return {
+    translate: getTranslate(state.localize),
     dispatch: state.dispatch
   };
 })(SignUp);

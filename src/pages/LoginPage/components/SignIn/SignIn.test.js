@@ -1,22 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {expect} from 'chai';
-import {configure, shallow} from 'enzyme';
-import {Provider} from 'react-redux';
-import {BrowserRouter} from 'react-router-dom';
+import { expect } from 'chai';
+import { configure, shallow } from 'enzyme';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import Adapter from 'enzyme-adapter-react-16';
-import {SignIn} from './SignIn';
+
+import { SignIn } from './SignIn';
 import configureStore from '../../../../configureStore';
 
-configure({adapter: new Adapter()});
+configure({ adapter: new Adapter() });
 
 const store = configureStore({});
+const translateMock = (val) => 'mockValue';
 
 let renderedComponent;
 
 beforeEach(() => {
   renderedComponent = shallow(
-    <SignIn/>
+    <SignIn translate={translateMock} />
   );
 });
 
@@ -27,7 +29,7 @@ describe('SignIn:', () => {
     ReactDOM.render(
       <Provider store={store}>
         <BrowserRouter>
-          <SignIn/>
+          <SignIn translate={translateMock} />
         </BrowserRouter>
       </Provider>,
       div);

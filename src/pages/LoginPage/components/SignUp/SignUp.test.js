@@ -1,20 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {expect} from 'chai';
-import {configure, shallow} from 'enzyme';
-import {Provider} from 'react-redux';
+import { expect } from 'chai';
+import jest from 'jest';
+import { configure, shallow } from 'enzyme';
+import { Provider } from 'react-redux';
 import Adapter from 'enzyme-adapter-react-16';
-import {SignUp} from './SignUp';
-import {BrowserRouter} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+
+import { SignUp } from './SignUp';
 import { store } from '../../../../utils';
 
-configure({adapter: new Adapter()});
+configure({ adapter: new Adapter() });
+
+const translateMock = (val) => 'mockValue';
 
 let renderedComponent;
 
 beforeEach(() => {
   renderedComponent = shallow(
-    <SignUp/>
+    <SignUp translate={translateMock} />
   );
 });
 
@@ -25,7 +29,7 @@ describe('SignUp:', () => {
     ReactDOM.render(
       <Provider store={store}>
         <BrowserRouter>
-          <SignUp/>
+          <SignUp translate={translateMock} />
         </BrowserRouter>
       </Provider>,
       div);

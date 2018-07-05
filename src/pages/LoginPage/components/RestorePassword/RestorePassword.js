@@ -1,8 +1,10 @@
-import Divider from '@material-ui/core/Divider';
+import './RestorePassword.style.css';
 import React from 'react';
+import Divider from '@material-ui/core/Divider';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import './RestorePassword.style.css';
+import { getTranslate } from 'react-localize-redux';
+
 import {AuthService} from '../../../../services/index';
 import {UiInput, UiButton} from '../../../../common/UpInAppFramework';
 
@@ -59,12 +61,13 @@ export class RestorePassword extends React.PureComponent {
   }
 
   render() {
+    const { translate } = this.props;
     return (
       <form className="login-page__component" onSubmit={this.restorePassword}>
-        <div className="login-page__component__title">Восстановление пароля</div>
+        <div className="login-page__component__title">{ translate('auth.restore_password') }</div>
 
         <UiInput
-          label="Email"
+          label={ translate('basic.email') }
           name="email"
           className="login-page__component__input"
           type="text"
@@ -86,13 +89,15 @@ export class RestorePassword extends React.PureComponent {
           <UiButton
             type="submit"
             loading={this.state.loading}>
-            Восстановить
+            { translate('auth.restore') }
           </UiButton>
         </div>
 
         <Divider className="login-page__component__divider"/>
 
-        <Link to="/auth/sign-in" className="login-page__component__link">Вход</Link>
+        <Link to="/auth/sign-in" className="login-page__component__link">
+          { translate('auth.sign_in') }
+        </Link>
       </form>
     );
   }
@@ -100,6 +105,7 @@ export class RestorePassword extends React.PureComponent {
 
 export default connect((state) => {
   return {
+    translate: getTranslate(state.localize),
     dispatch: state.dispatch
   };
 })(RestorePassword);

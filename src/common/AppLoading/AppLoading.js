@@ -23,7 +23,7 @@ class AppLoading extends React.PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.get('loading'),
+    loading: state.loading,
     dispatch: state.dispatch
   };
 };

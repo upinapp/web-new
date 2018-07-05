@@ -1,11 +1,11 @@
-import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
 import React from 'react';
+import Divider from '@material-ui/core/Divider';
 import { Link } from 'react-router-dom';
+import { getTranslate } from 'react-localize-redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { UiInput } from '../../../../common/UpInAppFramework';
 
+import { UiInput } from '../../../../common/UpInAppFramework';
 import { APP_LOADING } from '../../../../redusers';
 import { AuthService } from '../../../../services';
 import GoogleIcon from './google-icon.svg';
@@ -91,14 +91,17 @@ export class SignIn extends React.PureComponent {
   }
 
   render() {
+    const { translate } = this.props;
     return (
       <form className="login-page__component" onSubmit={this.logIn}>
-        <div className="login-page__component__title">Вход</div>
+        <div className="login-page__component__title">
+          { translate('auth.sign_in') }
+        </div>
 
         <UiInput
           name="email"
           type="text"
-          label="Email"
+          label={ translate('basic.email') }
           value={this.state.email}
           className="login-page__component__input"
           onChange={this.handleChange}
@@ -107,8 +110,8 @@ export class SignIn extends React.PureComponent {
         <UiInput
           name="password"
           type="password" smartPassword
-          label="Пароль"
-          value={this.state.password}
+          label={ translate('basic.password') }
+          value={ this.state.password }
           className="login-page__component__input"
           onChange={this.handleChange}
         />
@@ -122,11 +125,11 @@ export class SignIn extends React.PureComponent {
           <UiButton
             type="submit"
             loading={this.state.loading}>
-            Вход
+            { translate('auth.sign_in') }
           </UiButton>
           <GoogleLogin
             className="login-page__component__sign-in-with-google"
-            buttonText="Войти с Google"
+            buttonText={ translate('auth.sign_in_via_google') }
             style={{backgroundImage: `url('${GoogleIcon}')`}}
             clientId="427062901685-1bc7s4f1un9skr1ljhv80rc2e0h2d8rm.apps.googleusercontent.com"
             scope='https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
@@ -137,8 +140,12 @@ export class SignIn extends React.PureComponent {
 
         <Divider className="login-page__component__divider"/>
 
-        <Link to="/auth/restore-password" className="login-page__component__link">Восстановить пароль</Link>
-        <Link to="/auth/sign-up" className="login-page__component__link">Регистрация</Link>
+        <Link to="/auth/restore-password" className="login-page__component__link">
+          { translate('auth.restore_password') }
+        </Link>
+        <Link to="/auth/sign-up" className="login-page__component__link">
+          { translate('auth.sign_up') }
+        </Link>
 
       </form>
     );
@@ -147,6 +154,7 @@ export class SignIn extends React.PureComponent {
 
 export default connect((state) => {
   return {
+    translate: getTranslate(state.localize),
     dispatch: state.dispatch
   };
 })(SignIn);

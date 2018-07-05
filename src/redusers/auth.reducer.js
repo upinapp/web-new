@@ -1,12 +1,10 @@
-import { fromJS } from 'immutable';
-
 // Initial routing state
-const userInitialState = fromJS({
+const userInitialState = {
   email: null,
   id: null,
   name: null,
   accessToken: window.localStorage.getItem('accessToken')
-});
+};
 
 export const SET_USER = 'SET_USER';
 export const SET_ACCESS_TOKEN = 'SET_ACCESS_TOKEN';
@@ -17,11 +15,11 @@ export const SET_ACCESS_TOKEN = 'SET_ACCESS_TOKEN';
 export function userReducer(state = userInitialState, action) {
   switch (action.type) {
     case SET_ACCESS_TOKEN:
-      return state.merge({
+      return Object.assign({}, state, {
         accessToken: action.payload
       });
     case SET_USER:
-      return state.merge({
+      return Object.assign({}, state, {
         email: action.payload.email,
         id: action.payload.id,
         name: action.payload.name,

@@ -88,10 +88,9 @@ class DashboardPage extends React.PureComponent {
 }
 
 function mapStateToProps(state) {
-  const stateObject = state.toJS();
   return {
-    dashboardMenu: stateObject.dashboardMenu,
-    route: stateObject.route,
+    dashboardMenu: state.dashboardMenu,
+    route: state.route,
     dispatch: state.dispatch
   };
 }

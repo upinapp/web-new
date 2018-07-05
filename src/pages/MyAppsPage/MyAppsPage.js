@@ -186,9 +186,8 @@ class MyAppsPage extends React.PureComponent {
 }
 
 function mapStateToProps(state) {
-  const stateObject = state.toJS();
   return {
-    apps: stateObject.apps,
+    apps: state.apps,
     dispatch: state.dispatch
   };
 }
