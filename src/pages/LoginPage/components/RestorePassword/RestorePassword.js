@@ -1,14 +1,10 @@
-import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import './RestorePassword.style.css';
-import {push} from 'react-router-redux';
-import {APP_LOADING} from '../../../../redusers/index';
 import {AuthService} from '../../../../services/index';
+import {UiInput, UiButton} from '../../../../common/UpInAppFramework';
 
 export class RestorePassword extends React.PureComponent {
 
@@ -17,7 +13,8 @@ export class RestorePassword extends React.PureComponent {
 
     this.state = {
       email: '',
-      success: false
+      success: false,
+      loading: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -30,7 +27,7 @@ export class RestorePassword extends React.PureComponent {
 
   restorePassword = async (event) => {
     event.preventDefault();
-    this.props.dispatch({ type: APP_LOADING, payload: true });
+    this.setState({ loading: true });
     const res = await AuthService.restorePasswordRequest(this.state.email);
     const errorCode = (await res.json()).code;
 
@@ -45,7 +42,7 @@ export class RestorePassword extends React.PureComponent {
         this.setState({ 'errorMessage': null, 'success': true });
     }
 
-    this.props.dispatch({ type: APP_LOADING, payload: false });
+    this.setState({ loading: false });
   };
 
   renderErrorMessage() {
@@ -64,19 +61,16 @@ export class RestorePassword extends React.PureComponent {
   render() {
     return (
       <form className="login-page__component" onSubmit={this.restorePassword}>
-        <h2 className="login-page__component__title">Восстановление пароля</h2>
+        <div className="login-page__component__title">Восстановление пароля</div>
 
-        <label className="login-page__component__label" htmlFor="email">Email</label>
-        <FormControl className="login-page__component__wrapper-input">
-          <Input
-            id="email"
-            name="email"
-            className="login-page__component__text-field"
-            type="text"
-            value={this.state.email}
-            onChange={this.handleChange}
-          />
-        </FormControl>
+        <UiInput
+          label="Email"
+          name="email"
+          className="login-page__component__input"
+          type="text"
+          value={this.state.email}
+          onChange={this.handleChange}
+        />
 
         {
           this.state.errorMessage &&
@@ -89,9 +83,11 @@ export class RestorePassword extends React.PureComponent {
         }
 
         <div className="login-page__component__submit-field">
-          <Button type="submit" variant="raised" color="primary" className="login-page__component__submit-button">
+          <UiButton
+            type="submit"
+            loading={this.state.loading}>
             Восстановить
-          </Button>
+          </UiButton>
         </div>
 
         <Divider className="login-page__component__divider"/>

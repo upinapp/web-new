@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
 class IndexPage extends React.PureComponent {
-  render() {
+
+  componentDidMount() {
     const accessToken = window.localStorage.getItem('accessToken');
 
     if (accessToken) {
@@ -11,7 +12,9 @@ class IndexPage extends React.PureComponent {
     } else {
       this.props.dispatch(push('/auth'));
     }
+  }
 
+  render() {
     return (
       <br/>
     );

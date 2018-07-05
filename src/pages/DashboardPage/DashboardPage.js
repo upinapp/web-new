@@ -19,21 +19,22 @@ import FunnelPage from './pages/FunnelPage/FunnelPage';
 
 import appLogo from '../../assets/images/logo.svg';
 import './DashboardPage.style.css';
+import {push} from 'react-router-redux';
+import InfoBar from '../../common/AppHeader/InfoBar/InfoBar';
 
 class DashboardPage extends React.PureComponent {
   state = {
     open: false
   };
 
-  handleDrawerOpen = () => {
-    this.setState({open: true});
-    this.props.dispatch({ type: DASHBOARD_MENU_TOGGLE, payload: true });
+  handleDrawerToggle = () => {
+    this.props.dispatch({ type: DASHBOARD_MENU_TOGGLE, payload: !this.state.open });
+    this.setState({open: !this.state.open});
   };
 
-  handleDrawerClose = () => {
-    this.setState({open: false});
-    this.props.dispatch({ type: DASHBOARD_MENU_TOGGLE, payload: false });
-  };
+  handleClickButtonBack = () => {
+    this.props.dispatch(push('/apps'));
+  }
 
   render() {
     const { dashboardMenu } = this.props;
@@ -47,20 +48,15 @@ class DashboardPage extends React.PureComponent {
           >
             <Toolbar disableGutters={!this.state.open}>
               <IconButton
-                aria-label="open drawer"
-                onClick={this.handleDrawerOpen}
-                className={classNames('menu-button', dashboardMenu.open && 'hide')}
-              >
-                <MenuIcon/>
-              </IconButton>
-              <IconButton
-                onClick={this.handleDrawerClose}
-                className={classNames(!dashboardMenu.open && 'hide')}
+                onClick={this.handleClickButtonBack}
               >
                 <ArrowBackIcon/>
               </IconButton>
+
+              <InfoBar/>
             </Toolbar>
           </AppBar>
+
           <Drawer
             variant="permanent"
             classes={{
@@ -71,7 +67,11 @@ class DashboardPage extends React.PureComponent {
 
             <img className="app-logo" src={appLogo} alt="logo"/>
             <DashboardMenu/>
+            <div className="close-drawer-wrapper" onClick={this.handleDrawerToggle}>
+              <div className="icon"></div>
+            </div>
           </Drawer>
+
           <main className="content">
             <Switch>
               <Route exact path="/dashboard" component={RetentionPage}/>

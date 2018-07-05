@@ -1,11 +1,9 @@
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
 import React from 'react';
 import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
-import {APP_LOADING} from '../../../../redusers/index';
 import {AuthService} from '../../../../services/index';
+import {UiInput, UiButton} from '../../../../common/UpInAppFramework';
 
 const MIN_PASSWORD_LENGTH = 6;
 
@@ -17,21 +15,16 @@ export class NewPassword extends React.PureComponent {
     this.state = {
       password: '',
       passwordConfirm: '',
-      errorMessage: ''
+      errorMessage: '',
+      loading: false
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleMouseDownPassword = this.handleMouseDownPassword.bind(this);
-    this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
-
   }
 
   handleMouseDownPassword = event => {
     event.preventDefault();
-  };
-
-  handleClickShowPassword = () => {
-    this.setState({showPassword: !this.state.showPassword});
   };
 
   handleChange(e) {
@@ -49,7 +42,7 @@ export class NewPassword extends React.PureComponent {
       const code = new URLSearchParams(this.props.location.search).get('code');
       const email = new URLSearchParams(this.props.location.search).get('email');
 
-      this.props.dispatch({ type: APP_LOADING, payload: true });
+      this.setState({ loading: true });
       const res = await AuthService.restorePasswordConfirm(email, code, this.state.password);
       const errorCode = (await res.json()).code;
 
@@ -65,7 +58,7 @@ export class NewPassword extends React.PureComponent {
           this.props.dispatch(push('/apps'));
       }
 
-      this.props.dispatch({ type: APP_LOADING, payload: false });
+      this.setState({ loading: false });
     } else {
       this.setState({ 'errorMessage': 'Пароли не совпадают' });
     }
@@ -80,34 +73,30 @@ export class NewPassword extends React.PureComponent {
   render() {
     return (
       <form className="login-page__component" onSubmit={this.restorePasswordConfirm}>
-        <h2 className="login-page__component__title">Новый пароль</h2>
+        <div className="login-page__component__title">Новый пароль</div>
 
-        <label className="login-page__component__label" htmlFor="password">Пароль</label>
-        <FormControl className="login-page__component__wrapper-input">
-          <Input
-            id="password"
-            name="password"
-            type={this.state.showPassword ? 'text' : 'password'}
-            className="login-page__component__text-field"
-            value={this.state.password}
-            onChange={this.handleChange}
-          />
-        </FormControl>
+        <UiInput
+          label="Пароль"
+          name="password"
+          type="password"
+          className="login-page__component__input"
+          value={this.state.password}
+          onChange={this.handleChange}
+        />
 
-        <label className="login-page__component__label" htmlFor="password">Подтверждение пароля</label>
-        <FormControl className="login-page__component__wrapper-input">
-          <Input
-            id="passwordConfirm"
-            name="passwordConfirm"
-            type={this.state.showPassword ? 'text' : 'password'}
-            className="login-page__component__text-field"
-            value={this.state.passwordConfirm}
-            onChange={this.handleChange}
-          />
-        </FormControl>
-        {this.state.passwordConfirm.length < MIN_PASSWORD_LENGTH ?
-          <div className="login-page__component__min-password">Минимальное кол-во
-            символов {this.state.passwordConfirm.length}/{MIN_PASSWORD_LENGTH}</div> : null}
+        <UiInput
+          label="Подтверждение пароля"
+          name="passwordConfirm"
+          type="password"
+          className="login-page__component__input"
+          value={this.state.passwordConfirm}
+          onChange={this.handleChange}
+          helperMessage={
+            this.state.passwordConfirm.length < MIN_PASSWORD_LENGTH ?
+              `Минимальное кол-во символов ${this.state.passwordConfirm.length}/${MIN_PASSWORD_LENGTH}` :
+              null
+          }
+        />
 
         {
           this.state.errorMessage &&
@@ -115,9 +104,11 @@ export class NewPassword extends React.PureComponent {
         }
 
         <div className="login-page__component__submit-field">
-          <Button className="login-page__component__submit-button" type="submit">
+          <UiButton
+            type="submit"
+            loading={this.state.loading}>
             Сменить пароль
-          </Button>
+          </UiButton>
         </div>
       </form>
     );

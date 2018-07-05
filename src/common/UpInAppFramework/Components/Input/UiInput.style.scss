@@ -1,0 +1,131 @@
+@import  "../../typography";
+
+.__ui-input {
+  padding-top: 13px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &.search {
+    width: 272px;
+    padding-top: 0;
+  }
+
+  label {
+    order: 0;
+    @include Caption;
+  }
+
+  & > * {
+    order: 1;
+  }
+
+  input {
+    margin-top: 4px;
+    height: 40px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 2px;
+    background-color: rgba(0, 0, 0, 0.04);
+    outline: none;
+    padding: 6px 8px 10px 8px;
+    -webkit-tap-highlight-color: transparent;
+
+    font-size: 16px;
+    line-height: 1.5;
+    caret-color: #2962ff;
+    color: rgba(0, 0, 0, 0.87);
+
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: rgba(0, 0, 0, 0.54);
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+      color: rgba(0, 0, 0, 0.54);
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+      color: rgba(0, 0, 0, 0.54);
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+      color: rgba(0, 0, 0, 0.54);
+    }
+  }
+
+  input:disabled {
+    & ~ .bot-line {
+      display: none;
+    }
+
+    & ~ .message {
+      display: none;
+    }
+  }
+
+  input:focus ~ .bot-line,
+  .bot-line.error {
+    width: 100%;
+  }
+
+  input:focus ~ label {
+    @include CaptionMain;
+  }
+
+  .bot-line {
+    width: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 0;
+    height: 0;
+    box-sizing: border-box;
+    border-bottom: 2px solid #2962ff;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    transition: width .1s linear;
+
+    &.error {
+      border-color: #ef5350;
+    }
+  }
+
+  .show-password, .search-icon {
+    position: absolute;
+    right: 15px;
+    bottom: 7.5px;
+    display: flex;
+    color: rgba(0, 0, 0, 0.54);
+  }
+
+  .errorMessage {
+    font-weight: 500;
+    position: absolute;
+    top: 100%;
+    height: 16px;
+    opacity: 0.87;
+    font-size: 12px;
+    line-height: 1.33;
+  }
+
+  .message {
+    top: 100%;
+    margin-top: 2px;
+    font-weight: 500;
+    position: absolute;
+    height: 16px;
+    opacity: 0.87;
+    font-size: 12px;
+    line-height: 1.33;
+    color: #ff1744;
+
+    &.error {
+      left: 0;
+      color: #ff1744;
+    }
+
+    &.helper {
+      right: 0;
+      color: rgba(0, 0, 0, 0.54);
+    }
+  }
+}

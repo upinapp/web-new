@@ -14,6 +14,7 @@
     margin-bottom: 17px;
     display: flex;
     align-items: center;
+    padding-left: 24px;
 
     .icon {
       margin-left: 6px;
@@ -40,7 +41,7 @@
 
     .head {
       th {
-        padding: 20px 0;
+        padding: 20px 0 20px 24px;
         text-align: right;
         border: none;
       }

@@ -1,21 +1,17 @@
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import FormControl from '@material-ui/core/FormControl';
-import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
+import { UiInput } from '../../../../common/UpInAppFramework';
 
 import { APP_LOADING } from '../../../../redusers';
 import { AuthService } from '../../../../services';
 import GoogleIcon from './google-icon.svg';
 import './SignIn.style.css';
 import {GoogleLogin} from 'react-google-login';
+import {UiButton} from '../../../../common/UpInAppFramework/Components/Button/UiButton';
 
 export class SignIn extends React.PureComponent {
 
@@ -25,21 +21,16 @@ export class SignIn extends React.PureComponent {
     this.state = {
       email: '',
       password: '',
-      showPassword: false,
-      errorMessage: null
+      errorMessage: null,
+      loading: false
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleMouseDownPassword = this.handleMouseDownPassword.bind(this);
-    this.handleClickShowPassword = this.handleClickShowPassword.bind(this);
   }
 
   handleMouseDownPassword = event => {
     event.preventDefault();
-  };
-
-  handleClickShowPassword = () => {
-    this.setState({ showPassword: !this.state.showPassword });
   };
 
   handleChange(e) {
@@ -49,7 +40,7 @@ export class SignIn extends React.PureComponent {
 
   logIn = async (event) => {
     event.preventDefault();
-    this.props.dispatch({ type: APP_LOADING, payload: true });
+    this.setState({ loading: true });
     const res = await AuthService.signInUser(this.state.email, this.state.password);
     const errorCode = res.code;
 
@@ -68,7 +59,7 @@ export class SignIn extends React.PureComponent {
         this.props.dispatch(push('/apps'));
     }
 
-    this.props.dispatch({ type: APP_LOADING, payload: false });
+    this.setState({ loading: false });
   };
 
   logInWithGoogle = async (response) => {
@@ -102,42 +93,25 @@ export class SignIn extends React.PureComponent {
   render() {
     return (
       <form className="login-page__component" onSubmit={this.logIn}>
-        <h2 className="login-page__component__title">Вход</h2>
+        <div className="login-page__component__title">Вход</div>
 
-        <label className="login-page__component__label" htmlFor="email">Email</label>
-        <FormControl className="login-page__component__wrapper-input">
-          <Input
-            id="email"
-            name="email"
-            className="login-page__component__text-field"
-            type="text"
-            value={this.state.email}
-            onChange={this.handleChange}
-          />
-        </FormControl>
+        <UiInput
+          name="email"
+          type="text"
+          label="Email"
+          value={this.state.email}
+          className="login-page__component__input"
+          onChange={this.handleChange}
+        />
 
-        <label className="login-page__component__label" htmlFor="password">Пароль</label>
-        <FormControl className="login-page__component__wrapper-input">
-          <Input
-            id="password"
-            name="password"
-            type={this.state.showPassword ? 'text' : 'password'}
-            className="login-page__component__text-field"
-            value={this.state.password}
-            onChange={this.handleChange}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="Toggle password visibility"
-                  onClick={this.handleClickShowPassword}
-                  onMouseDown={this.handleMouseDownPassword}
-                >
-                  {this.state.showPassword ? <VisibilityOff/> : <Visibility/>}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-        </FormControl>
+        <UiInput
+          name="password"
+          type="password" smartPassword
+          label="Пароль"
+          value={this.state.password}
+          className="login-page__component__input"
+          onChange={this.handleChange}
+        />
 
         {
           this.state.errorMessage &&
@@ -145,13 +119,11 @@ export class SignIn extends React.PureComponent {
         }
 
         <div className="login-page__component__submit-field">
-          <Button
+          <UiButton
             type="submit"
-            variant="raised"
-            color="primary"
-            className="login-page__component__submit-button">
+            loading={this.state.loading}>
             Вход
-          </Button>
+          </UiButton>
           <GoogleLogin
             className="login-page__component__sign-in-with-google"
             buttonText="Войти с Google"

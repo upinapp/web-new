@@ -2,7 +2,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Button from 'material-ui/Button';
@@ -13,6 +12,8 @@ import { connect } from 'react-redux';
 import { ADD_NEW_APP, APP_LOADING, SHOW_GLOBAL_SUCCESS } from '../../../../redusers';
 import { UserService } from '../../../../services';
 import './CreateNewAppDialog.style.css';
+import {UiInput} from '../../../../common/UpInAppFramework';
+import {UiButton} from '../../../../common/UpInAppFramework/Components/Button/UiButton';
 
 class CreateNewAppDialog extends React.PureComponent {
   constructor(props) {
@@ -51,16 +52,13 @@ class CreateNewAppDialog extends React.PureComponent {
           <DialogTitle>Новое приложение</DialogTitle>
           <DialogContent>
 
-            <label className="create-app__dialog-label" htmlFor="email">Название</label>
-            <FormControl className="create-app__dialog-form-wrapper">
-              <Input
-                id="name"
-                name="name"
-                type="text"
-                className="create-app__dialog-form-input"
-                onChange={this.handleInputChange}
-              />
-            </FormControl>
+            <UiInput
+              label="Название"
+              name="name"
+              type="text"
+              className="create-app__dialog-form-input"
+              onChange={this.handleInputChange}
+            />
 
             <label className="create-app__dialog-label" htmlFor="email">Часовой пояс</label>
             <FormControl className="create-app__dialog-form-wrapper">
@@ -88,13 +86,12 @@ class CreateNewAppDialog extends React.PureComponent {
             </FormControl>
 
             <div className="create-app__dialog-actions">
-              <Button
-                variant="raised"
-                color="primary"
-                className="create-app__dialog-actions-add"
+              <UiButton
+                type="submit"
+                loading={this.state.loading}
                 onClick={this.createNewApp}>
-                Добавить
-              </Button>
+                сохранить изменения
+              </UiButton>
             </div>
           </DialogContent>
         </div>

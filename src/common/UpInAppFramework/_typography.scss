@@ -1,0 +1,229 @@
+/* Color palette */
+
+:root {
+  --black-87: rgba(0, 0, 0, 0.87);
+  --black--54: rgba(0, 0, 0, 0.54);
+  --lightish-blue: #315eff;
+  --black: #000000;
+  --black-two: #212121;
+  --coral: #ef5350;
+  --yellow-tan: #ffe57f;
+  --white: #ffffff;
+  --white-two: #fafafa;
+  --white-three: #f5f5f5;
+  --iris: #5c6bc0;
+  --light-blue-grey: #d0d5ed;
+}
+
+/* Text styles */
+@mixin Display-3 {
+  font-size: 56px;
+  line-height: 1.36;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+@mixin Display-2 {
+  font-size: 45px;
+  line-height: 1.4;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+@mixin Display-1 {
+  font-size: 34px;
+  line-height: 1.41;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+@mixin Headline {
+  font-size: 24px;
+  line-height: 1.33;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+@mixin TitleBold {
+  font-size: 20px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+@mixin Title {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+@mixin TitleDisabled {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.38);
+}
+
+@mixin Subheader {
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+@mixin SubheaderSecondary {
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+@mixin SubheaderDisabled {
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.38);
+}
+
+@mixin Subheader2 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+@mixin Body2 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+@mixin Body2Main {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.71;
+}
+
+@mixin Body2Secondary {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.71;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+@mixin Body1 {
+  font-size: 14px;
+  line-height: 1.43;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+@mixin Body1Secondary {
+  font-size: 14px;
+  line-height: 1.43;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+@mixin Caption {
+  object-fit: contain;
+  font-size: 12px;
+  line-height: 1.33;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+@mixin CaptionAlert {
+  opacity: 0.87;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #ff1744;
+}
+
+@mixin CaptionMain {
+  object-fit: contain;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #2962ff;
+}
+
+@mixin ButtonMain {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #2962ff;
+}
+
+@mixin ButtonBlack {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.14;
+  letter-spacing: 0.5px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+@mixin DisabledButton {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: rgba(0, 0, 0, 0.38);
+}
+
+@mixin ButtonSecondary {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+@mixin Overline {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
+  letter-spacing: 2px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+@mixin ColumnHeading {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+@mixin ColumnBody {
+  font-size: 13px;
+  line-height: 1.54;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+@mixin Steppers {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+@mixin SteppersAlert {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ff1744;
+}
+
+@mixin SteppersDisactive {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+@mixin SteppersStep {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+@mixin SteppersAlertStep {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ff1744;
+}
+
+@mixin SteppersDisactiveStep {
+  font-size: 14px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+@mixin Button-Dark {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+
