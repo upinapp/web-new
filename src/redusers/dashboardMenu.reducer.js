@@ -1,9 +1,7 @@
-import { fromJS } from 'immutable';
-
 // Initial routing state
-const dashboardMenuInitialState = fromJS({
+const dashboardMenuInitialState = {
   open: false,
-});
+};
 
 export const DASHBOARD_MENU_TOGGLE = 'DASHBOARD_MENU_TOGGLE';
 
@@ -13,7 +11,7 @@ export const DASHBOARD_MENU_TOGGLE = 'DASHBOARD_MENU_TOGGLE';
 export function dashboardMenuReducer(state = dashboardMenuInitialState, action) {
   switch (action.type) {
     case DASHBOARD_MENU_TOGGLE:
-      return state.merge({
+      return Object.assign({}, state, {
         open: action.payload,
       });
     default:

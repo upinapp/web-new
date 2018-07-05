@@ -101,9 +101,8 @@ class CreateNewAppDialog extends React.PureComponent {
 }
 
 function mapStateToProps(state) {
-  const stateObject = state.toJS();
   return {
-    timezones: stateObject.apps.timezones,
+    timezones: state.apps.timezones,
     dispatch: state.dispatch
   };
 }

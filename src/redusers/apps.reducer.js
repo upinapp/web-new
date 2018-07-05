@@ -1,11 +1,9 @@
-import { fromJS } from 'immutable';
-
 // Initial routing state
-const myAppsInitialState = fromJS({
+const myAppsInitialState = {
   list: [],
   selected: null,
   timezones: [],
-});
+};
 
 export const ADD_NEW_APP = 'ADD_NEW_APP';
 export const UPDATE_APP = 'UPDATE_APP';
@@ -19,28 +17,27 @@ export const SET_TIMEZONES = 'SET_TIMEZONES';
 export function myAppsReducer(state = myAppsInitialState, action) {
   switch (action.type) {
     case SET_APP_LIST:
-      return state.merge({
+      return Object.assign({}, state, {
         list: action.payload
       });
     case ADD_NEW_APP:
-      return state.merge({
-        list: [...state.get('list'), action.payload]
+      return Object.assign({}, state, {
+        list: [...state.list, action.payload]
       });
     case SET_SELECTED_APP:
-      return state.merge({
+      return Object.assign({}, state, {
         selected: action.payload
       });
     case SET_TIMEZONES:
-      return state.merge({
+      return Object.assign({}, state, {
         timezones: action.payload
       });
     case UPDATE_APP: {
-      const stateObject = state.toJS();
-      const list = stateObject.list;
-      const index = stateObject.list.findIndex((e) => e.id === action.payload.id);
+      const list = [...state.list];
+      const index = state.list.findIndex((e) => e.id === action.payload.id);
       list.splice(index, 1, action.payload);
 
-      return state.merge({
+      return Object.assign({}, state, {
         list: list
       });
     }

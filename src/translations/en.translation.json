@@ -1,0 +1,14 @@
+{
+  "basic": {
+    "name": "Name",
+    "email": "Email",
+    "password": "Password"
+  },
+  "auth": {
+    "sign_in": "Sign in",
+    "sign_up": "Sign up",
+    "restore": "Restore",
+    "restore_password": "Restore password",
+    "sign_in_via_google": "Sign in via Google"
+  }
+}

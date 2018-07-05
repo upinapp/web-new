@@ -2,9 +2,10 @@
  * Combine all reducers in this file and export the combined reducers.
  */
 
-import { combineReducers } from 'redux-immutable';
+import { combineReducers } from 'redux';
 
 import { audienceByDateReducer } from './pages/DashboardPage/pages/AudiencePage/components/Table/audienceByDayReducer';
+import { localizeReducer } from 'react-localize-redux';
 import {
   dashboardMenuReducer,
   loadingReducer,
@@ -26,6 +27,7 @@ export default function createReducer(injectedReducers) {
     user: userReducer,
     loading: loadingReducer,
     notification: notificationsReducer,
+    localize: localizeReducer,
     ...injectedReducers,
   });
 }

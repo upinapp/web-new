@@ -45,9 +45,8 @@ class AppNotification extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const stateObject = state.toJS();
   return {
-    notification: stateObject.notification,
+    notification: state.notification,
     dispatch: state.dispatch
   };
 };

@@ -1,0 +1,14 @@
+{
+  "basic": {
+    "name": "Имя",
+    "email": "Email",
+    "password": "Пароль"
+  },
+  "auth": {
+    "sign_in": "Войти",
+    "sign_up": "Зарегистрироваться",
+    "restore": "Восстановить",
+    "restore_password": "Восстановить пароль",
+    "sign_in_via_google": "Войти через Google"
+  }
+}

@@ -1,10 +1,8 @@
-import { fromJS } from 'immutable';
-
 // Initial routing state
-const initialState = fromJS({
+const initialState = {
   type: '',
   text: ''
-});
+};
 
 export const SHOW_GLOBAL_ERROR = 'SHOW_GLOBAL_ERROR';
 export const SHOW_GLOBAL_INFO = 'SHOW_GLOBAL_INFO';
@@ -18,27 +16,27 @@ export const HIDE_GLOBAL_NOTIFICATION = 'HIDE_GLOBAL_NOTIFICATION';
 export function notificationsReducer(state = initialState, action) {
   switch (action.type) {
     case SHOW_GLOBAL_ERROR:
-      return state.merge({
+      return Object.assign({}, state, {
         type: 'error',
         text: action.payload
       });
     case SHOW_GLOBAL_INFO:
-      return state.merge({
+      return Object.assign({}, state, {
         type: 'info',
         text: action.payload
       });
     case SHOW_GLOBAL_SUCCESS:
-      return state.merge({
+      return Object.assign({}, state, {
         type: 'success',
         text: action.payload
       });
     case SHOW_GLOBAL_WARNING:
-      return state.merge({
+      return Object.assign({}, state, {
         type: 'warning',
         text: action.payload
       });
     case HIDE_GLOBAL_NOTIFICATION:
-      return state.merge({
+      return Object.assign({}, state, {
         type: '',
         text: ''
       });

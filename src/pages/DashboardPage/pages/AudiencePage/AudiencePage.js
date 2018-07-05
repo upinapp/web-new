@@ -41,9 +41,8 @@ class AudiencePage extends React.PureComponent {
 }
 
 function mapStateToProps(state) {
-  const stateObject = state.toJS();
   return {
-    audienceByDate: stateObject.audienceByDate,
+    audienceByDate: state.audienceByDate,
     dispatch: state.dispatch
   };
 }

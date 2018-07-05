@@ -38,7 +38,6 @@ class FunnelPage extends React.PureComponent {
 }
 
 function mapStateToProps(state) {
-  const stateObject = state.toJS();
   return {
     dispatch: state.dispatch
   };
