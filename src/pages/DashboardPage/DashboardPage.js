@@ -1,5 +1,5 @@
+import './DashboardPage.style.css';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import MenuIcon from '@material-ui/icons/Menu';
 import classNames from 'classnames';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
@@ -9,6 +9,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { push } from 'react-router-redux';
 
 import { DASHBOARD_MENU_TOGGLE } from '../../redusers';
 import DashboardMenu from './components/DashboardMenu/DashboardMenu';
@@ -18,9 +19,8 @@ import EventPage from './pages/EventPage/EventPage';
 import FunnelPage from './pages/FunnelPage/FunnelPage';
 
 import appLogo from '../../assets/images/logo.svg';
-import './DashboardPage.style.css';
-import {push} from 'react-router-redux';
 import InfoBar from '../../common/AppHeader/InfoBar/InfoBar';
+import AppStatus from '../../common/AppStatus/AppStatus';
 
 class DashboardPage extends React.PureComponent {
   state = {
@@ -29,12 +29,12 @@ class DashboardPage extends React.PureComponent {
 
   handleDrawerToggle = () => {
     this.props.dispatch({ type: DASHBOARD_MENU_TOGGLE, payload: !this.state.open });
-    this.setState({open: !this.state.open});
+    this.setState({ open: !this.state.open });
   };
 
   handleClickButtonBack = () => {
     this.props.dispatch(push('/apps'));
-  }
+  };
 
   render() {
     const { dashboardMenu } = this.props;
@@ -46,6 +46,7 @@ class DashboardPage extends React.PureComponent {
             position="absolute"
             className={classNames('app-bar', dashboardMenu.open && 'app-bar-shift')}
           >
+            <AppStatus />
             <Toolbar disableGutters={!this.state.open}>
               <IconButton
                 onClick={this.handleClickButtonBack}
@@ -68,7 +69,7 @@ class DashboardPage extends React.PureComponent {
             <img className="app-logo" src={appLogo} alt="logo"/>
             <DashboardMenu/>
             <div className="close-drawer-wrapper" onClick={this.handleDrawerToggle}>
-              <div className="icon"></div>
+              <div className="icon" />
             </div>
           </Drawer>
 
