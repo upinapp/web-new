@@ -1,4 +1,4 @@
-import FormControl from '@material-ui/core/FormControl';
+import './MyAppsPage.style.css';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -16,9 +16,7 @@ import AppHeader from '../../common/AppHeader/AppHeader';
 import { SET_SELECTED_APP, APP_LOADING, SET_TIMEZONES } from '../../redusers';
 import CreateNewAppDialog from './components/CreateNewAppDialog/CreateNewAppDialog';
 import EditAppDialog from './components/EditAppDialog/EditAppDialog';
-
-import './MyAppsPage.style.css';
-import {UiInput} from '../../common/UpInAppFramework';
+import { UiInput } from '../../common/UpInAppFramework';
 
 class MyAppsPage extends React.PureComponent {
 
@@ -95,6 +93,10 @@ class MyAppsPage extends React.PureComponent {
     this.setState({ appList });
   };
 
+  isOnline() {
+    return !!window.navigator.onLine;
+  }
+
   render() {
     return (
       <div className="my-apps">
@@ -103,7 +105,7 @@ class MyAppsPage extends React.PureComponent {
         <div className="my-apps__menu">
           <div className="my-apps__menu-title">Мои приложения</div>
 
-          <div className="my-apps__manage" >
+          <div className="my-apps__manage">
             <UiInput
               name="searchApp"
               type="text"
@@ -112,58 +114,62 @@ class MyAppsPage extends React.PureComponent {
               search
             />
 
-            <Button onClick={this.handleClickOpen}>
-              <AddIcon/>
-              Добавить
-            </Button>
+            {
+              this.isOnline() &&
+              <Button onClick={this.handleClickOpen}>
+                <AddIcon/>
+                Добавить
+              </Button>
+            }
           </div>
         </div>
 
-        {this.state.appList && this.state.appList.length > 0 ?
-          <div className="my-apps__menu-table-container">
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Название</TableCell>
-                  <TableCell numeric>Пользователи</TableCell>
-                  <TableCell numeric>Новые</TableCell>
-                  <TableCell numeric>Сессии</TableCell>
-                  <TableCell numeric></TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {this.state.appList.map((app) => {
-                  return (
-                    <TableRow key={app.id}>
-                      <TableCell
-                        className="my-apps__menu-table-name"
-                        component="th"
-                        scope="row"
-                        onClick={() => this.openApp(app)}>
-                        {app.name}
-                      </TableCell>
-                      <TableCell numeric>{app.statistics.totalUsers}</TableCell>
-                      <TableCell numeric>{app.statistics.newUsers}</TableCell>
-                      <TableCell numeric>{app.statistics.sessions}</TableCell>
-                      <TableCell numeric>
-                        <IconButton
-                          aria-label="Настройки приложения"
-                          onClick={ () => {
-                            this.handleClickOpenSettingApps(app);
-                          } }>
-                          <Icon>more_vert</Icon>
-                        </IconButton>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </div>
-          :
-          <div className="my-apps__empty-list">
-            У Вас нет еще ни одного приложения
-          </div>
+        {
+          this.state.appList && this.state.appList.length > 0 ?
+            <div className="my-apps__menu-table-container">
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Название</TableCell>
+                    <TableCell numeric>Пользователи</TableCell>
+                    <TableCell numeric>Новые</TableCell>
+                    <TableCell numeric>Сессии</TableCell>
+                    <TableCell numeric></TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {this.state.appList.map((app) => {
+                    return (
+                      <TableRow key={app.id}>
+                        <TableCell
+                          className="my-apps__menu-table-name"
+                          component="th"
+                          scope="row"
+                          onClick={() => this.openApp(app)}>
+                          {app.name}
+                        </TableCell>
+                        <TableCell numeric>{app.statistics.totalUsers}</TableCell>
+                        <TableCell numeric>{app.statistics.newUsers}</TableCell>
+                        <TableCell numeric>{app.statistics.sessions}</TableCell>
+                        <TableCell numeric>
+                          <IconButton
+                            aria-label="Настройки приложения"
+                            onClick={ () => {
+                              this.handleClickOpenSettingApps(app);
+                            } }>
+                            <Icon>more_vert</Icon>
+                          </IconButton>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </div>
+            :
+            <div className="my-apps__empty-list">
+              У Вас нет еще ни одного приложения
+            </div>
         }
 
         { this.state.isDialogOpen ?

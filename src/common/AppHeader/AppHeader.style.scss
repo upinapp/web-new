@@ -3,25 +3,33 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 5px 20px;
-  flex-grow: 1;
   border-bottom: 1px solid #d1d1d1;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  z-index: 1000;
-  justify-content: space-between;
   box-sizing: border-box;
+  z-index: 1000;
 
-  .logo {
-    width: 50px
+  .header-container {
+    padding: 5px 20px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    justify-content: space-between;
+    flex-grow: 1;
+
+    .left {
+      display: flex;
+      align-items: center;
+      max-width: 200px;
+
+      .logo {
+        width: 50px
+      }
+
+      .title {
+        margin-left: 10px;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.71;
+      }
+    }
   }
-
-  .title {
-    margin-left: 10px;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.71;
-  }
-
 }

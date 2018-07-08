@@ -1,0 +1,32 @@
+$height: 27px;
+
+.AppStatus-root {
+
+  .status {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: $height;
+
+    transition-property: max-height;
+    transition-duration: 500ms;
+
+    overflow: hidden;
+
+    &.online {
+      background-color: #00c853;
+      color: #ffffff;
+      max-height: 0;
+    }
+
+    &.offline {
+      background-color: #ff6e00;
+      color: #ffffff;
+      max-height: 0;
+    }
+
+    &.shown {
+      max-height: $height;
+    }
+  }
+}
