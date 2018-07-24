@@ -28,6 +28,15 @@ pipeline {
         sh 'npm run test'
       }
     }
+    stage('Release') {
+      agent {
+        docker {
+          image 'golang:1.10.3-alpine'
+          args '--user=root --privileged'
+        }
+      }
+      sh 'go get github.com/aktau/github-release'
+    }
   }
   environment {
     CI = 'true'
