@@ -35,7 +35,9 @@ pipeline {
           args '--user=root --privileged'
         }
       }
-      sh 'go get github.com/aktau/github-release'
+      steps {
+        sh 'go get github.com/aktau/github-release'
+      }
     }
   }
   environment {
