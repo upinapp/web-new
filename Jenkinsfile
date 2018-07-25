@@ -36,6 +36,7 @@ pipeline {
       }
       steps {
         sh 'npm run test'
+        stash includes: 'build/**/*', name: 'staticContent'
       }
     }
     stage('Release') {
@@ -48,6 +49,7 @@ pipeline {
       steps {
         sh 'apk add --no-cache git'
         sh 'go get github.com/aktau/github-release'
+        unstash 'staticContent'
       }
     }
   }
