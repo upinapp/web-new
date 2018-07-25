@@ -46,6 +46,7 @@ pipeline {
         }
       }
       steps {
+        sh 'apk add --no-cache git'
         sh 'go get github.com/aktau/github-release'
       }
     }
