@@ -1,29 +1,39 @@
 pipeline {
-  agent {
-    docker { image 'node:7-alpine' }
-  }
+  agent { none }
   options {
     skipDefaultCheckout true
   }
   stages {
     stage('Prepare') {
+      agent {
+        docker { image 'node:7-alpine' }
+      }
       steps {
         cleanWs()
         checkout scm
       }
     }
     stage('Install') {
+      agent {
+        docker { image 'node:7-alpine' }
+      }
       steps {
         sh 'npm -v'
         sh 'npm install'
       }
     }
     stage('Build') {
+      agent {
+        docker { image 'node:7-alpine' }
+      }
       steps {
         sh 'npm run build'
       }
     }
     stage('Test') {
+      agent {
+        docker { image 'node:7-alpine' }
+      }
       steps {
         sh 'npm run test'
       }
